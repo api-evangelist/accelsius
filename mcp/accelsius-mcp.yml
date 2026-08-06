@@ -1,0 +1,132 @@
+generated: '2026-08-06'
+method: derived
+status: candidate
+source: openapi/accelsius-*-openapi.yml
+summary: >-
+  Accelsius publishes NO hosted or remote MCP server. Searched the site, the /.well-known/
+  surface and the public registries on 2026-08-06 and found none; there is no mcp.accelsius.com
+  host, no /llms.txt, and no reference to MCP, the Model Context Protocol or agents anywhere on
+  accelsius.com. The tool list below is a CANDIDATE derived mechanically from the twenty-three
+  anonymously-readable OpenAPI operations in this repo — one tool per operationId. It is a
+  proposal for what an MCP server over this surface would expose, not something Accelsius offers.
+  Each tool's real input contract is the `parameters` block of its backing operation in the
+  referenced spec.
+search:
+  performed: '2026-08-06'
+  probed:
+  - target: https://mcp.accelsius.com
+    result: NXDOMAIN
+  - target: https://api.accelsius.com
+    result: NXDOMAIN
+  - target: https://accelsius.com/.well-known/ai-plugin.json
+    result: 404
+  - target: https://accelsius.com/llms.txt
+    result: 404
+  - target: https://accelsius.com/.well-known/agent-card.json
+    result: 404
+  - target: site + web search for "Accelsius MCP", "Model Context Protocol", "agent"
+    result: no reference found
+  outcome: none
+server:
+  name: accelsius
+  transport: http
+  url: null
+  published: false
+  note: >-
+    No server URL — nothing is published. A candidate server would front
+    https://accelsius.com/wp-json with no credential, since the read surface is anonymous. Any
+    implementer must build in hard client-side throttling: the origin enforces a behavioural
+    block (MalCare, HTTP 403 with an HTML body) with no rate-limit header to read.
+auth:
+  required: false
+  note: All candidate tools are anonymous reads. No token, key or consent step is involved.
+tools:
+- name: list_resources
+  description: >-
+    List Accelsius resource-library items — blog posts, white papers, case studies, infographics,
+    podcasts, videos and press releases. Filter by category or tag.
+  source_operation: openapi/accelsius-content-api-openapi.yml#listContent
+- name: get_resource
+  description: Get a single Accelsius resource-library item by its numeric ID.
+  source_operation: openapi/accelsius-content-api-openapi.yml#getContentItem
+- name: list_news
+  description: List curated third-party press coverage of Accelsius.
+  source_operation: openapi/accelsius-news-api-openapi.yml#listNews
+- name: get_news_item
+  description: Get a single news item by its numeric ID.
+  source_operation: openapi/accelsius-news-api-openapi.yml#getNewsItem
+- name: list_pages
+  description: >-
+    List the static marketing, product, company and legal pages of accelsius.com — the NeuCool
+    IR150 and MR250 product pages, the technology explainers, services, partners and FAQ.
+  source_operation: openapi/accelsius-pages-api-openapi.yml#listPages
+- name: get_page
+  description: Get a single site page by its numeric ID, including its rendered HTML body.
+  source_operation: openapi/accelsius-pages-api-openapi.yml#getPage
+- name: list_media
+  description: >-
+    List media-library attachments. Filter by mime_type=application/pdf to retrieve the published
+    white papers, studies and infographics.
+  source_operation: openapi/accelsius-media-api-openapi.yml#listMedia
+- name: get_media_item
+  description: Get a single attachment, including its source URL and generated size variants.
+  source_operation: openapi/accelsius-media-api-openapi.yml#getMediaItem
+- name: list_categories
+  description: List the content-class categories (blog, white-paper, case-study, podcast, video, ...).
+  source_operation: openapi/accelsius-taxonomy-api-openapi.yml#listCategories
+- name: get_category
+  description: Get a single category term by ID.
+  source_operation: openapi/accelsius-taxonomy-api-openapi.yml#getCategory
+- name: list_tags
+  description: List the topic tags (2pd2c-education, neucool-products, scientific-research, ...).
+  source_operation: openapi/accelsius-taxonomy-api-openapi.yml#listTags
+- name: get_tag
+  description: Get a single topic tag by ID.
+  source_operation: openapi/accelsius-taxonomy-api-openapi.yml#getTag
+- name: list_media_folders
+  description: List the HappyFiles folders organising the media library.
+  source_operation: openapi/accelsius-taxonomy-api-openapi.yml#listMediaFolders
+- name: get_media_folder
+  description: Get a single HappyFiles media folder by ID.
+  source_operation: openapi/accelsius-taxonomy-api-openapi.yml#getMediaFolder
+- name: list_post_types
+  description: List the content types registered on the site, including the `news` custom type.
+  source_operation: openapi/accelsius-taxonomy-api-openapi.yml#listPostTypes
+- name: get_post_type
+  description: Get the registration record for one content type.
+  source_operation: openapi/accelsius-taxonomy-api-openapi.yml#getPostType
+- name: list_taxonomies
+  description: List the taxonomies registered on the site.
+  source_operation: openapi/accelsius-taxonomy-api-openapi.yml#listTaxonomies
+- name: get_taxonomy
+  description: Get the registration record for one taxonomy.
+  source_operation: openapi/accelsius-taxonomy-api-openapi.yml#getTaxonomy
+- name: list_statuses
+  description: List the publication statuses visible to the caller.
+  source_operation: openapi/accelsius-taxonomy-api-openapi.yml#listStatuses
+- name: get_status
+  description: Get the registration record for one publication status.
+  source_operation: openapi/accelsius-taxonomy-api-openapi.yml#getStatus
+- name: search_accelsius
+  description: >-
+    Search across every searchable object on accelsius.com and return lightweight
+    id/title/url/type records. The cheapest way to resolve a title or URL to a numeric ID.
+  source_operation: openapi/accelsius-search-api-openapi.yml#searchSite
+- name: get_root_index
+  description: >-
+    Fetch the WordPress route-discovery document — 387 routes across 16 namespaces. Pass
+    `_fields` unless you want 285KB.
+  source_operation: openapi/accelsius-discovery-api-openapi.yml#getRootIndex
+- name: get_wp_v2_index
+  description: Fetch the wp/v2 namespace discovery document with full argument schemas.
+  source_operation: openapi/accelsius-discovery-api-openapi.yml#getWpV2Index
+excluded_tools:
+- route: /wp/v2/users
+  reason: >-
+    Anonymously readable on this host (HTTP 200, 14 records) and therefore trivially toolable,
+    but it is a directory of named individuals. Excluded deliberately under the API Evangelist
+    enrichment PII guardrail: document the exposure, do not ship the exploit. See
+    authentication/accelsius-authentication.yml `exposed_personal_data`.
+x-evidence:
+  fetched: '2026-08-06'
+  host: https://accelsius.com

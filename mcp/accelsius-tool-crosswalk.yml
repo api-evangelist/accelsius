@@ -1,0 +1,217 @@
+generated: '2026-08-06'
+method: derived
+source: mcp/accelsius-mcp.yml + openapi/accelsius-*-openapi.yml
+summary: 'Binds every candidate MCP tool to its backing OpenAPI operation so each tool inherits a REAL
+  input schema — that operation''s `parameters` block, itself transcribed from the argument descriptor
+  accelsius.com publishes at /wp-json/ — instead of a guessed one. Confidence is `high` on every row for
+  an unusual reason: the tool list was derived FROM the operations, one per operationId, so the binding
+  is definitional rather than inferred. There are no MCP-only and no GraphQL-only rows because neither
+  surface exists. There is exactly one REST-only row, and it is the interesting one: the anonymously readable
+  user directory, which is deliberately left untooled.'
+surfaces:
+  openapi:
+    files:
+    - openapi/accelsius-content-api-openapi.yml
+    - openapi/accelsius-news-api-openapi.yml
+    - openapi/accelsius-pages-api-openapi.yml
+    - openapi/accelsius-media-api-openapi.yml
+    - openapi/accelsius-taxonomy-api-openapi.yml
+    - openapi/accelsius-search-api-openapi.yml
+    - openapi/accelsius-discovery-api-openapi.yml
+    gated: false
+    note: Derived by API Evangelist from the live route index at https://accelsius.com/wp-json/; every
+      collection operation verified anonymously readable. Not published by the provider.
+  graphql:
+    endpoint: null
+    gated: null
+    note: No GraphQL surface. https://accelsius.com/graphql returned 404 and no WPGraphQL namespace appears
+      among the 16 namespaces in the route index.
+  mcp:
+    url: null
+    gated: null
+    note: No MCP server published by Accelsius; tools/list could not be called because there is no endpoint
+      to call. mcp.accelsius.com is NXDOMAIN and /.well-known/ai-plugin.json is 404. The tool list is
+      a candidate derived from REST.
+crosswalk:
+- tool: list_resources
+  category: content
+  rest:
+  - listContent
+  binding: one-to-one
+  confidence: high
+  note: Tool inherits the parameters of listContent in openapi/accelsius-content-api-openapi.yml.
+- tool: get_resource
+  category: content
+  rest:
+  - getContentItem
+  binding: one-to-one
+  confidence: high
+  note: Tool inherits the parameters of getContentItem in openapi/accelsius-content-api-openapi.yml.
+- tool: list_news
+  category: news
+  rest:
+  - listNews
+  binding: one-to-one
+  confidence: high
+  note: Tool inherits the parameters of listNews in openapi/accelsius-news-api-openapi.yml.
+- tool: get_news_item
+  category: news
+  rest:
+  - getNewsItem
+  binding: one-to-one
+  confidence: high
+  note: Tool inherits the parameters of getNewsItem in openapi/accelsius-news-api-openapi.yml.
+- tool: list_pages
+  category: pages
+  rest:
+  - listPages
+  binding: one-to-one
+  confidence: high
+  note: Tool inherits the parameters of listPages in openapi/accelsius-pages-api-openapi.yml.
+- tool: get_page
+  category: pages
+  rest:
+  - getPage
+  binding: one-to-one
+  confidence: high
+  note: Tool inherits the parameters of getPage in openapi/accelsius-pages-api-openapi.yml.
+- tool: list_media
+  category: media
+  rest:
+  - listMedia
+  binding: one-to-one
+  confidence: high
+  note: Tool inherits the parameters of listMedia in openapi/accelsius-media-api-openapi.yml.
+- tool: get_media_item
+  category: media
+  rest:
+  - getMediaItem
+  binding: one-to-one
+  confidence: high
+  note: Tool inherits the parameters of getMediaItem in openapi/accelsius-media-api-openapi.yml.
+- tool: list_categories
+  category: taxonomy
+  rest:
+  - listCategories
+  binding: one-to-one
+  confidence: high
+  note: Tool inherits the parameters of listCategories in openapi/accelsius-taxonomy-api-openapi.yml.
+- tool: get_category
+  category: taxonomy
+  rest:
+  - getCategory
+  binding: one-to-one
+  confidence: high
+  note: Tool inherits the parameters of getCategory in openapi/accelsius-taxonomy-api-openapi.yml.
+- tool: list_tags
+  category: taxonomy
+  rest:
+  - listTags
+  binding: one-to-one
+  confidence: high
+  note: Tool inherits the parameters of listTags in openapi/accelsius-taxonomy-api-openapi.yml.
+- tool: get_tag
+  category: taxonomy
+  rest:
+  - getTag
+  binding: one-to-one
+  confidence: high
+  note: Tool inherits the parameters of getTag in openapi/accelsius-taxonomy-api-openapi.yml.
+- tool: list_media_folders
+  category: taxonomy
+  rest:
+  - listMediaFolders
+  binding: one-to-one
+  confidence: high
+  note: Tool inherits the parameters of listMediaFolders in openapi/accelsius-taxonomy-api-openapi.yml.
+- tool: get_media_folder
+  category: taxonomy
+  rest:
+  - getMediaFolder
+  binding: one-to-one
+  confidence: high
+  note: Tool inherits the parameters of getMediaFolder in openapi/accelsius-taxonomy-api-openapi.yml.
+- tool: list_post_types
+  category: registry
+  rest:
+  - listPostTypes
+  binding: one-to-one
+  confidence: high
+  note: Tool inherits the parameters of listPostTypes in openapi/accelsius-taxonomy-api-openapi.yml.
+- tool: get_post_type
+  category: registry
+  rest:
+  - getPostType
+  binding: one-to-one
+  confidence: high
+  note: Tool inherits the parameters of getPostType in openapi/accelsius-taxonomy-api-openapi.yml.
+- tool: list_taxonomies
+  category: registry
+  rest:
+  - listTaxonomies
+  binding: one-to-one
+  confidence: high
+  note: Tool inherits the parameters of listTaxonomies in openapi/accelsius-taxonomy-api-openapi.yml.
+- tool: get_taxonomy
+  category: registry
+  rest:
+  - getTaxonomy
+  binding: one-to-one
+  confidence: high
+  note: Tool inherits the parameters of getTaxonomy in openapi/accelsius-taxonomy-api-openapi.yml.
+- tool: list_statuses
+  category: registry
+  rest:
+  - listStatuses
+  binding: one-to-one
+  confidence: high
+  note: Tool inherits the parameters of listStatuses in openapi/accelsius-taxonomy-api-openapi.yml.
+- tool: get_status
+  category: registry
+  rest:
+  - getStatus
+  binding: one-to-one
+  confidence: high
+  note: Tool inherits the parameters of getStatus in openapi/accelsius-taxonomy-api-openapi.yml.
+- tool: search_accelsius
+  category: search
+  rest:
+  - searchSite
+  binding: one-to-one
+  confidence: high
+  note: Tool inherits the parameters of searchSite in openapi/accelsius-search-api-openapi.yml.
+- tool: get_root_index
+  category: discovery
+  rest:
+  - getRootIndex
+  binding: one-to-one
+  confidence: high
+  note: Tool inherits the parameters of getRootIndex in openapi/accelsius-discovery-api-openapi.yml.
+- tool: get_wp_v2_index
+  category: discovery
+  rest:
+  - getWpV2Index
+  binding: one-to-one
+  confidence: high
+  note: Tool inherits the parameters of getWpV2Index in openapi/accelsius-discovery-api-openapi.yml.
+mcp_only: []
+graphql_only: []
+rest_only:
+- operation: listUsers
+  path: /wp/v2/users
+  spec: null
+  reason: Anonymously readable on this host (HTTP 200, 14 records) but never modelled as an operation
+    in openapi/ and never bound to a tool. It is a directory of named individuals; excluded under the
+    API Evangelist enrichment PII guardrail. Recorded here so the omission reads as deliberate rather
+    than missed.
+coverage:
+  rest_operations: 23
+  tools: 23
+  bound: 23
+  mcp_only: 0
+  graphql_only: 0
+  rest_only: 1
+  unbound_tools: 0
+x-evidence:
+  fetched: '2026-08-06'
+  host: https://accelsius.com

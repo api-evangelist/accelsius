@@ -1,0 +1,138 @@
+generated: '2026-08-06'
+method: derived
+source: >-
+  live anonymous probes of https://accelsius.com/wp-json/ (2026-08-06) plus this repo's
+  openapi/accelsius-*-openapi.yml
+summary:
+  types:
+  - none
+  - http
+  - cookie
+  api_key_in: []
+  oauth2_flows: []
+  notes: >-
+    Accelsius publishes no developer program and no product API. Its only machine-readable
+    surface is the platform-provided WordPress REST API at accelsius.com/wp-json/, and the read
+    half of that surface is fully public: every operation documented in this repo's openapi/
+    specs was verified to return HTTP 200 with JSON to an anonymous request carrying no
+    credentials of any kind. There is no API key, no OAuth, no OpenID Connect, no signup and no
+    developer credential to obtain — /.well-known/openid-configuration and
+    /.well-known/oauth-authorization-server both returned 404. Unlike a stock install, this root
+    index does advertise one scheme: `authentication.application-passwords`, whose authorization
+    endpoint is https://accelsius.com/wp-admin/authorize-application.php. That is an
+    administrative WordPress credential for site editors, not a public developer credential, and
+    it exists to serve the write half of the same routes. Those write operations are deliberately
+    NOT documented in this repo's openapi/ specs, which describe only the anonymously reachable
+    read surface.
+schemes:
+- name: public-read
+  type: none
+  description: >-
+    Anonymous public read access to the WordPress content API — resource-library posts, the news
+    custom post type, pages, media, categories, tags, HappyFiles media folders, site search, and
+    the type/taxonomy/status registries.
+  evidence: >-
+    GET /wp-json/wp/v2/posts?per_page=1 returned HTTP 200 with post JSON, `X-WP-Total: 154` and
+    `Allow: GET`; the same anonymous request pattern returned 200 on news (8), pages (30),
+    media (903), categories (8), tags (5), happyfiles_category (19), search (192), navigation,
+    types, taxonomies and statuses.
+- name: applicationPassword
+  type: http
+  scheme: basic
+  description: >-
+    WordPress Application Passwords over HTTP Basic — the one credential the site itself
+    advertises. It governs the write half of these routes and the administrative read routes. It
+    belongs to a logged-in Accelsius site editor; there is no public issuance path.
+  in: header
+  evidence: >-
+    The root index at https://accelsius.com/wp-json/ returns an `authentication` object whose
+    `application-passwords.endpoints.authorization` value is
+    https://accelsius.com/wp-admin/authorize-application.php.
+  sources:
+  - openapi/accelsius-content-api-openapi.yml
+  - openapi/accelsius-discovery-api-openapi.yml
+  - openapi/accelsius-media-api-openapi.yml
+  - openapi/accelsius-news-api-openapi.yml
+  - openapi/accelsius-pages-api-openapi.yml
+  - openapi/accelsius-search-api-openapi.yml
+  - openapi/accelsius-taxonomy-api-openapi.yml
+- name: wordpress-cookie-nonce
+  type: cookie
+  description: >-
+    WordPress core cookie authentication paired with an X-WP-Nonce request header, the
+    browser-side equivalent used by the site's own editor. Not a public developer credential.
+  in: cookie
+  evidence: >-
+    `Access-Control-Allow-Headers` on /wp-json/wp/v2/posts advertises `Authorization, X-WP-Nonce,
+    Content-Disposition, Content-MD5, Content-Type`.
+gated_surface:
+  description: >-
+    Routes present in the live route table but NOT anonymously readable. Recorded so the
+    public/private split of this surface is explicit rather than inferred. Every status below was
+    observed on 2026-08-06; the JSON error bodies behind them were not captured, because the
+    site's MalCare firewall began answering 403 to this pass before the bodies could be read (see
+    errors/accelsius-problem-types.yml).
+  routes:
+  - path: /wp/v2/settings
+    status: 401
+  - path: /wp/v2/menus
+    status: 401
+  - path: /wp/v2/menu-items
+    status: 401
+  - path: /wp/v2/menu-locations
+    status: 401
+  - path: /wp/v2/templates
+    status: 401
+  - path: /wp/v2/template-parts
+    status: 401
+  - path: /wp/v2/themes
+    status: 401
+  - path: /wp/v2/plugins
+    status: 401
+  - path: /wp/v2/widgets
+    status: 401
+  - path: /wp/v2/widget-types
+    status: 401
+  - path: /wp/v2/sidebars
+    status: 401
+  - path: /wp/v2/block-types
+    status: 401
+  - path: /wp/v2/block-patterns/patterns
+    status: 401
+  - path: /wp/v2/pattern-directory/patterns
+    status: 401
+  - path: /wp/v2/users/me
+    status: 401
+  - path: /wp-abilities/v1/abilities
+    status: 401
+  - path: /yoast/v1/statistics
+    status: 401
+  - path: /redirection/v1/redirect
+    status: 401
+  - path: /leadin/v1/access-token
+    status: 401
+  - path: /wp-site-health/v1/directory-sizes
+    status: 401
+exposed_personal_data:
+  route: /wp/v2/users
+  status: 200
+  count: 14
+  detail: >-
+    Unlike most of the administrative surface, the WordPress user directory on this host answers
+    anonymously with HTTP 200 and 14 records. These are the site's content-author accounts — the
+    standard WordPress `view` context returns display name, slug, description, avatar URLs and
+    author-archive link, and no email address or password material. It is nonetheless a directory
+    of named individuals.
+  disposition: >-
+    Recorded here as an observed exposure and deliberately NOT modelled: no operation for
+    /wp/v2/users appears in this repo's openapi/ specs, no candidate MCP tool binds to it, and no
+    agent skill walks it. See the exclusion recorded in skills/_index.yml.
+docs: https://developer.wordpress.org/rest-api/using-the-rest-api/authentication/
+x-evidence:
+  fetched: '2026-08-06'
+  host: https://accelsius.com
+  root_index: https://accelsius.com/wp-json/
+  namespaces: 16
+  routes_advertised: 387
+  authentication_field:
+  - application-passwords

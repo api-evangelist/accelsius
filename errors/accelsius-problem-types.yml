@@ -1,0 +1,102 @@
+generated: '2026-08-06'
+method: derived
+source: >-
+  HTTP statuses observed live against https://accelsius.com/wp-json/ (2026-08-06), plus the 4xx
+  responses declared in this repo's openapi/accelsius-*-openapi.yml
+format: wordpress-rest-error
+rfc9457: false
+notes: >-
+  The Accelsius content API does NOT use RFC 9457 problem+json. Errors are returned as
+  application/json using the WordPress core error envelope: a machine-readable `code`, a
+  human-readable `message`, and a `data` object that repeats the HTTP status and, for validation
+  failures, carries per-parameter `params` and `details`.
+
+  IMPORTANT PROVENANCE CAVEAT. Every HTTP STATUS below was observed on the wire on 2026-08-06.
+  The JSON error BODIES were not. accelsius.com runs the MalCare WordPress firewall, which
+  classified this pass's error-path requests as malicious and began answering HTTP 403 with an
+  HTML interstitial ("MalCare WordPress Security Plugin ... Blocked because of Malicious
+  Activities") to every subsequent request that would have returned a 400 or a 404. Probing was
+  stopped rather than evaded. The `code` values below are therefore the WordPress core slugs for
+  the observed conditions, recorded as EXPECTED, not as captured — each entry states which of the
+  two it is. Nothing here is inferred beyond that, and no error body is reproduced.
+envelope:
+  media_type: application/json
+  verified: false
+  fields:
+    code: Machine-readable error slug, e.g. rest_post_invalid_id.
+    message: Human-readable message.
+    data.status: HTTP status code, repeated inside the body.
+    data.params: Map of parameter name to validation message (validation failures only).
+    data.details: Per-parameter detail objects with a nested code and message (validation failures only).
+  note: >-
+    The envelope shape is the WordPress core contract and is declared in every openapi/ file as
+    components.schemas.WPError. It was not captured on this host; see notes above.
+problems:
+- code: rest_invalid_param
+  status: 400
+  title: Invalid parameter
+  detail: One or more query parameters failed the route's argument validation.
+  remediation: >-
+    Read data.params for the offending parameter and its constraint. The live route descriptor
+    declares per_page minimum 1 and maximum 100; page minimum 1; order enum asc|desc; context
+    enum view|embed|edit.
+  evidence: expected
+  source_operation: openapi/accelsius-content-api-openapi.yml#listContent
+- code: rest_post_invalid_id
+  status: 404
+  title: Invalid post ID
+  detail: No published object exists with the requested numeric ID for this post type.
+  remediation: List the collection first, or use searchSite, and use an id returned there.
+  evidence: expected
+  source_operation: openapi/accelsius-content-api-openapi.yml#getContentItem
+- code: rest_term_invalid
+  status: 404
+  title: Invalid term ID
+  detail: No term exists with the requested numeric ID in that taxonomy.
+  remediation: Call listCategories, listTags or listMediaFolders and use an id returned there.
+  evidence: expected
+  source_operation: openapi/accelsius-taxonomy-api-openapi.yml#getCategory
+- code: rest_no_route
+  status: 404
+  title: No route matched
+  detail: No route was found matching the URL and request method.
+  remediation: >-
+    Fetch the route index at /wp-json/ (getRootIndex) and confirm the route pattern and method
+    are registered. 387 routes across 16 namespaces are advertised there.
+  evidence: expected
+  source_operation: openapi/accelsius-discovery-api-openapi.yml#getRootIndex
+- code: rest_forbidden
+  status: 401
+  title: Not allowed
+  detail: The route exists but the anonymous caller lacks the capability to read it.
+  remediation: >-
+    This route is administrative. There is no public credential for it — do not attempt to
+    authenticate against accelsius.com. See authentication/accelsius-authentication.yml for the
+    full list of gated routes.
+  evidence: status-observed
+  observed: GET /wp/v2/settings returned 401
+non_wordpress_responses:
+- status: 403
+  title: Firewall interstitial
+  media_type: text/html
+  source: MalCare WordPress Security Plugin
+  detail: >-
+    Not a WordPress REST error at all — an HTML page, roughly 373 bytes, containing the strings
+    "MalCare WordPress Security Plugin", "Blocked because of Malicious Activities" and a
+    "Reference ID". It is returned in place of the JSON envelope once the firewall decides a
+    client is hostile, and it does NOT carry `code`, `message` or `data`.
+  remediation: >-
+    A client parsing this surface must branch on content-type, not assume JSON. Back off hard on
+    a 403: the block is behavioural and burst-triggered, and it persisted for the remainder of
+    this pass. Honor the site's `Crawl-delay: 10` from /robots.txt.
+  evidence: observed
+  observed: >-
+    GET /wp/v2/news/{id}, /wp/v2/pages/{id}, /wp/v2/media/{id}, /wp/v2/categories/{id},
+    /wp/v2/tags/{id}, /wp/v2/search and /wp/v2/settings all returned 403 with this body after a
+    short burst of item-level requests, while collection-level reads continued to return 200.
+x-evidence:
+  fetched: '2026-08-06'
+  host: https://accelsius.com
+  method: >-
+    statuses observed on live anonymous requests; error bodies NOT captured because the site
+    firewall replaced them with a 403 HTML interstitial

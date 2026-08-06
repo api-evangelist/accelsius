@@ -1,0 +1,216 @@
+openapi: 3.1.0
+info:
+  title: Accelsius API Discovery
+  version: wp/v2
+  summary: The WordPress REST route-discovery documents served by accelsius.com.
+  description: 'The root index at /wp-json/ and the wp/v2 namespace index. These are the only machine-readable
+    API description documents Accelsius serves: they enumerate 387 routes across 16 namespaces with per-route
+    HTTP methods and full argument schemas, and they are the source every other OpenAPI document in this
+    repository was derived from. The root index also advertises the site name, home URL, timezone offset,
+    and the `authentication.application-passwords` authorization endpoint.
+
+
+    Accelsius publishes accelsius.com on WordPress (WP Engine origin, Cloudflare edge, MalCare firewall)
+    with the WordPress core REST API enabled and anonymously readable. This is NOT a product API that
+    Accelsius offers to customers — Accelsius manufactures two-phase direct-to-chip liquid-cooling hardware
+    and ships no developer program, SDK or product API. It is the content API behind the company marketing
+    site, captured for discovery purposes. Anonymous access is read-only: the `Allow` response header
+    on every collection is `GET`, and write operations require WordPress cookie authentication with an
+    X-WP-Nonce header or an Application Password, returning HTTP 401 to anonymous callers.'
+  contact:
+    name: Accelsius
+    url: https://accelsius.com/contact/
+    email: info@accelsius.com
+  license:
+    name: Site content - all rights reserved
+    url: https://accelsius.com/privacy-policy/
+  x-apis-io-provenance:
+    method: derived
+    source: https://accelsius.com/wp-json/
+    derived_on: '2026-08-06'
+    note: Parameters are transcribed verbatim from the `args` the site publishes for each route in its
+      live WordPress route-discovery document at https://accelsius.com/wp-json/ (387 routes across 16
+      namespaces). Response schemas are derived from the field names and JSON types observed in live anonymous
+      GET responses on 2026-08-06. Every collection operation documented here was probed anonymously and
+      returned HTTP 200; routes that returned 401 without credentials (settings, menus, menu-items, templates,
+      template-parts, themes, plugins, widgets, block-types, users/me) are deliberately omitted. No operation,
+      parameter or field was invented, and no live response value is reproduced here as an example.
+  x-provider-published: false
+servers:
+- url: https://accelsius.com/wp-json
+  description: Production
+tags:
+- name: Discovery
+  description: WordPress REST route-discovery indexes served by accelsius.com.
+paths:
+  /:
+    get:
+      tags:
+      - Discovery
+      operationId: getRootIndex
+      summary: Get the WordPress REST root index
+      description: 'Returns the full route-discovery document for accelsius.com: 387 routes across 16
+        namespaces (wp/v2, oembed/1.0, yoast/v1, ws-form/v1, wpforms/v1, bricks/v1, redirection/v1, leadin/v1,
+        cleantalk-antispam/v1, duplicate-post/v1, wp-mail-smtp/v1, wpe/cache-plugin/v1, wpe_sign_on_plugin/v1,
+        wp-abilities/v1, wp-site-health/v1, wp-block-editor/v1). Approximately 285KB.'
+      security: []
+      parameters:
+      - name: context
+        in: query
+        description: Scope under which the request is made; determines fields present in the response.
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - help
+          default: view
+      - name: namespace
+        in: query
+        description: Limit the index to a single namespace.
+        schema:
+          type: string
+      - name: _fields
+        in: query
+        description: 'Comma-separated allow-list of fields to return. Strongly recommended against this
+          route: `_fields=namespaces` returns a few hundred bytes instead of the full 285KB index.'
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The route-discovery document.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RouteIndex'
+  /wp/v2:
+    get:
+      tags:
+      - Discovery
+      operationId: getWpV2Index
+      summary: Get the wp/v2 namespace index
+      description: Returns the discovery document scoped to the wp/v2 namespace — the content, media,
+        taxonomy, registry and search routes described by the other OpenAPI documents in this repository,
+        with their full argument schemas. Approximately 208KB.
+      security: []
+      parameters:
+      - name: context
+        in: query
+        description: Scope under which the request is made.
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - help
+          default: view
+      - name: _fields
+        in: query
+        description: Comma-separated allow-list of fields to return.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The wp/v2 namespace discovery document.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RouteIndex'
+components:
+  securitySchemes:
+    applicationPassword:
+      type: http
+      scheme: basic
+      description: WordPress Application Passwords over HTTP Basic. Advertised by the site at https://accelsius.com/wp-json/
+        under `authentication.application-passwords`. Every operation documented in this file is anonymous
+        and takes no credential; this scheme is declared because it is the only credential the host accepts,
+        and it governs the write and edit-context operations that are deliberately NOT documented here.
+  schemas:
+    WPError:
+      type: object
+      title: WPError
+      description: The WordPress REST error envelope. It is NOT RFC 9457 problem+json — the media type
+        is application/json and the shape is a flat object carrying a machine-readable `code` slug, a
+        human `message`, and a `data` object repeating the HTTP status.
+      properties:
+        code:
+          type: string
+          description: Machine-readable error slug, e.g. rest_post_invalid_id.
+        message:
+          type: string
+          description: Human-readable error message.
+        data:
+          type: object
+          properties:
+            status:
+              type: integer
+              description: HTTP status repeated in the body.
+      required:
+      - code
+      - message
+    RouteIndex:
+      type: object
+      title: RouteIndex
+      description: A WordPress REST discovery document.
+      properties:
+        name:
+          type: string
+          description: Site name. Observed as "Accelsius".
+        description:
+          type: string
+          description: Site tagline.
+        url:
+          type: string
+          format: uri
+          description: Site URL.
+        home:
+          type: string
+          format: uri
+          description: Site home URL.
+        gmt_offset:
+          type: integer
+          description: Site timezone offset from GMT. Observed as -5.
+        timezone_string:
+          type: string
+          description: Olson timezone identifier.
+        namespace:
+          type: string
+          description: Namespace, on the per-namespace index only.
+        namespaces:
+          type: array
+          items:
+            type: string
+          description: Registered REST namespaces. 16 observed.
+        authentication:
+          type: object
+          description: 'Authentication schemes the site accepts. Observed: application-passwords, with
+            its authorization endpoint at /wp-admin/authorize-application.php.'
+        routes:
+          type: object
+          description: Every registered route keyed by its regex pattern, each carrying `namespace`, `methods`
+            and an `endpoints` array whose `args` describe every accepted parameter.
+        site_logo:
+          type: integer
+          description: Attachment ID of the site logo.
+        site_icon_url:
+          type: string
+          format: uri
+          description: URL of the site icon.
+        _links:
+          type: object
+          description: Link relations for the index.
+      required:
+      - routes
+  headers:
+    XWPTotal:
+      description: Total number of items in the unpaginated collection.
+      schema:
+        type: integer
+    XWPTotalPages:
+      description: Total number of pages at the requested per_page size.
+      schema:
+        type: integer
+    LinkPagination:
+      description: RFC 8288 Link header carrying rel="next" and rel="prev" for the collection.
+      schema:
+        type: string

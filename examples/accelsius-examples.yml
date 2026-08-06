@@ -1,0 +1,245 @@
+generated: '2026-08-06'
+method: probed
+source: live anonymous requests to https://accelsius.com/wp-json/ (2026-08-06)
+summary: Real request/response examples captured from the live Accelsius content API. Every payload below
+  is verbatim from an observed response, trimmed for length as noted per example — nothing is synthesised.
+  They bind the derived openapi/ specs to observed reality, and the last one records what this host returns
+  instead of an error envelope when its firewall trips.
+examples:
+- name: list-resource-library-items
+  operation: openapi/accelsius-content-api-openapi.yml#listContent
+  request:
+    method: GET
+    url: https://accelsius.com/wp-json/wp/v2/posts?per_page=1
+    headers: {}
+  response:
+    status: 200
+    headers:
+      content-type: application/json; charset=UTF-8
+      x-wp-total: '154'
+      x-wp-totalpages: '154'
+      cache-control: max-age=600, must-revalidate
+      x-robots-tag: noindex
+      allow: GET
+      link: <https://accelsius.com/wp-json/wp/v2/posts?per_page=1&page=2>; rel="next"
+    body:
+    - id: 7708
+      date: '2026-07-21T07:00:00'
+      date_gmt: '2026-07-21T12:00:00'
+      slug: independent-benchmarks-show-nine-degrees-greater-headroom
+      status: publish
+      type: post
+      link: https://accelsius.com/independent-benchmarks-show-nine-degrees-greater-headroom/
+      title:
+        rendered: Independent Benchmarks Show Accelsius Two-Phase Direct-to-Chip Cooling Delivers 9°C
+          Lower NVIDIA B200 Junction Temperatures Than Single-Phase in Warm-Water Conditions
+      excerpt:
+        rendered: '<p>Third-party testing across roughly 40,000 operating points, detailed in a new white
+          paper, found that Accelsius NeuCool® improved liquid cooling [&hellip;]</p>
+
+          '
+      author: 15
+      featured_media: 0
+      categories:
+      - 1
+      tags:
+      - 36
+  note: Trimmed with the KEEP field set shown; the live object also carries content.rendered, class_list,
+    meta, acf, yoast_head and yoast_head_json, which together make an untrimmed post roughly 17KB. Use
+    _fields in production. categories/tags resolve against the taxonomy examples in openapi/accelsius-taxonomy-api-openapi.yml.
+- name: list-press-coverage
+  operation: openapi/accelsius-news-api-openapi.yml#listNews
+  request:
+    method: GET
+    url: https://accelsius.com/wp-json/wp/v2/news?per_page=1
+    headers: {}
+  response:
+    status: 200
+    headers:
+      content-type: application/json; charset=UTF-8
+      x-wp-total: '8'
+    body:
+    - id: 5541
+      date: '2025-05-16T15:02:26'
+      date_gmt: '2025-05-16T20:02:26'
+      slug: unicom-engineering-cooling-the-ai-revolution
+      status: publish
+      type: news
+      link: https://accelsius.com/news/unicom-engineering-cooling-the-ai-revolution/
+      title:
+        rendered: 'Unicom Engineering &amp; Accelsius Podcast: Cooling The AI Revolution'
+      featured_media: 5542
+      categories: []
+      tags: []
+      parent: 0
+      menu_order: 0
+  note: The `news` custom post type — third-party press coverage, distinct from the press releases Accelsius
+    issues itself, which live in category 1 of the post type.
+- name: list-pages
+  operation: openapi/accelsius-pages-api-openapi.yml#listPages
+  request:
+    method: GET
+    url: https://accelsius.com/wp-json/wp/v2/pages?per_page=1
+    headers: {}
+  response:
+    status: 200
+    headers:
+      content-type: application/json; charset=UTF-8
+      x-wp-total: '30'
+    body:
+    - id: 7592
+      date: '2026-05-29T01:45:53'
+      date_gmt: '2026-05-29T06:45:53'
+      slug: data-center-liquid-cooling
+      status: publish
+      type: page
+      link: https://accelsius.com/data-center-liquid-cooling/
+      title:
+        rendered: Data Center Liquid Cooling
+      excerpt:
+        rendered: ''
+      author: 11
+      featured_media: 0
+      parent: 0
+      menu_order: 0
+  note: Pages are hierarchical; keep parent and menu_order to rebuild the site navigation tree.
+- name: list-media
+  operation: openapi/accelsius-media-api-openapi.yml#listMedia
+  request:
+    method: GET
+    url: https://accelsius.com/wp-json/wp/v2/media?per_page=1
+    headers: {}
+  response:
+    status: 200
+    headers:
+      content-type: application/json; charset=UTF-8
+      x-wp-total: '903'
+    body:
+    - id: 7745
+      date: '2026-07-31T13:15:37'
+      date_gmt: '2026-07-31T18:15:37'
+      slug: chemours_515b-sds_us
+      status: inherit
+      type: attachment
+      link: https://accelsius.com/chemours_515b-sds_us/
+      title:
+        rendered: Chemours_515B SDS_US
+      author: 15
+      featured_media: 0
+      media_type: file
+      mime_type: application/pdf
+      source_url: https://accelsius.com/wp-content/uploads/Chemours_515B-SDS_US.pdf
+      alt_text: ''
+      caption:
+        rendered: ''
+      post: null
+  note: source_url is the direct file URL. Filter with mime_type=application/pdf to retrieve the white
+    papers, studies and infographics linked from /papers-studies/.
+- name: list-post-types
+  operation: openapi/accelsius-taxonomy-api-openapi.yml#listPostTypes
+  request:
+    method: GET
+    url: https://accelsius.com/wp-json/wp/v2/types
+    headers: {}
+  response:
+    status: 200
+    headers:
+      content-type: application/json; charset=UTF-8
+    body:
+      post:
+        slug: post
+        name: Posts
+        rest_base: posts
+        rest_namespace: wp/v2
+        taxonomies:
+        - category
+        - post_tag
+        hierarchical: false
+      page:
+        slug: page
+        name: Pages
+        rest_base: pages
+        rest_namespace: wp/v2
+        taxonomies: []
+        hierarchical: true
+      attachment:
+        slug: attachment
+        name: Media
+        rest_base: media
+        rest_namespace: wp/v2
+        taxonomies:
+        - happyfiles_category
+        hierarchical: false
+      news:
+        slug: news
+        name: News
+        rest_base: news
+        rest_namespace: wp/v2
+        taxonomies:
+        - category
+        - post_tag
+        - recent-news
+        hierarchical: true
+  note: Trimmed to the four publicly readable content types; the live document also returns the WordPress
+    internals (nav_menu_item, wp_block, wp_template, wp_template_part, wp_global_styles, wp_navigation,
+    wp_font_family, wp_font_face). This is the record that reveals the custom `news` type a stock crawler
+    would miss.
+- name: list-taxonomies
+  operation: openapi/accelsius-taxonomy-api-openapi.yml#listTaxonomies
+  request:
+    method: GET
+    url: https://accelsius.com/wp-json/wp/v2/taxonomies
+    headers: {}
+  response:
+    status: 200
+    headers:
+      content-type: application/json; charset=UTF-8
+    body:
+      category:
+        slug: category
+        name: Categories
+        rest_base: categories
+        types:
+        - post
+        - news
+        hierarchical: true
+      post_tag:
+        slug: post_tag
+        name: Tags
+        rest_base: tags
+        types:
+        - post
+        - news
+        hierarchical: false
+      recent-news:
+        slug: recent-news
+        name: Recent News
+        rest_base: recent-news
+        types:
+        - news
+        hierarchical: true
+      happyfiles_category:
+        slug: happyfiles_category
+        name: Folder
+        rest_base: happyfiles_category
+        types:
+        - attachment
+        hierarchical: true
+  note: Trimmed to the taxonomies that carry Accelsius content.
+- name: firewall-block
+  operation: errors/accelsius-problem-types.yml
+  request:
+    method: GET
+    url: https://accelsius.com/wp-json/wp/v2/settings
+    headers: {}
+  response:
+    status: 403
+    headers:
+      content-type: text/html
+    body: '<div style=''height: 98vh;''><div style=''text-align: center; ...''><div><p>MalCare WordPress
+      Security Plugin - Malware Scanner, Cleaner, Security Firewall Firewall</p></div><p>Blocked because
+      of Malicious Activities</p><p>Reference ID: REDACTED</p></div></div>'
+  note: Not a WordPress error. Once the MalCare firewall on this origin classifies a client as hostile
+    it substitutes this HTML page for the JSON envelope on every route, including ones that would otherwise
+    return 200. A consumer must branch on content-type. The Reference ID is per-block and has been redacted
+    here.

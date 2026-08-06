@@ -1,0 +1,45 @@
+overlay: 1.0.0
+info:
+  title: Accelsius Pages API — API Evangelist enhancements
+  version: 1.0.0
+extends: accelsius-pages-api-openapi.yml
+x-apis-io-provenance:
+  generated: '2026-08-06'
+  method: generated
+  source: openapi/accelsius-pages-api-openapi.yml
+  note: An Overlay of API Evangelist enhancements over our own derived spec. It adds provenance, artifact
+    cross-links and the host-specific consumption rules; it does not alter any operation, parameter or
+    schema, and the underlying openapi/ file is never mutated.
+actions:
+- target: $.info
+  description: Record that this document is an API Evangelist derivation, not a provider publication.
+  update:
+    x-apis-io-derived: true
+    x-apis-io-source: https://accelsius.com/wp-json/
+    x-apis-io-repo: https://github.com/api-evangelist/accelsius
+- target: $
+  description: Cross-link the companion artifacts this repository derives alongside the spec.
+  update:
+    x-apis-io-artifacts:
+      authentication: authentication/accelsius-authentication.yml
+      conventions: conventions/accelsius-conventions.yml
+      errors: errors/accelsius-problem-types.yml
+      lifecycle: lifecycle/accelsius-lifecycle.yml
+      data_model: data-model/accelsius-data-model.yml
+      conformance: conformance/accelsius-conformance.yml
+      well_known: well-known/accelsius-well-known.yml
+      mcp: mcp/accelsius-mcp.yml
+      skills: skills/_index.yml
+- target: $.paths.*.get
+  description: 'Attach the consumption rules every operation on this host inherits: no credential, a 600-second
+    cache window, a 10-second crawl delay, and a behavioural firewall that answers 403 with HTML instead
+    of the JSON error envelope.'
+  update:
+    x-consumption-rules:
+      auth: none
+      cache_seconds: 600
+      crawl_delay_seconds: 10
+      rate_limit_signalled: false
+      firewall: MalCare returns HTTP 403 with a text/html interstitial on burst traffic; branch on content-type
+        and back off rather than retry.
+      field_trimming: Pass _fields; a default post object is ~17KB.

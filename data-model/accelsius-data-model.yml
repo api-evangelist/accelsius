@@ -1,0 +1,185 @@
+generated: '2026-08-06'
+method: derived
+source: >-
+  openapi/accelsius-*-openapi.yml plus the id-reference fields and `_links` relations observed in
+  live responses from https://accelsius.com/wp-json/ (2026-08-06)
+summary: >-
+  The entity graph behind the Accelsius content API. It is the stock WordPress content model —
+  one content type per collection, joined to shared taxonomy terms, attachments and authors by
+  bare numeric ID — plus the two site-specific extensions Accelsius has added: a `news` custom
+  post type for third-party press coverage, and the HappyFiles folder taxonomy over the media
+  library. There are no foreign keys and no joins: a caller resolves relationships either by a
+  second request against the id, or in one round trip with `_embed=true`.
+identifiers:
+  style: integer
+  detail: >-
+    Every entity is keyed by an unprefixed auto-increment integer that is unique per WordPress
+    object table, not per type — a post, a page and an attachment can never share an ID, but a
+    term ID and a post ID can and do collide numerically. Always carry the type alongside the ID.
+    Observed live IDs: post 7708, news 5541, page 7592, attachment 7745, category 26-38, tag
+    20-36.
+  secondary_key: >-
+    Every content entity also carries a human-readable `slug`, unique within its type, and a
+    canonical `link` URL. `slug` is the stable identifier to key on across a re-import; `id` is
+    the one every relationship field uses.
+entities:
+- name: Post
+  collection: /wp/v2/posts
+  count_observed: 154
+  schema: openapi/accelsius-content-api-openapi.yml#/components/schemas/Post
+  description: >-
+    An item in the Accelsius resource library. The content class is carried by its category, not
+    by its type: blog, white-paper, press-release, news-article, video, podcast, infographic and
+    case-study are all the same `post` type.
+- name: NewsItem
+  collection: /wp/v2/news
+  count_observed: 8
+  schema: openapi/accelsius-news-api-openapi.yml#/components/schemas/NewsItem
+  description: >-
+    A custom post type Accelsius registered for third-party press coverage. It shares the
+    `category` and `post_tag` taxonomies with Post, which is why a term's `count` is not the same
+    as the number of posts you can reach from it.
+- name: Page
+  collection: /wp/v2/pages
+  count_observed: 30
+  schema: openapi/accelsius-pages-api-openapi.yml#/components/schemas/Page
+  description: >-
+    A static marketing, product, company or legal page. Hierarchical via `parent` and ordered via
+    `menu_order`.
+- name: MediaItem
+  collection: /wp/v2/media
+  count_observed: 903
+  schema: openapi/accelsius-media-api-openapi.yml#/components/schemas/MediaItem
+  description: >-
+    An attachment: product renders, diagrams, partner logos, and the PDF white papers and studies
+    linked from /papers-studies/. Carries `source_url` and a `media_details.sizes` map of
+    generated variants.
+- name: Term
+  collections:
+  - /wp/v2/categories
+  - /wp/v2/tags
+  - /wp/v2/happyfiles_category
+  count_observed: 32
+  schema: openapi/accelsius-taxonomy-api-openapi.yml#/components/schemas/Term
+  description: >-
+    A taxonomy term. Three taxonomies are anonymously readable: `category` (8 terms, the content
+    classes), `post_tag` (5 terms, the topic axis) and `happyfiles_category` (19 terms, media
+    folders). A fourth, `recent-news`, is registered against the news type but held zero terms.
+- name: PostType
+  collection: /wp/v2/types
+  schema: openapi/accelsius-taxonomy-api-openapi.yml#/components/schemas/PostType
+  description: >-
+    The registry entry describing a content type — its rest_base, rest_namespace, hierarchical
+    flag and attached taxonomies. This is the record that tells a caller `news` exists at all.
+- name: User
+  collection: /wp/v2/users
+  count_observed: 14
+  schema: null
+  description: >-
+    The site's content authors. Anonymously readable on this host (HTTP 200), and referenced by
+    every content entity through the `author` integer field. Deliberately NOT modelled as an
+    operation, an MCP tool or a skill step — see authentication/accelsius-authentication.yml
+    `exposed_personal_data`. Treat `author` as an opaque integer.
+relationships:
+- from: Post
+  to: Term
+  type: has_many
+  via: categories
+  taxonomy: category
+  detail: Array of category term IDs. Resolve with getCategory or listCategories.
+- from: Post
+  to: Term
+  type: has_many
+  via: tags
+  taxonomy: post_tag
+  detail: Array of post_tag term IDs. Resolve with getTag or listTags.
+- from: Post
+  to: MediaItem
+  type: has_one
+  via: featured_media
+  detail: >-
+    Numeric attachment ID, or 0 when unset. Resolve with getMediaItem, or inline it with
+    `_embed=true` under `_embedded['wp:featuredmedia']`.
+- from: Post
+  to: User
+  type: belongs_to
+  via: author
+  detail: >-
+    Numeric user ID. Resolvable on this host but deliberately not modelled; see the User entity
+    note.
+- from: NewsItem
+  to: Term
+  type: has_many
+  via: categories
+  taxonomy: category
+  detail: The news type shares the category taxonomy with Post.
+- from: NewsItem
+  to: Term
+  type: has_many
+  via: tags
+  taxonomy: post_tag
+- from: NewsItem
+  to: MediaItem
+  type: has_one
+  via: featured_media
+- from: Page
+  to: Page
+  type: belongs_to
+  via: parent
+  detail: Numeric page ID, or 0 for a root page. Pages are hierarchical.
+- from: Page
+  to: MediaItem
+  type: has_one
+  via: featured_media
+- from: MediaItem
+  to: Post
+  type: belongs_to
+  via: post
+  detail: >-
+    The content item the attachment was uploaded to, or 0 for a library-only asset. Note the
+    field is a bare `post` and can point at a page or a news item too.
+- from: MediaItem
+  to: Term
+  type: has_many
+  via: happyfiles_category
+  taxonomy: happyfiles_category
+  detail: >-
+    Plugin-provided folder assignment. This relationship disappears if the HappyFiles plugin is
+    removed.
+- from: Term
+  to: Term
+  type: belongs_to
+  via: parent
+  detail: >-
+    Hierarchical for `category` and `happyfiles_category`; `post_tag` is flat and always returns
+    parent 0.
+- from: PostType
+  to: Term
+  type: has_many
+  via: taxonomies
+  detail: >-
+    Registry-level: `post` and `news` both declare ['category','post_tag']; `attachment` declares
+    ['happyfiles_category']; `page` declares none.
+traversal:
+  embed:
+    param: _embed
+    detail: >-
+      `_embed=true` inlines author, wp:term and wp:featuredmedia under `_embedded`, collapsing
+      three round trips into one. Strongly preferred on this host, where the firewall punishes
+      request bursts.
+  links:
+    detail: >-
+      Each object's `_links` carries the resolved URLs for these relationships (author,
+      wp:term, wp:featuredmedia, wp:attachment, collection, about, self), so a caller can walk
+      the graph without reconstructing route templates.
+render:
+  subway: null
+  detail: No subway/ diagram exists for this provider.
+x-evidence:
+  fetched: '2026-08-06'
+  host: https://accelsius.com
+  note: >-
+    Relationship fields were read from live post, news, page and media objects. Term-object
+    fields were only partially captured before the site firewall began refusing this pass; see
+    the x-schema-provenance note on the Term schema in
+    openapi/accelsius-taxonomy-api-openapi.yml.

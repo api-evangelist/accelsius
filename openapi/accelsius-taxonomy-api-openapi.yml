@@ -1,0 +1,1066 @@
+openapi: 3.1.0
+info:
+  title: Accelsius Taxonomy API
+  version: wp/v2
+  summary: Public read surface of the taxonomies, terms, post types and statuses registered on accelsius.com.
+  description: 'The classification layer behind the content API: the eight `category` terms Accelsius
+    uses to separate content classes (blog, white-paper, press-release, news-article, video, podcast,
+    infographic, case-study), the five `post_tag` topic terms (2pd2c-education, neucool-products, accelsius-news,
+    scientific-research, featured), the 19 HappyFiles media folders, and the registry endpoints that describe
+    the post types, taxonomies and publication statuses themselves.
+
+
+    Accelsius publishes accelsius.com on WordPress (WP Engine origin, Cloudflare edge, MalCare firewall)
+    with the WordPress core REST API enabled and anonymously readable. This is NOT a product API that
+    Accelsius offers to customers — Accelsius manufactures two-phase direct-to-chip liquid-cooling hardware
+    and ships no developer program, SDK or product API. It is the content API behind the company marketing
+    site, captured for discovery purposes. Anonymous access is read-only: the `Allow` response header
+    on every collection is `GET`, and write operations require WordPress cookie authentication with an
+    X-WP-Nonce header or an Application Password, returning HTTP 401 to anonymous callers.'
+  contact:
+    name: Accelsius
+    url: https://accelsius.com/contact/
+    email: info@accelsius.com
+  license:
+    name: Site content - all rights reserved
+    url: https://accelsius.com/privacy-policy/
+  x-apis-io-provenance:
+    method: derived
+    source: https://accelsius.com/wp-json/
+    derived_on: '2026-08-06'
+    note: Parameters are transcribed verbatim from the `args` the site publishes for each route in its
+      live WordPress route-discovery document at https://accelsius.com/wp-json/ (387 routes across 16
+      namespaces). Response schemas are derived from the field names and JSON types observed in live anonymous
+      GET responses on 2026-08-06. Every collection operation documented here was probed anonymously and
+      returned HTTP 200; routes that returned 401 without credentials (settings, menus, menu-items, templates,
+      template-parts, themes, plugins, widgets, block-types, users/me) are deliberately omitted. No operation,
+      parameter or field was invented, and no live response value is reproduced here as an example.
+  x-provider-published: false
+servers:
+- url: https://accelsius.com/wp-json
+  description: Production
+tags:
+- name: Categories
+  description: Content-class terms in the category taxonomy.
+- name: Tags
+  description: Topic terms in the post_tag taxonomy.
+- name: Media Folders
+  description: HappyFiles folders organising the media library.
+- name: Registry
+  description: Post types, taxonomies and publication statuses registered on the site.
+paths:
+  /wp/v2/categories:
+    get:
+      tags:
+      - Categories
+      operationId: listCategories
+      summary: List categories
+      description: Returns the terms in the `category` taxonomy. Eight terms were observed, each carrying
+        a `count` of the published items assigned to it.
+      security: []
+      responses:
+        '200':
+          description: A page of results.
+          headers:
+            X-WP-Total:
+              $ref: '#/components/headers/XWPTotal'
+            X-WP-TotalPages:
+              $ref: '#/components/headers/XWPTotalPages'
+            Link:
+              $ref: '#/components/headers/LinkPagination'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Term'
+        '400':
+          description: Invalid parameter (rest_invalid_param), e.g. per_page outside 1-100.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+      parameters:
+      - name: context
+        in: query
+        description: Scope under which the request is made; determines fields present in response.
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+      - name: page
+        in: query
+        description: Current page of the collection.
+        schema:
+          type: integer
+          minimum: 1
+          default: 1
+      - name: per_page
+        in: query
+        description: Maximum number of items to be returned in result set.
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 10
+      - name: search
+        in: query
+        description: Limit results to those matching a string.
+        schema:
+          type: string
+      - name: exclude
+        in: query
+        description: Ensure result set excludes specific IDs.
+        schema:
+          type: array
+          items:
+            type: integer
+      - name: include
+        in: query
+        description: Limit result set to specific IDs.
+        schema:
+          type: array
+          items:
+            type: integer
+      - name: order
+        in: query
+        description: Order sort attribute ascending or descending.
+        schema:
+          type: string
+          enum:
+          - asc
+          - desc
+          default: asc
+      - name: orderby
+        in: query
+        description: Sort collection by term attribute.
+        schema:
+          type: string
+          enum:
+          - id
+          - include
+          - name
+          - slug
+          - include_slugs
+          - term_group
+          - description
+          - count
+          default: name
+      - name: hide_empty
+        in: query
+        description: Whether to hide terms not assigned to any posts.
+        schema:
+          type: boolean
+          default: false
+      - name: parent
+        in: query
+        description: Limit result set to terms assigned to a specific parent.
+        schema:
+          type: integer
+      - name: post
+        in: query
+        description: Limit result set to terms assigned to a specific post.
+        schema:
+          type: integer
+          default: null
+      - name: slug
+        in: query
+        description: Limit result set to terms with one or more specific slugs.
+        schema:
+          type: array
+          items:
+            type: string
+      x-observed-total: 8
+  /wp/v2/categories/{id}:
+    get:
+      tags:
+      - Categories
+      operationId: getCategory
+      summary: Get one category
+      description: Returns a single category term by its numeric ID.
+      security: []
+      parameters:
+      - name: id
+        in: path
+        description: Unique identifier for the term.
+        required: true
+        schema:
+          type: integer
+      - name: context
+        in: query
+        description: Scope under which the request is made; determines fields present in response.
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+      responses:
+        '200':
+          description: The requested object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Term'
+        '400':
+          description: Invalid parameter (rest_invalid_param).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: No object exists with that identifier (rest_post_invalid_id / rest_term_invalid).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+  /wp/v2/tags:
+    get:
+      tags:
+      - Tags
+      operationId: listTags
+      summary: List tags
+      description: Returns the terms in the `post_tag` taxonomy. Five terms were observed.
+      security: []
+      responses:
+        '200':
+          description: A page of results.
+          headers:
+            X-WP-Total:
+              $ref: '#/components/headers/XWPTotal'
+            X-WP-TotalPages:
+              $ref: '#/components/headers/XWPTotalPages'
+            Link:
+              $ref: '#/components/headers/LinkPagination'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Term'
+        '400':
+          description: Invalid parameter (rest_invalid_param), e.g. per_page outside 1-100.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+      parameters:
+      - name: context
+        in: query
+        description: Scope under which the request is made; determines fields present in response.
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+      - name: page
+        in: query
+        description: Current page of the collection.
+        schema:
+          type: integer
+          minimum: 1
+          default: 1
+      - name: per_page
+        in: query
+        description: Maximum number of items to be returned in result set.
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 10
+      - name: search
+        in: query
+        description: Limit results to those matching a string.
+        schema:
+          type: string
+      - name: exclude
+        in: query
+        description: Ensure result set excludes specific IDs.
+        schema:
+          type: array
+          items:
+            type: integer
+      - name: include
+        in: query
+        description: Limit result set to specific IDs.
+        schema:
+          type: array
+          items:
+            type: integer
+      - name: offset
+        in: query
+        description: Offset the result set by a specific number of items.
+        schema:
+          type: integer
+      - name: order
+        in: query
+        description: Order sort attribute ascending or descending.
+        schema:
+          type: string
+          enum:
+          - asc
+          - desc
+          default: asc
+      - name: orderby
+        in: query
+        description: Sort collection by term attribute.
+        schema:
+          type: string
+          enum:
+          - id
+          - include
+          - name
+          - slug
+          - include_slugs
+          - term_group
+          - description
+          - count
+          default: name
+      - name: hide_empty
+        in: query
+        description: Whether to hide terms not assigned to any posts.
+        schema:
+          type: boolean
+          default: false
+      - name: post
+        in: query
+        description: Limit result set to terms assigned to a specific post.
+        schema:
+          type: integer
+          default: null
+      - name: slug
+        in: query
+        description: Limit result set to terms with one or more specific slugs.
+        schema:
+          type: array
+          items:
+            type: string
+      x-observed-total: 5
+  /wp/v2/tags/{id}:
+    get:
+      tags:
+      - Tags
+      operationId: getTag
+      summary: Get one tag
+      description: Returns a single post tag by its numeric ID.
+      security: []
+      parameters:
+      - name: id
+        in: path
+        description: Unique identifier for the term.
+        required: true
+        schema:
+          type: integer
+      - name: context
+        in: query
+        description: Scope under which the request is made; determines fields present in response.
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+      responses:
+        '200':
+          description: The requested object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Term'
+        '400':
+          description: Invalid parameter (rest_invalid_param).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: No object exists with that identifier (rest_post_invalid_id / rest_term_invalid).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+  /wp/v2/happyfiles_category:
+    get:
+      tags:
+      - Media Folders
+      operationId: listMediaFolders
+      summary: List media-library folders
+      description: Returns the terms in the `happyfiles_category` taxonomy, the folder structure the site
+        uses to organise its 903 media attachments. Nineteen folders were observed.
+      security: []
+      responses:
+        '200':
+          description: A page of results.
+          headers:
+            X-WP-Total:
+              $ref: '#/components/headers/XWPTotal'
+            X-WP-TotalPages:
+              $ref: '#/components/headers/XWPTotalPages'
+            Link:
+              $ref: '#/components/headers/LinkPagination'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Term'
+        '400':
+          description: Invalid parameter (rest_invalid_param), e.g. per_page outside 1-100.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+      parameters:
+      - name: context
+        in: query
+        description: Scope under which the request is made; determines fields present in response.
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+      - name: page
+        in: query
+        description: Current page of the collection.
+        schema:
+          type: integer
+          minimum: 1
+          default: 1
+      - name: per_page
+        in: query
+        description: Maximum number of items to be returned in result set.
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 10
+      - name: search
+        in: query
+        description: Limit results to those matching a string.
+        schema:
+          type: string
+      - name: exclude
+        in: query
+        description: Ensure result set excludes specific IDs.
+        schema:
+          type: array
+          items:
+            type: integer
+      - name: include
+        in: query
+        description: Limit result set to specific IDs.
+        schema:
+          type: array
+          items:
+            type: integer
+      - name: order
+        in: query
+        description: Order sort attribute ascending or descending.
+        schema:
+          type: string
+          enum:
+          - asc
+          - desc
+          default: asc
+      - name: orderby
+        in: query
+        description: Sort collection by term attribute.
+        schema:
+          type: string
+          enum:
+          - id
+          - include
+          - name
+          - slug
+          - include_slugs
+          - term_group
+          - description
+          - count
+          default: name
+      - name: hide_empty
+        in: query
+        description: Whether to hide terms not assigned to any posts.
+        schema:
+          type: boolean
+          default: false
+      - name: parent
+        in: query
+        description: Limit result set to terms assigned to a specific parent.
+        schema:
+          type: integer
+      - name: post
+        in: query
+        description: Limit result set to terms assigned to a specific post.
+        schema:
+          type: integer
+          default: null
+      - name: slug
+        in: query
+        description: Limit result set to terms with one or more specific slugs.
+        schema:
+          type: array
+          items:
+            type: string
+      x-observed-total: 19
+  /wp/v2/happyfiles_category/{id}:
+    get:
+      tags:
+      - Media Folders
+      operationId: getMediaFolder
+      summary: Get one media-library folder
+      description: Returns a single HappyFiles folder term by its numeric ID.
+      security: []
+      parameters:
+      - name: id
+        in: path
+        description: Unique identifier for the term.
+        required: true
+        schema:
+          type: integer
+      - name: context
+        in: query
+        description: Scope under which the request is made; determines fields present in response.
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+      responses:
+        '200':
+          description: The requested object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Term'
+        '400':
+          description: Invalid parameter (rest_invalid_param).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: No object exists with that identifier (rest_post_invalid_id / rest_term_invalid).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+  /wp/v2/types:
+    get:
+      tags:
+      - Registry
+      operationId: listPostTypes
+      summary: List post types
+      description: Returns every post type registered on the site keyed by type slug, including the `news`
+        custom type Accelsius added. Each entry names its `rest_base`, `rest_namespace`, `hierarchical`
+        flag and attached `taxonomies`.
+      security: []
+      responses:
+        '200':
+          description: A page of results.
+          headers:
+            X-WP-Total:
+              $ref: '#/components/headers/XWPTotal'
+            X-WP-TotalPages:
+              $ref: '#/components/headers/XWPTotalPages'
+            Link:
+              $ref: '#/components/headers/LinkPagination'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PostType'
+        '400':
+          description: Invalid parameter (rest_invalid_param), e.g. per_page outside 1-100.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+      parameters:
+      - name: context
+        in: query
+        description: Scope under which the request is made; determines fields present in response.
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+  /wp/v2/types/{type}:
+    get:
+      tags:
+      - Registry
+      operationId: getPostType
+      summary: Get one post type
+      description: Returns the registration record for one post type, e.g. `post`, `page` or `news`.
+      security: []
+      parameters:
+      - name: type
+        in: path
+        description: An alphanumeric identifier for the post type.
+        required: true
+        schema:
+          type: string
+      - name: context
+        in: query
+        description: Scope under which the request is made; determines fields present in response.
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+      responses:
+        '200':
+          description: The requested object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostType'
+        '400':
+          description: Invalid parameter (rest_invalid_param).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: No object exists with that identifier (rest_post_invalid_id / rest_term_invalid).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+  /wp/v2/taxonomies:
+    get:
+      tags:
+      - Registry
+      operationId: listTaxonomies
+      summary: List taxonomies
+      description: Returns every taxonomy registered on the site keyed by taxonomy slug — category, post_tag,
+        happyfiles_category, recent-news and the WordPress internals.
+      security: []
+      responses:
+        '200':
+          description: A page of results.
+          headers:
+            X-WP-Total:
+              $ref: '#/components/headers/XWPTotal'
+            X-WP-TotalPages:
+              $ref: '#/components/headers/XWPTotalPages'
+            Link:
+              $ref: '#/components/headers/LinkPagination'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PostType'
+        '400':
+          description: Invalid parameter (rest_invalid_param), e.g. per_page outside 1-100.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+      parameters:
+      - name: context
+        in: query
+        description: Scope under which the request is made; determines fields present in response.
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+      - name: type
+        in: query
+        description: Limit results to taxonomies associated with a specific post type.
+        schema:
+          type: string
+  /wp/v2/taxonomies/{taxonomy}:
+    get:
+      tags:
+      - Registry
+      operationId: getTaxonomy
+      summary: Get one taxonomy
+      description: Returns the registration record for one taxonomy.
+      security: []
+      parameters:
+      - name: taxonomy
+        in: path
+        description: An alphanumeric identifier for the taxonomy.
+        required: true
+        schema:
+          type: string
+      - name: context
+        in: query
+        description: Scope under which the request is made; determines fields present in response.
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+      responses:
+        '200':
+          description: The requested object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostType'
+        '400':
+          description: Invalid parameter (rest_invalid_param).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: No object exists with that identifier (rest_post_invalid_id / rest_term_invalid).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+  /wp/v2/statuses:
+    get:
+      tags:
+      - Registry
+      operationId: listStatuses
+      summary: List publication statuses
+      description: 'Returns the publication statuses visible to the caller. Anonymously this is only `publish`,
+        which is why every object returned by the content operations carries `status: publish`.'
+      security: []
+      responses:
+        '200':
+          description: A page of results.
+          headers:
+            X-WP-Total:
+              $ref: '#/components/headers/XWPTotal'
+            X-WP-TotalPages:
+              $ref: '#/components/headers/XWPTotalPages'
+            Link:
+              $ref: '#/components/headers/LinkPagination'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PostType'
+        '400':
+          description: Invalid parameter (rest_invalid_param), e.g. per_page outside 1-100.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+      parameters:
+      - name: context
+        in: query
+        description: Scope under which the request is made; determines fields present in response.
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+  /wp/v2/statuses/{status}:
+    get:
+      tags:
+      - Registry
+      operationId: getStatus
+      summary: Get one publication status
+      description: Returns the registration record for one publication status.
+      security: []
+      parameters:
+      - name: status
+        in: path
+        description: An alphanumeric identifier for the status.
+        required: true
+        schema:
+          type: string
+      - name: context
+        in: query
+        description: Scope under which the request is made; determines fields present in response.
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          - edit
+          default: view
+      responses:
+        '200':
+          description: The requested object.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostType'
+        '400':
+          description: Invalid parameter (rest_invalid_param).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+        '404':
+          description: No object exists with that identifier (rest_post_invalid_id / rest_term_invalid).
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+components:
+  securitySchemes:
+    applicationPassword:
+      type: http
+      scheme: basic
+      description: WordPress Application Passwords over HTTP Basic. Advertised by the site at https://accelsius.com/wp-json/
+        under `authentication.application-passwords`. Every operation documented in this file is anonymous
+        and takes no credential; this scheme is declared because it is the only credential the host accepts,
+        and it governs the write and edit-context operations that are deliberately NOT documented here.
+  schemas:
+    WPError:
+      type: object
+      title: WPError
+      description: The WordPress REST error envelope. It is NOT RFC 9457 problem+json — the media type
+        is application/json and the shape is a flat object carrying a machine-readable `code` slug, a
+        human `message`, and a `data` object repeating the HTTP status.
+      properties:
+        code:
+          type: string
+          description: Machine-readable error slug, e.g. rest_post_invalid_id.
+        message:
+          type: string
+          description: Human-readable error message.
+        data:
+          type: object
+          properties:
+            status:
+              type: integer
+              description: HTTP status repeated in the body.
+      required:
+      - code
+      - message
+    Term:
+      type: object
+      title: Term
+      description: A taxonomy term (category, post tag, or HappyFiles media folder).
+      properties:
+        id:
+          type: integer
+          description: Unique numeric identifier for the term.
+        count:
+          type: integer
+          description: Number of published objects assigned to the term.
+        description:
+          type: string
+          description: HTML description of the term.
+        link:
+          type: string
+          format: uri
+          description: URL of the term archive on accelsius.com.
+        name:
+          type: string
+          description: HTML title for the term.
+        slug:
+          type: string
+          description: Alphanumeric identifier for the term, unique within its taxonomy.
+        taxonomy:
+          type: string
+          description: Taxonomy the term belongs to.
+          enum:
+          - category
+          - post_tag
+          - happyfiles_category
+        parent:
+          type: integer
+          description: ID of the parent term, or 0 when there is none. Categories and HappyFiles folders
+            are hierarchical; post tags are not.
+        meta:
+          type: array
+          items: {}
+          description: Registered meta fields exposed for the term.
+        acf:
+          type: array
+          items: {}
+          description: Advanced Custom Fields values registered on the term.
+        yoast_head:
+          type: string
+          description: Yoast SEO head markup for the term archive.
+        yoast_head_json:
+          type: object
+          description: Yoast SEO head metadata for the term archive.
+        _links:
+          type: object
+          description: HAL-style link relations (self, collection, about, wp:post_type).
+      required:
+      - id
+      - slug
+      - name
+      - taxonomy
+      x-schema-provenance: Partially verified. Live anonymous GETs of /wp/v2/categories (HTTP 200, 8 terms),
+        /wp/v2/tags (HTTP 200, 5 terms) and /wp/v2/happyfiles_category (HTTP 200, 19 terms) on 2026-08-06
+        confirmed the routes are public and returned the id, slug and count members read from those responses.
+        Every subsequent re-probe of the term routes was refused by the site MalCare firewall with HTTP
+        403, so a complete term body was never captured; the remaining members listed here are the WordPress
+        core term fields plus the acf/yoast_head/yoast_head_json extensions this site demonstrably adds
+        to its post objects, and they are recorded as expected rather than observed. Treat id, slug, count,
+        name and taxonomy as verified and the rest as unconfirmed.
+    PostType:
+      type: object
+      title: PostType
+      description: A post type registered on accelsius.com.
+      properties:
+        description:
+          type: string
+          description: Description of the object, rendered to HTML.
+        hierarchical:
+          type: boolean
+          description: Whether the type or taxonomy supports parent/child relations.
+        has_archive:
+          type: boolean
+        name:
+          type: string
+          description: Human-readable name of the object.
+        slug:
+          type: string
+          description: Alphanumeric identifier for the object, unique within its type.
+        icon:
+          type: string
+        taxonomies:
+          type: array
+          items:
+            type: string
+          description: Taxonomies registered against the post type.
+        rest_base:
+          type: string
+          description: The REST route segment the type is served under.
+        rest_namespace:
+          type: string
+          description: The REST namespace the type is served under.
+        template:
+          type: array
+          items: {}
+          description: Theme file used to display the object.
+        template_lock:
+          type: boolean
+        yoast_head:
+          type: string
+          description: Yoast SEO head markup for the object, as an HTML string.
+        yoast_head_json:
+          type: object
+          properties:
+            title:
+              type: string
+            description:
+              type: string
+            robots:
+              type: object
+              properties:
+                index:
+                  type: string
+                follow:
+                  type: string
+                max-snippet:
+                  type: string
+                max-image-preview:
+                  type: string
+                max-video-preview:
+                  type: string
+            canonical:
+              type: string
+              format: uri
+            og_locale:
+              type: string
+            og_type:
+              type: string
+            og_title:
+              type: string
+            og_description:
+              type: string
+            og_url:
+              type: string
+              format: uri
+            og_site_name:
+              type: string
+            twitter_card:
+              type: string
+            schema:
+              type: object
+              properties:
+                '@context':
+                  type: string
+                  format: uri
+                '@graph':
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      '@type': {}
+                      '@id': {}
+                      url: {}
+                      name: {}
+                      isPartOf: {}
+                      datePublished: {}
+                      dateModified: {}
+                      description: {}
+                      breadcrumb: {}
+                      inLanguage: {}
+          description: Yoast SEO head metadata for the object, as structured JSON.
+        _links:
+          type: object
+          properties:
+            collection:
+              type: array
+              items:
+                type: object
+                properties:
+                  href:
+                    type: string
+                    format: uri
+            wp:items:
+              type: array
+              items:
+                type: object
+                properties:
+                  href:
+                    type: string
+                    format: uri
+            curies:
+              type: array
+              items:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  href:
+                    type: string
+                    format: uri
+                  templated:
+                    type: boolean
+          description: HAL-style link relations (self, collection, author, wp:term, wp:featuredmedia).
+      required:
+      - slug
+  headers:
+    XWPTotal:
+      description: Total number of items in the unpaginated collection.
+      schema:
+        type: integer
+    XWPTotalPages:
+      description: Total number of pages at the requested per_page size.
+      schema:
+        type: integer
+    LinkPagination:
+      description: RFC 8288 Link header carrying rel="next" and rel="prev" for the collection.
+      schema:
+        type: string

@@ -1,0 +1,120 @@
+generated: '2026-08-06'
+method: derived
+source: live probes of https://accelsius.com/ and https://accelsius.com/wp-json/ (2026-08-06)
+summary: >-
+  Accelsius operates no API program, so it publishes no API versioning policy, no deprecation
+  policy, no SLA, no status page and no changelog. What versioning exists is inherited from the
+  WordPress platform and its plugins. Absence is recorded here as observed fact — no StatusPage
+  and no Deprecation pointer is wired for this provider, because neither page exists.
+versioning:
+  scheme: uri-path-namespace
+  current: wp/v2
+  namespaces:
+  - namespace: wp/v2
+    surface: WordPress core content API (posts, news, pages, media, taxonomy, registry, search)
+  - namespace: oembed/1.0
+    surface: oEmbed provider endpoint
+  - namespace: yoast/v1
+    surface: Yoast SEO endpoints (public routes require parameters; most are credential-gated)
+  - namespace: ws-form/v1
+    surface: WS Form plugin configuration and stylesheet routes
+  - namespace: wpforms/v1
+    surface: WPForms plugin routes (credential-gated)
+  - namespace: bricks/v1
+    surface: Bricks page-builder template routes
+  - namespace: redirection/v1
+    surface: Redirection plugin routes (credential-gated)
+  - namespace: leadin/v1
+    surface: HubSpot (LeadIn) plugin routes (credential-gated)
+  - namespace: cleantalk-antispam/v1
+    surface: CleanTalk anti-spam plugin routes
+  - namespace: wpe/cache-plugin/v1
+    surface: WP Engine cache plugin routes
+  - namespace: wpe_sign_on_plugin/v1
+    surface: WP Engine single sign-on routes
+  - namespace: wp-abilities/v1
+    surface: WordPress abilities registry (credential-gated)
+  owner: platform
+  detail: >-
+    The version segment is set by WordPress core and by each plugin, not by Accelsius. A
+    WordPress core upgrade, a plugin update, or the removal of the HappyFiles or Advanced Custom
+    Fields plugins can change or delete parts of this surface without any notice to callers.
+    That is the principal consumption risk here — the `acf` object on every content item and the
+    entire happyfiles_category taxonomy are plugin-provided, not core.
+  policy_url: null
+deprecation:
+  policy_url: null
+  policy_published: false
+  sunset_header: false
+  deprecation_header: false
+  detail: >-
+    No Sunset or Deprecation response header was observed (RFC 8594), and no deprecation policy
+    page exists on accelsius.com. No operation in this repo's openapi/ specs is marked deprecated.
+deprecated_operations: []
+sla:
+  url: null
+  published: false
+  uptime_target: null
+status_page:
+  url: null
+  published: false
+  probed:
+  - url: https://status.accelsius.com
+    result: NXDOMAIN
+  detail: >-
+    No status page exists. Availability of this surface is the availability of the marketing
+    site, plus whatever the MalCare firewall decides about the caller.
+changelog:
+  url: null
+  published: false
+  detail: >-
+    No API changelog. The company's resource library (https://accelsius.com/resources/) is
+    editorial and product marketing — blog posts, white papers, case studies, podcasts, videos —
+    not release notes. Product announcements do land there (e.g. general availability of the
+    NeuCool IR150), but they describe hardware, not this interface.
+support:
+  url: https://accelsius.com/customer-support/
+  contact: https://accelsius.com/contact/
+  faq: https://accelsius.com/faq/
+  email: info@accelsius.com
+  detail: >-
+    Customer support for cooling hardware, a general contact form and an FAQ. There is no
+    developer support channel, forum, developer-relations contact or GitHub organization — a
+    search for an Accelsius GitHub org returned nothing.
+stability:
+  assessment: unmanaged
+  detail: >-
+    This is an incidental API surface. It is public and stable in shape because WordPress core
+    is, but Accelsius makes no commitment about it, monitors no consumers, and has no mechanism
+    to warn them of a breaking change. It is additionally guarded by a behavioural firewall that
+    will cut a caller off without warning or a documented threshold. Consumers should pin to
+    nothing, cache within the observed 600-second Cache-Control window, request one collection
+    page at a time with `_fields` set, self-throttle to the 10-second robots.txt crawl delay, and
+    tolerate the surface disappearing entirely.
+x-evidence:
+  fetched: '2026-08-06'
+  host: https://accelsius.com
+  pages_probed:
+    /customer-support/: 200
+    /contact/: 200
+    /faq/: 200
+    /resources/: 200
+    /in-the-news/: 200
+    /papers-studies/: 200
+    /our-partners/: 200
+    /careers/: 200
+    /privacy-policy/: 200
+    /terms/: 404
+    /terms-and-conditions/: 404
+    /security/: 404
+    /trust/: 404
+  subdomains_probed:
+    status.accelsius.com: NXDOMAIN
+    api.accelsius.com: NXDOMAIN
+    developer.accelsius.com: NXDOMAIN
+    docs.accelsius.com: NXDOMAIN
+    portal.accelsius.com: NXDOMAIN
+    partners.accelsius.com: NXDOMAIN
+    support.accelsius.com: NXDOMAIN
+    blog.accelsius.com: NXDOMAIN
+    go.accelsius.com: 404

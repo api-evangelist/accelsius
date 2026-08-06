@@ -1,0 +1,82 @@
+generated: '2026-08-06'
+method: probed
+source: live probes of /.well-known/ and root discovery paths on accelsius.com
+hosts:
+- host: https://accelsius.com
+  note: >-
+    The only host Accelsius operates a public surface on. api., docs., developer., portal.,
+    partners., support., status. and blog. subdomains of accelsius.com are all NXDOMAIN, and
+    go.accelsius.com (the marketing landing-page host linked from the site) answers 404 at its
+    root, so there is no second host to probe. accelsius.com is a WordPress site served by
+    WP Engine behind Cloudflare, and its only machine-readable discovery document is the
+    WordPress route index at /wp-json/.
+  documents:
+  - path: /.well-known/security.txt
+    spec: RFC 9116
+    status: 404
+  - path: /.well-known/openid-configuration
+    spec: OpenID Connect Discovery
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    spec: RFC 8414
+    status: 404
+  - path: /.well-known/api-catalog
+    spec: RFC 9727
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    spec: A2A 1.0.0
+    status: 404
+  - path: /.well-known/agent.json
+    spec: A2A pre-0.3 legacy
+    status: 404
+  - path: /llms.txt
+    status: 404
+  - path: /openapi.json
+    status: 404
+  - path: /openapi.yaml
+    status: 404
+  - path: /swagger.json
+    status: 404
+  - path: /v1/openapi.json
+    status: 404
+  - path: /api-docs
+    status: 404
+  - path: /docs
+    status: 404
+  - path: /redoc
+    status: 404
+  - path: /graphql
+    status: 404
+  - path: /robots.txt
+    status: 200
+    file: accelsius-robots.txt
+    note: >-
+      Sets `Crawl-delay: 10` for all agents and disallows only one WP Optimize plugin manifest.
+      Declares the Yoast sitemap index. Honored by this pass.
+  - path: /sitemap_index.xml
+    status: 200
+    note: >-
+      Yoast SEO sitemap index enumerating post, page, news, bricks_template, category, post_tag
+      and author sitemaps. 29 public pages listed in page-sitemap.xml.
+  - path: /wp-json/
+    status: 200
+    note: >-
+      The one real machine-readable discovery document on this host — the WordPress REST root
+      index, advertising 16 namespaces and 387 routes with per-route methods and argument
+      schemas. It is the source every openapi/ document in this repo was derived from.
+notes: >-
+  accelsius.com publishes no /.well-known/ discovery documents of any kind, and no A2A agent card
+  at either the canonical or the legacy path. False-positive hazard on this host: the WordPress
+  404 handler returns an HTML page for unknown /.well-known/* paths, so a probe that only checks
+  for a non-empty body would mis-read every one of these as a hit. Each status above is the
+  observed HTTP status code and every 404 body was HTML, not JSON. Note also that this host runs
+  the MalCare WordPress firewall, which began returning HTTP 403 ("Blocked because of Malicious
+  Activities") to this pass after a short burst of item-level requests; collection-level reads
+  continued to succeed. Probing was slowed to the robots.txt Crawl-delay and item-level
+  enumeration was abandoned rather than evaded.
+x-evidence:
+  fetched: '2026-08-06'
+  host: https://accelsius.com
+  probe_method: HTTP GET following redirects, status recorded from the final response

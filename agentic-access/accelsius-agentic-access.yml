@@ -1,0 +1,267 @@
+generated: '2026-08-06'
+method: generated
+source: openapi/accelsius-content-api-openapi.yml, openapi/accelsius-discovery-api-openapi.yml, openapi/accelsius-media-api-openapi.yml,
+  openapi/accelsius-news-api-openapi.yml, openapi/accelsius-pages-api-openapi.yml, openapi/accelsius-search-api-openapi.yml,
+  openapi/accelsius-taxonomy-api-openapi.yml
+description: 'Recommended x-agentic-access execution contracts, classified from the OpenAPI. A governance
+  starting point for exposing this surface to AI agents — review and bind audience per deployment. Classification
+  is trivially uniform here: every documented operation is an unauthenticated GET over published marketing
+  content, so every one is connected/read with no human in the loop. The real agent risk on this surface
+  is not consequence, it is CADENCE — see the throttling contract below.'
+summary:
+  operations: 23
+  by_action_class:
+    connected: 23
+  by_consequence:
+    read: 23
+  human_in_the_loop_required: 0
+x-agentic-throttle:
+  crawl_delay_seconds: 10
+  max_concurrency: 1
+  cache_seconds: 600
+  rate_limit_signalled: false
+  enforcement: Behavioural. The MalCare WordPress firewall on this origin answers HTTP 403 with a text/html
+    interstitial and no Retry-After once it classifies a client as hostile; the block persisted across
+    a user-agent change during profiling. No RateLimit-* or X-RateLimit-* header is published, so an agent
+    cannot discover the budget in band.
+  agent_rule: Prefer collection reads with _fields and _embed over per-item fetches; the entire site is
+    1,095 objects reachable in 12 collection requests. On any 403, halt the plan and escalate rather than
+    retry — a retry loop here converts a soft block into a persistent one.
+excluded_operations:
+- path: /wp/v2/users
+  method: get
+  status: 200
+  reason: Anonymously readable directory of 14 named site authors. Never modelled as an operation, never
+    exposed as an agent-callable surface. Recorded so the exclusion is legible to a governance reviewer
+    rather than looking like an oversight.
+operations:
+- path: /wp/v2/posts
+  method: get
+  operationId: listContent
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /wp/v2/posts/{id}
+  method: get
+  operationId: getContentItem
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /
+  method: get
+  operationId: getRootIndex
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /wp/v2
+  method: get
+  operationId: getWpV2Index
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /wp/v2/media
+  method: get
+  operationId: listMedia
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /wp/v2/media/{id}
+  method: get
+  operationId: getMediaItem
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /wp/v2/news
+  method: get
+  operationId: listNews
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /wp/v2/news/{id}
+  method: get
+  operationId: getNewsItem
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /wp/v2/pages
+  method: get
+  operationId: listPages
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /wp/v2/pages/{id}
+  method: get
+  operationId: getPage
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /wp/v2/search
+  method: get
+  operationId: searchSite
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /wp/v2/categories
+  method: get
+  operationId: listCategories
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /wp/v2/categories/{id}
+  method: get
+  operationId: getCategory
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /wp/v2/tags
+  method: get
+  operationId: listTags
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /wp/v2/tags/{id}
+  method: get
+  operationId: getTag
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /wp/v2/happyfiles_category
+  method: get
+  operationId: listMediaFolders
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /wp/v2/happyfiles_category/{id}
+  method: get
+  operationId: getMediaFolder
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /wp/v2/types
+  method: get
+  operationId: listPostTypes
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /wp/v2/types/{type}
+  method: get
+  operationId: getPostType
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /wp/v2/taxonomies
+  method: get
+  operationId: listTaxonomies
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /wp/v2/taxonomies/{taxonomy}
+  method: get
+  operationId: getTaxonomy
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /wp/v2/statuses
+  method: get
+  operationId: listStatuses
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /wp/v2/statuses/{status}
+  method: get
+  operationId: getStatus
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none

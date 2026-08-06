@@ -1,0 +1,176 @@
+generated: '2026-08-06'
+method: derived
+source: >-
+  live response headers and behaviour observed on https://accelsius.com/wp-json/ (2026-08-06),
+  plus this repo's openapi/ specs
+summary: >-
+  Cross-cutting request/response semantics of the Accelsius content API. Everything here was
+  observed on the wire or transcribed from the site's own route descriptor; where a convention is
+  absent (idempotency keys, request-id tracing, rate-limit signalling) it is recorded as absent
+  rather than assumed present. This is the stock WordPress core REST contract as deployed on
+  accelsius.com — Accelsius has layered no conventions of its own on top of it, and the one
+  site-specific behaviour that matters to a caller is a firewall, not a convention.
+authentication:
+  style: none-for-read
+  detail: >-
+    The documented read surface takes no credential at all. The site advertises WordPress
+    Application Passwords for the write half. See
+    authentication/accelsius-authentication.yml.
+  artifact: authentication/accelsius-authentication.yml
+pagination:
+  style: page-number
+  supported: true
+  request:
+    page:
+      in: query
+      default: 1
+      minimum: 1
+      description: 1-indexed page number.
+    per_page:
+      in: query
+      default: 10
+      min: 1
+      max: 100
+      description: >-
+        Page size. Bounds transcribed from the `args` the site publishes for each collection route
+        in its own route descriptor at /wp-json/.
+  response:
+    body: A bare JSON array of objects; there is no envelope and no cursor.
+    headers:
+      X-WP-Total: >-
+        Total number of items in the collection. Observed as 154 on /wp/v2/posts, 903 on
+        /wp/v2/media, 30 on /wp/v2/pages, 8 on /wp/v2/news, 192 on /wp/v2/search.
+      X-WP-TotalPages: >-
+        Total page count at the current per_page. Observed as 154 on /wp/v2/posts at per_page=1.
+      Link: >-
+        RFC 8288 Link header carrying rel="next" and rel="prev". Observed on /wp/v2/posts:
+        <https://accelsius.com/wp-json/wp/v2/posts?per_page=1&page=2>; rel="next"
+  cors: >-
+    Access-Control-Expose-Headers advertises X-WP-Total, X-WP-TotalPages and Link, so a browser
+    client can read the pagination signals cross-origin.
+filtering:
+  supported: true
+  detail: >-
+    Collections accept search, slug[], include[], exclude[], after/before and
+    modified_after/modified_before (ISO 8601), order (asc|desc), orderby, and author[]/
+    author_exclude[]. Post and news collections additionally accept categories[],
+    categories_exclude[], tags[], tags_exclude[] and sticky. Page collections accept parent[],
+    parent_exclude[] and menu_order. Media collections accept media_type and mime_type. Term
+    collections accept hide_empty, parent, post and slug[].
+field_shaping:
+  context:
+    supported: true
+    values: [view, embed]
+    detail: >-
+      The `context` parameter selects the field set. Only `view` (default) and `embed` are
+      available anonymously; `edit` requires a credential.
+  sparse_fields:
+    supported: true
+    param: _fields
+    detail: >-
+      WordPress core supports a `_fields` comma-separated allow-list to trim the response.
+      Materially important against this surface: a single post object on accelsius.com runs
+      roughly 17KB because of the `yoast_head` string and the `acf` payload, and a full 154-post
+      crawl at default fields is several megabytes for a site whose actual text is a fraction of
+      that.
+  embedding:
+    supported: true
+    param: _embed
+    detail: >-
+      `_embed=true` inlines the linked resources named in `_links` (author, wp:term,
+      wp:featuredmedia) under an `_embedded` key, collapsing the id-reference round trips
+      described in data-model/accelsius-data-model.yml. Use it sparingly here — see
+      rate_limiting below.
+hypermedia:
+  style: HAL-like
+  detail: >-
+    Every object carries a `_links` object with self, collection, about, author, wp:term,
+    wp:attachment, wp:featuredmedia, replies, version-history and predecessor-version relations,
+    plus a `curies` entry defining the wp: prefix. This is the surface's only in-band navigation
+    affordance.
+idempotency:
+  supported: false
+  detail: >-
+    No Idempotency-Key header, parameter or documented retry contract exists anywhere on this
+    surface. The documented operations are all GET and therefore idempotent by HTTP method, but
+    the provider publishes no idempotency contract for unsafe operations. No `Idempotency`
+    pointer is wired in apis.yml for this provider, because there is nothing to point at.
+request_tracing:
+  supported: false
+  detail: >-
+    No request-id or correlation-id header is returned and no trace context is echoed. The one
+    identifier this surface will hand you is the "Reference ID" printed in the MalCare 403
+    interstitial, which identifies a block event rather than a request.
+rate_limiting:
+  signalled: false
+  enforced: true
+  detail: >-
+    No X-RateLimit-*, RateLimit-* (RFC 9331 style) or Retry-After header was observed on any
+    response, so nothing about the limit is discoverable in-band. A limit is nevertheless
+    enforced, silently and behaviourally: the MalCare WordPress firewall on this host began
+    returning HTTP 403 with an HTML interstitial after a short burst of item-level requests, and
+    the block persisted across a change of user agent and several minutes of backoff while
+    collection-level reads kept succeeding. /robots.txt sets `Crawl-delay: 10`; treat that as the
+    real budget. This asymmetry — enforcement without signalling — is the single most important
+    operational fact about consuming this surface.
+  artifact: errors/accelsius-problem-types.yml
+caching:
+  supported: true
+  detail: >-
+    Collection responses return `Cache-Control: max-age=600, must-revalidate` with
+    `X-Cacheable: SHORT` and an `X-Cache: HIT|MISS` marker from the WP Engine edge; the origin's
+    own `X-Orig-Cache-Control` is `no-store, no-cache, must-revalidate`. No ETag or Last-Modified
+    was observed, so conditional requests are not available; poll no faster than the 600-second
+    cache window.
+  indexing: >-
+    Responses carry `X-Robots-Tag: noindex` — the API output is deliberately excluded from search
+    engines even though it is publicly readable.
+versioning:
+  scheme: uri-path-namespace
+  detail: >-
+    Version lives in the namespace segment of the path (`/wp-json/wp/v2/...`,
+    `/wp-json/oembed/1.0/...`, `/wp-json/yoast/v1/...`). It is set by the WordPress platform and
+    its plugins, not by Accelsius. See lifecycle/accelsius-lifecycle.yml.
+error_envelope:
+  format: wordpress-rest-error
+  rfc9457: false
+  detail: >-
+    See errors/accelsius-problem-types.yml. Note that a client must branch on content-type: the
+    firewall answers text/html with a 403, not the JSON envelope.
+  artifact: errors/accelsius-problem-types.yml
+content_negotiation:
+  media_type: application/json; charset=UTF-8
+  detail: >-
+    JSON only on the wp/v2 namespace. The oembed/1.0 namespace additionally accepts
+    `format=xml`. There is no CSV, XML or protobuf representation of the content routes.
+security_headers:
+  x_content_type_options: nosniff
+  hsts: false
+  detail: >-
+    HSTS was NOT observed on accelsius.com. TLS 1.3, certificate valid to 2026-10-15. SPF and
+    DMARC records exist; DMARC policy is `p=none` and there is no DNSSEC and no CAA record. See
+    security/accelsius-domain-security.yml.
+cross_links:
+  authentication: authentication/accelsius-authentication.yml
+  errors: errors/accelsius-problem-types.yml
+  lifecycle: lifecycle/accelsius-lifecycle.yml
+  data_model: data-model/accelsius-data-model.yml
+  conformance: conformance/accelsius-conformance.yml
+  well_known: well-known/accelsius-well-known.yml
+x-evidence:
+  fetched: '2026-08-06'
+  host: https://accelsius.com
+  headers_observed:
+  - 'x-wp-total: 154'
+  - 'x-wp-totalpages: 154'
+  - 'link: <https://accelsius.com/wp-json/wp/v2/posts?per_page=1&page=2>; rel="next"'
+  - 'cache-control: max-age=600, must-revalidate'
+  - 'x-orig-cache-control: no-store, no-cache, must-revalidate'
+  - 'x-cacheable: SHORT'
+  - 'x-robots-tag: noindex'
+  - 'x-content-type-options: nosniff'
+  - 'access-control-expose-headers: X-WP-Total, X-WP-TotalPages, Link'
+  - 'access-control-allow-headers: Authorization, X-WP-Nonce, Content-Disposition, Content-MD5, Content-Type'
+  - 'allow: GET'
+  - 'server: cloudflare'
+  - 'x-powered-by: WP Engine'

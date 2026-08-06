@@ -1,0 +1,221 @@
+openapi: 3.1.0
+info:
+  title: Accelsius Search API
+  version: wp/v2
+  summary: Public site-wide search across accelsius.com content.
+  description: 'The WordPress search route returns a lightweight, uniform result object (id, title, url,
+    type, subtype, _links) across every searchable type on the site — resource-library posts, pages and
+    news items. At time of capture 192 objects were searchable. This is the cheapest way to resolve a
+    title or URL to the numeric ID the other operations take.
+
+
+    Accelsius publishes accelsius.com on WordPress (WP Engine origin, Cloudflare edge, MalCare firewall)
+    with the WordPress core REST API enabled and anonymously readable. This is NOT a product API that
+    Accelsius offers to customers — Accelsius manufactures two-phase direct-to-chip liquid-cooling hardware
+    and ships no developer program, SDK or product API. It is the content API behind the company marketing
+    site, captured for discovery purposes. Anonymous access is read-only: the `Allow` response header
+    on every collection is `GET`, and write operations require WordPress cookie authentication with an
+    X-WP-Nonce header or an Application Password, returning HTTP 401 to anonymous callers.'
+  contact:
+    name: Accelsius
+    url: https://accelsius.com/contact/
+    email: info@accelsius.com
+  license:
+    name: Site content - all rights reserved
+    url: https://accelsius.com/privacy-policy/
+  x-apis-io-provenance:
+    method: derived
+    source: https://accelsius.com/wp-json/
+    derived_on: '2026-08-06'
+    note: Parameters are transcribed verbatim from the `args` the site publishes for each route in its
+      live WordPress route-discovery document at https://accelsius.com/wp-json/ (387 routes across 16
+      namespaces). Response schemas are derived from the field names and JSON types observed in live anonymous
+      GET responses on 2026-08-06. Every collection operation documented here was probed anonymously and
+      returned HTTP 200; routes that returned 401 without credentials (settings, menus, menu-items, templates,
+      template-parts, themes, plugins, widgets, block-types, users/me) are deliberately omitted. No operation,
+      parameter or field was invented, and no live response value is reproduced here as an example.
+  x-provider-published: false
+servers:
+- url: https://accelsius.com/wp-json
+  description: Production
+tags:
+- name: Search
+  description: Site-wide search across accelsius.com.
+paths:
+  /wp/v2/search:
+    get:
+      tags:
+      - Search
+      operationId: searchSite
+      summary: Search the site
+      description: Returns matching objects across every searchable type. Narrow with `type` (post/term/post-format)
+        and `subtype` (post, page, news, category, post_tag).
+      security: []
+      responses:
+        '200':
+          description: A page of results.
+          headers:
+            X-WP-Total:
+              $ref: '#/components/headers/XWPTotal'
+            X-WP-TotalPages:
+              $ref: '#/components/headers/XWPTotalPages'
+            Link:
+              $ref: '#/components/headers/LinkPagination'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SearchResult'
+        '400':
+          description: Invalid parameter (rest_invalid_param), e.g. per_page outside 1-100.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WPError'
+      parameters:
+      - name: context
+        in: query
+        description: Scope under which the request is made; determines fields present in response.
+        schema:
+          type: string
+          enum:
+          - view
+          - embed
+          default: view
+      - name: page
+        in: query
+        description: Current page of the collection.
+        schema:
+          type: integer
+          minimum: 1
+          default: 1
+      - name: per_page
+        in: query
+        description: Maximum number of items to be returned in result set.
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 10
+      - name: search
+        in: query
+        description: Limit results to those matching a string.
+        schema:
+          type: string
+      - name: type
+        in: query
+        description: Limit results to items of an object type.
+        schema:
+          type: string
+          enum:
+          - post
+          - term
+          - post-format
+          default: post
+      - name: subtype
+        in: query
+        description: Limit results to items of one or more object subtypes.
+        schema:
+          type: array
+          default: any
+          items:
+            type: string
+            enum:
+            - post
+            - page
+            - news
+            - category
+            - post_tag
+            - recent-news
+            - any
+      - name: exclude
+        in: query
+        description: Ensure result set excludes specific IDs.
+        schema:
+          type: array
+          items:
+            type: integer
+      - name: include
+        in: query
+        description: Limit result set to specific IDs.
+        schema:
+          type: array
+          items:
+            type: integer
+components:
+  securitySchemes:
+    applicationPassword:
+      type: http
+      scheme: basic
+      description: WordPress Application Passwords over HTTP Basic. Advertised by the site at https://accelsius.com/wp-json/
+        under `authentication.application-passwords`. Every operation documented in this file is anonymous
+        and takes no credential; this scheme is declared because it is the only credential the host accepts,
+        and it governs the write and edit-context operations that are deliberately NOT documented here.
+  schemas:
+    WPError:
+      type: object
+      title: WPError
+      description: The WordPress REST error envelope. It is NOT RFC 9457 problem+json — the media type
+        is application/json and the shape is a flat object carrying a machine-readable `code` slug, a
+        human `message`, and a `data` object repeating the HTTP status.
+      properties:
+        code:
+          type: string
+          description: Machine-readable error slug, e.g. rest_post_invalid_id.
+        message:
+          type: string
+          description: Human-readable error message.
+        data:
+          type: object
+          properties:
+            status:
+              type: integer
+              description: HTTP status repeated in the body.
+      required:
+      - code
+      - message
+    SearchResult:
+      type: object
+      title: SearchResult
+      description: A single site-search result.
+      properties:
+        id:
+          type: integer
+          description: Numeric ID of the matched object.
+        title:
+          type: string
+          description: Title of the matched object.
+        url:
+          type: string
+          format: uri
+          description: Canonical URL of the matched object.
+        type:
+          type: string
+          description: 'Object class: post, term or post-format.'
+        subtype:
+          type: string
+          description: 'Object subtype: post, page, news, category or post_tag.'
+        _links:
+          type: object
+          description: Link relations for the matched object.
+      required:
+      - id
+      - url
+      x-schema-provenance: 'Route verified public: a live anonymous GET of /wp/v2/search returned HTTP
+        200 with X-WP-Total: 192 on 2026-08-06. Every later attempt to capture a result body was refused
+        by the site MalCare firewall with HTTP 403, so the member list here is the WordPress core search-result
+        shape, recorded as expected rather than observed.'
+  headers:
+    XWPTotal:
+      description: Total number of items in the unpaginated collection.
+      schema:
+        type: integer
+    XWPTotalPages:
+      description: Total number of pages at the requested per_page size.
+      schema:
+        type: integer
+    LinkPagination:
+      description: RFC 8288 Link header carrying rel="next" and rel="prev" for the collection.
+      schema:
+        type: string
