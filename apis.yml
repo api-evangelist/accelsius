@@ -37,13 +37,13 @@ tags:
 apis:
 - aid: accelsius:content
   name: Accelsius Resources Content API
-  description: 'The public WordPress REST collection behind https://accelsius.com/resources/ - the Accelsius
-    resource library, holding 154 published items at time of capture across eight content classes carried
-    as categories: blog (39), press-release (34), news-article (26), white-paper (24), video (13), infographic
-    (9), podcast (8) and case-study (1), crossed with five topic tags. Anonymous and read-only; verified
-    live returning HTTP 200 with Allow: GET and X-WP-Total: 154. Not a product API - Accelsius sells liquid-cooling
-    hardware and publishes no developer program. The OpenAPI is derived by API Evangelist from the site
-    route descriptor.'
+  description: >-
+    The public WordPress REST collection behind https://accelsius.com/resources/ - the Accelsius resource
+    library, holding 154 published items at time of capture across eight content classes carried as categories:
+    blog (39), press-release (34), news-article (26), white-paper (24), video (13), infographic (9), podcast
+    (8) and case-study (1), crossed with five topic tags. Anonymous and read-only; verified live returning
+    HTTP 200 with Allow: GET and X-WP-Total: 154. Not a product API - Accelsius sells liquid-cooling hardware
+    and publishes no developer program. The OpenAPI is derived by API Evangelist from the site route descriptor.
   humanURL: https://accelsius.com/resources/
   baseURL: https://accelsius.com/wp-json
   tags:
@@ -73,11 +73,12 @@ apis:
     url: examples/accelsius-examples.yml
 - aid: accelsius:news
   name: Accelsius News API
-  description: The `news` WordPress custom post type Accelsius registered for curated third-party press
-    coverage, surfaced at https://accelsius.com/in-the-news/ and served from accelsius.com/wp-json/wp/v2/news.
-    Eight published items at time of capture. It shares the category and post_tag taxonomies with the
-    resource library, and is distinct from the press releases Accelsius issues itself, which live in category
-    1 of the content API. Anonymous and read-only.
+  description: >-
+    The `news` WordPress custom post type Accelsius registered for curated third-party press coverage,
+    surfaced at https://accelsius.com/in-the-news/ and served from accelsius.com/wp-json/wp/v2/news. Eight
+    published items at time of capture. It shares the category and post_tag taxonomies with the resource
+    library, and is distinct from the press releases Accelsius issues itself, which live in category 1
+    of the content API. Anonymous and read-only.
   humanURL: https://accelsius.com/in-the-news/
   baseURL: https://accelsius.com/wp-json
   tags:
@@ -106,11 +107,12 @@ apis:
     url: examples/accelsius-examples.yml
 - aid: accelsius:pages
   name: Accelsius Pages API
-  description: Public read access to the 30 static marketing, product, company and legal pages of accelsius.com
-    via the WordPress REST API - the NeuCool IR150 and MR250 product pages, the Thermal Simulation Rack
-    and Liquid Simulation System page, the multi-GPU page, the two-phase and direct-to-chip technology
-    explainers, solutions, services, partners, company, careers, FAQ, customer support and the privacy
-    policy. Pages are hierarchical via parent and ordered by menu_order. Anonymous and read-only.
+  description: >-
+    Public read access to the 30 static marketing, product, company and legal pages of accelsius.com via
+    the WordPress REST API - the NeuCool IR150 and MR250 product pages, the Thermal Simulation Rack and
+    Liquid Simulation System page, the multi-GPU page, the two-phase and direct-to-chip technology explainers,
+    solutions, services, partners, company, careers, FAQ, customer support and the privacy policy. Pages
+    are hierarchical via parent and ordered by menu_order. Anonymous and read-only.
   humanURL: https://accelsius.com/
   baseURL: https://accelsius.com/wp-json
   tags:
@@ -139,12 +141,12 @@ apis:
     url: examples/accelsius-examples.yml
 - aid: accelsius:media
   name: Accelsius Media API
-  description: Public read access to the 903-item accelsius.com media library - NeuCool product renders
-    and photography, thermal diagrams, partner and customer logos, and the PDF white papers, studies and
-    infographics linked from https://accelsius.com/papers-studies/. Each attachment carries source_url
-    for the original file and media_details.sizes for the generated variants, and is organised by the
-    HappyFiles folder taxonomy. Filter with mime_type=application/pdf to reach the document set. Anonymous
-    and read-only.
+  description: >-
+    Public read access to the 903-item accelsius.com media library - NeuCool product renders and photography,
+    thermal diagrams, partner and customer logos, and the PDF white papers, studies and infographics linked
+    from https://accelsius.com/papers-studies/. Each attachment carries source_url for the original file
+    and media_details.sizes for the generated variants, and is organised by the HappyFiles folder taxonomy.
+    Filter with mime_type=application/pdf to reach the document set. Anonymous and read-only.
   humanURL: https://accelsius.com/papers-studies/
   baseURL: https://accelsius.com/wp-json
   tags:
@@ -172,46 +174,13 @@ apis:
     url: lifecycle/accelsius-lifecycle.yml
   - type: Examples
     url: examples/accelsius-examples.yml
-- aid: accelsius:taxonomy
-  name: Accelsius Taxonomy API
-  description: 'The classification layer behind the Accelsius content API: the eight category terms that
-    separate content classes, the five post_tag topic terms (2pd2c-education, neucool-products, accelsius-news,
-    scientific-research, featured), the 19 HappyFiles media folders, and the registry routes describing
-    the post types, taxonomies and publication statuses themselves. The types registry is the record that
-    reveals the custom `news` content type. Twelve anonymous read-only operations.'
-  humanURL: https://accelsius.com/resources/
-  baseURL: https://accelsius.com/wp-json
-  tags:
-  - Taxonomy
-  - Categories
-  - Tags
-  - Metadata
-  - WordPress
-  properties:
-  - type: OpenAPI
-    url: openapi/accelsius-taxonomy-api-openapi.yml
-  - type: Overlay
-    url: overlays/accelsius-taxonomy-api-overlay.yaml
-  - type: Authentication
-    url: authentication/accelsius-authentication.yml
-  - type: ErrorCatalog
-    url: errors/accelsius-problem-types.yml
-  - type: Conventions
-    url: conventions/accelsius-conventions.yml
-  - type: DataModel
-    url: data-model/accelsius-data-model.yml
-  - type: Conformance
-    url: conformance/accelsius-conformance.yml
-  - type: Lifecycle
-    url: lifecycle/accelsius-lifecycle.yml
-  - type: Examples
-    url: examples/accelsius-examples.yml
 - aid: accelsius:search
   name: Accelsius Search API
-  description: Site-wide search across every searchable object on accelsius.com - resource-library posts,
-    static pages and news items, 192 objects at time of capture. Returns a lightweight uniform record
-    (id, title, url, type, subtype), which is the cheapest way to resolve a headline or a URL to the numeric
-    ID the other operations take. Anonymous and read-only.
+  description: >-
+    Site-wide search across every searchable object on accelsius.com - resource-library posts, static
+    pages and news items, 192 objects at time of capture. Returns a lightweight uniform record (id, title,
+    url, type, subtype), which is the cheapest way to resolve a headline or a URL to the numeric ID the
+    other operations take. Anonymous and read-only.
   humanURL: https://accelsius.com/
   baseURL: https://accelsius.com/wp-json
   tags:
@@ -240,7 +209,8 @@ apis:
     url: examples/accelsius-examples.yml
 - aid: accelsius:discovery
   name: Accelsius API Discovery
-  description: The WordPress REST route-discovery documents served at accelsius.com/wp-json/ and accelsius.com/wp-json/wp/v2
+  description: >-
+    The WordPress REST route-discovery documents served at accelsius.com/wp-json/ and accelsius.com/wp-json/wp/v2
     - the only machine-readable API description documents Accelsius serves. They enumerate 387 routes
     across 16 namespaces with per-route HTTP methods and full argument schemas, and they are the source
     every OpenAPI document in this profile was derived from. The root index also advertises the site name,
@@ -272,12 +242,110 @@ apis:
     url: lifecycle/accelsius-lifecycle.yml
   - type: Examples
     url: examples/accelsius-examples.yml
+- aid: accelsius:accelsius-categories-api
+  name: Accelsius Categories API
+  description: Content-class terms in the category taxonomy.
+  humanURL: https://accelsius.com/resources/
+  baseURL: https://accelsius.com/wp-json
+  tags:
+  - Categories
+  properties:
+  - type: OpenAPI
+    url: openapi/accelsius-categories-api-openapi.yml
+  - type: Authentication
+    url: authentication/accelsius-authentication.yml
+  - type: ErrorCatalog
+    url: errors/accelsius-problem-types.yml
+  - type: Conventions
+    url: conventions/accelsius-conventions.yml
+  - type: DataModel
+    url: data-model/accelsius-data-model.yml
+  - type: Conformance
+    url: conformance/accelsius-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/accelsius-lifecycle.yml
+  - type: Examples
+    url: examples/accelsius-examples.yml
+- aid: accelsius:accelsius-media-folders-api
+  name: Accelsius Media Folders API
+  description: HappyFiles folders organising the media library.
+  humanURL: https://accelsius.com/resources/
+  baseURL: https://accelsius.com/wp-json
+  tags:
+  - Media Folders
+  properties:
+  - type: OpenAPI
+    url: openapi/accelsius-media-folders-api-openapi.yml
+  - type: Authentication
+    url: authentication/accelsius-authentication.yml
+  - type: ErrorCatalog
+    url: errors/accelsius-problem-types.yml
+  - type: Conventions
+    url: conventions/accelsius-conventions.yml
+  - type: DataModel
+    url: data-model/accelsius-data-model.yml
+  - type: Conformance
+    url: conformance/accelsius-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/accelsius-lifecycle.yml
+  - type: Examples
+    url: examples/accelsius-examples.yml
+- aid: accelsius:accelsius-registry-api
+  name: Accelsius Registry API
+  description: Post types, taxonomies and publication statuses registered on the site.
+  humanURL: https://accelsius.com/resources/
+  baseURL: https://accelsius.com/wp-json
+  tags:
+  - Registry
+  properties:
+  - type: OpenAPI
+    url: openapi/accelsius-registry-api-openapi.yml
+  - type: Authentication
+    url: authentication/accelsius-authentication.yml
+  - type: ErrorCatalog
+    url: errors/accelsius-problem-types.yml
+  - type: Conventions
+    url: conventions/accelsius-conventions.yml
+  - type: DataModel
+    url: data-model/accelsius-data-model.yml
+  - type: Conformance
+    url: conformance/accelsius-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/accelsius-lifecycle.yml
+  - type: Examples
+    url: examples/accelsius-examples.yml
+- aid: accelsius:accelsius-tags-api
+  name: Accelsius Tags API
+  description: Topic terms in the post_tag taxonomy.
+  humanURL: https://accelsius.com/resources/
+  baseURL: https://accelsius.com/wp-json
+  tags:
+  - Tags
+  properties:
+  - type: OpenAPI
+    url: openapi/accelsius-tags-api-openapi.yml
+  - type: Authentication
+    url: authentication/accelsius-authentication.yml
+  - type: ErrorCatalog
+    url: errors/accelsius-problem-types.yml
+  - type: Conventions
+    url: conventions/accelsius-conventions.yml
+  - type: DataModel
+    url: data-model/accelsius-data-model.yml
+  - type: Conformance
+    url: conformance/accelsius-conformance.yml
+  - type: Lifecycle
+    url: lifecycle/accelsius-lifecycle.yml
+  - type: Examples
+    url: examples/accelsius-examples.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: MCPServer
+  url: mcp/accelsius-mcp.yml
 - type: Authentication
   url: authentication/accelsius-authentication.yml
 - type: DomainSecurity
