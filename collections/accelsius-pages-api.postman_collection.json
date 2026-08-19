@@ -1,0 +1,826 @@
+{
+  "item": [
+    {
+      "id": "7f3c9678-c753-4d52-8a0e-7f7f9ba1927a",
+      "name": "Pages",
+      "description": {
+        "content": "Static marketing, product, company and legal pages of accelsius.com.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f5a2adfb-97c2-4c3a-abba-9fd3029c9fd4",
+          "name": "List pages",
+          "request": {
+            "name": "List pages",
+            "description": {
+              "content": "Returns a paginated collection of published pages. Pages are hierarchical: use `parent` to walk the tree and `menu_order` to order siblings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wp",
+                "v2",
+                "pages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "context",
+                  "value": "view",
+                  "description": "Scope under which the request is made; determines fields present in response."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Current page of the collection."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "10",
+                  "description": "Maximum number of items to be returned in result set."
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Limit results to those matching a string."
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<dateTime>",
+                  "description": "Limit response to posts published after a given ISO8601 compliant date."
+                },
+                {
+                  "disabled": false,
+                  "key": "modified_after",
+                  "value": "<dateTime>",
+                  "description": "Limit response to posts modified after a given ISO8601 compliant date."
+                },
+                {
+                  "disabled": false,
+                  "key": "author",
+                  "value": "<integer>",
+                  "description": "Limit result set to posts assigned to specific authors."
+                },
+                {
+                  "disabled": false,
+                  "key": "author",
+                  "value": "<integer>",
+                  "description": "Limit result set to posts assigned to specific authors."
+                },
+                {
+                  "disabled": false,
+                  "key": "author_exclude",
+                  "value": "<integer>",
+                  "description": "Ensure result set excludes posts assigned to specific authors."
+                },
+                {
+                  "disabled": false,
+                  "key": "author_exclude",
+                  "value": "<integer>",
+                  "description": "Ensure result set excludes posts assigned to specific authors."
+                },
+                {
+                  "disabled": false,
+                  "key": "before",
+                  "value": "<dateTime>",
+                  "description": "Limit response to posts published before a given ISO8601 compliant date."
+                },
+                {
+                  "disabled": false,
+                  "key": "modified_before",
+                  "value": "<dateTime>",
+                  "description": "Limit response to posts modified before a given ISO8601 compliant date."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude",
+                  "value": "<integer>",
+                  "description": "Ensure result set excludes specific IDs."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude",
+                  "value": "<integer>",
+                  "description": "Ensure result set excludes specific IDs."
+                },
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "<integer>",
+                  "description": "Limit result set to specific IDs."
+                },
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "<integer>",
+                  "description": "Limit result set to specific IDs."
+                },
+                {
+                  "disabled": false,
+                  "key": "menu_order",
+                  "value": "<integer>",
+                  "description": "Limit result set to posts with a specific menu_order value."
+                },
+                {
+                  "disabled": false,
+                  "key": "search_semantics",
+                  "value": "<string>",
+                  "description": "How to interpret the search input."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Offset the result set by a specific number of items."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "desc",
+                  "description": "Order sort attribute ascending or descending."
+                },
+                {
+                  "disabled": false,
+                  "key": "orderby",
+                  "value": "date",
+                  "description": "Sort collection by post attribute."
+                },
+                {
+                  "disabled": false,
+                  "key": "parent",
+                  "value": "<integer>",
+                  "description": "Limit result set to items with particular parent IDs."
+                },
+                {
+                  "disabled": false,
+                  "key": "parent",
+                  "value": "<integer>",
+                  "description": "Limit result set to items with particular parent IDs."
+                },
+                {
+                  "disabled": false,
+                  "key": "parent_exclude",
+                  "value": "<integer>",
+                  "description": "Limit result set to all items except those of a particular parent ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "parent_exclude",
+                  "value": "<integer>",
+                  "description": "Limit result set to all items except those of a particular parent ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "search_columns",
+                  "value": "<string>",
+                  "description": "Array of column names to be searched."
+                },
+                {
+                  "disabled": false,
+                  "key": "search_columns",
+                  "value": "<string>",
+                  "description": "Array of column names to be searched."
+                },
+                {
+                  "disabled": false,
+                  "key": "slug",
+                  "value": "<string>",
+                  "description": "Limit result set to posts with one or more specific slugs."
+                },
+                {
+                  "disabled": false,
+                  "key": "slug",
+                  "value": "<string>",
+                  "description": "Limit result set to posts with one or more specific slugs."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "publish",
+                  "description": "Limit result set to posts assigned one or more statuses."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3d169f18-8da5-4ff0-b26b-ce79830dd62b",
+              "name": "A page of results.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "pages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "modified_after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "author",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "author",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "author_exclude",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "author_exclude",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "modified_before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "exclude",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "exclude",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "menu_order",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "search_semantics",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "date"
+                    },
+                    {
+                      "key": "parent",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "parent",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "parent_exclude",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "parent_exclude",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "search_columns",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search_columns",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "slug",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "slug",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "publish"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Total number of items in the unpaginated collection.",
+                  "key": "X-WP-Total",
+                  "value": "1791"
+                },
+                {
+                  "disabled": false,
+                  "description": "Total number of pages at the requested per_page size.",
+                  "key": "X-WP-TotalPages",
+                  "value": "1791"
+                },
+                {
+                  "disabled": false,
+                  "description": "RFC 8288 Link header carrying rel=\"next\" and rel=\"prev\" for the collection.",
+                  "key": "Link",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 6143,\n    \"link\": \"http://L.icwhBwBaRGkfzaSW.6RDAD\",\n    \"slug\": \"string\",\n    \"date\": \"1991-10-03T09:09:55.436Z\",\n    \"date_gmt\": \"1998-11-15T14:49:42.536Z\",\n    \"guid\": {\n      \"rendered\": \"http://bBpsAvKDFhykffCdDGiGoLFWWPkzDkfmI.qptbxNYz1zY1J4f+vko5lmcBmFrptmUmrvd6XtVS2eBGpSUYC2R\"\n    },\n    \"modified\": \"1948-08-12T21:02:10.567Z\",\n    \"modified_gmt\": \"2006-07-18T15:02:42.391Z\",\n    \"status\": \"string\",\n    \"type\": \"string\",\n    \"title\": {\n      \"rendered\": \"string\"\n    },\n    \"content\": {\n      \"rendered\": \"string\",\n      \"protected\": true\n    },\n    \"excerpt\": {\n      \"rendered\": \"string\",\n      \"protected\": true\n    },\n    \"author\": 3514,\n    \"featured_media\": 888,\n    \"parent\": 3194,\n    \"menu_order\": 1615,\n    \"comment_status\": \"string\",\n    \"ping_status\": \"string\",\n    \"template\": \"string\",\n    \"meta\": {\n      \"_acf_changed\": false,\n      \"content-type\": \"string\",\n      \"footnotes\": \"string\"\n    },\n    \"class_list\": [\n      \"string\",\n      \"string\"\n    ],\n    \"yoast_head\": \"string\",\n    \"yoast_head_json\": {\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"robots\": {\n        \"index\": \"string\",\n        \"follow\": \"string\",\n        \"max-snippet\": \"string\",\n        \"max-image-preview\": \"string\",\n        \"max-video-preview\": \"string\"\n      },\n      \"canonical\": \"https://tgAVIRRbTMAbuQDloIK.danoDWyD.\",\n      \"og_locale\": \"string\",\n      \"og_type\": \"string\",\n      \"og_title\": \"string\",\n      \"og_description\": \"string\",\n      \"og_url\": \"https://jKlXjIgb.xwNAT\",\n      \"og_site_name\": \"string\",\n      \"article_modified_time\": \"1951-10-30T02:16:00.679Z\",\n      \"twitter_card\": \"string\",\n      \"twitter_misc\": {\n        \"Est. reading time\": \"string\"\n      },\n      \"schema\": {\n        \"@context\": \"https://AikMiuBl.bguEDorlP+A+zuA9.SsYsEIJDdgzMskb7pvW-P-9rtpREi,Nnc8RAicTdFfZ-rva8\",\n        \"@graph\": [\n          {\n            \"@type\": \"\",\n            \"@id\": \"\",\n            \"url\": \"\",\n            \"name\": \"\",\n            \"isPartOf\": \"\",\n            \"datePublished\": \"\",\n            \"dateModified\": \"\",\n            \"description\": \"\",\n            \"breadcrumb\": \"\",\n            \"inLanguage\": \"\",\n            \"potentialAction\": \"\"\n          },\n          {\n            \"@type\": \"\",\n            \"@id\": \"\",\n            \"url\": \"\",\n            \"name\": \"\",\n            \"isPartOf\": \"\",\n            \"datePublished\": \"\",\n            \"dateModified\": \"\",\n            \"description\": \"\",\n            \"breadcrumb\": \"\",\n            \"inLanguage\": \"\",\n            \"potentialAction\": \"\"\n          }\n        ]\n      }\n    },\n    \"_links\": {\n      \"self\": [\n        {\n          \"href\": \"https://SqpHUJojZ.vvs-e9Eb,LpntA9Frcy4au.LCTatEk3KyY+gfZKCI6mayJ\",\n          \"targetHints\": {\n            \"allow\": \"\"\n          }\n        },\n        {\n          \"href\": \"http://IOAzXUKYcnE.meob9bSKDxmmuqNocz9\",\n          \"targetHints\": {\n            \"allow\": \"\"\n          }\n        }\n      ],\n      \"collection\": [\n        {\n          \"href\": \"http://sDngpKCJmzKlIqHReplqTnQBpk.cvuirM2m-Wipez2Hq65,7I33oslv9S,NTW\"\n        },\n        {\n          \"href\": \"https://KgZPvLTqHFdLLKIzMsgXydxWcnEsQB.afvzWkGir6ffXD.qKU2HPVNQmN-KvvMPb,uhDLxjq38zJew6Crn1lsvPT\"\n        }\n      ],\n      \"about\": [\n        {\n          \"href\": \"https://cnLSAiXjGZHOXsdqDJBUziDTrPAG.dfYcfdf74Vm8MGro3vpD,yElC\"\n        },\n        {\n          \"href\": \"http://AQxqjgWNsJTo.xzpij2qPALtsjUhZ8aQi,q6W-MgFzfbow7oz0wB\"\n        }\n      ],\n      \"author\": [\n        {\n          \"embeddable\": false,\n          \"href\": \"http://LFhk.rnxjE0C-YecgLxwV4tCNjVdrex5g,0tI,s2ZLlkdGKTMW45ju7tzX9fyyfc64OvD.nqNUfo\"\n        },\n        {\n          \"embeddable\": false,\n          \"href\": \"https://kzraNWslnYkQIFJkvMy.hhheWOoiUftwqJ5\"\n        }\n      ],\n      \"replies\": [\n        {\n          \"embeddable\": true,\n          \"href\": \"http://iYLaZTunmEuuzDKUxfOUEqN.cunybcRd8c7T7J2nzm0jqtSOYCpXRnsI6c057trgpnTNKQlVZlLFmTl8ynDBSxQz\"\n        },\n        {\n          \"embeddable\": false,\n          \"href\": \"http://JY.pmibBYbMYwzY7cT1sW,Veo5KMCVbuR1RQNt6GqMfgy+Gu7c\"\n        }\n      ],\n      \"version-history\": [\n        {\n          \"count\": 6427,\n          \"href\": \"http://MlfRz.rgwqX+UoPQgioqjl\"\n        },\n        {\n          \"count\": 5475,\n          \"href\": \"https://vfInI.pbkNuusHRGLMNqRRHzGzeafRmtNUx++w239PMSfxPseifaw9YtdBUpGhivWcq8rV8Q\"\n        }\n      ],\n      \"wp:attachment\": [\n        {\n          \"href\": \"https://Cp.varHHObjeqiBqBQWHzHRrZYuqDmRLnP0BLOO,lSSG+\"\n        },\n        {\n          \"href\": \"http://xY.alioPhFhsspqXrlcNLT7,OLSN,\"\n        }\n      ],\n      \"curies\": [\n        {\n          \"name\": \"string\",\n          \"href\": \"http://wBFbIOGLwgzO.alilE,jggUduCh4m0Qr7mGQ23zaGK.pNlp8\",\n          \"templated\": false\n        },\n        {\n          \"name\": \"string\",\n          \"href\": \"https://fHIwZsiowHvmO.kdzaBtQR-OXGON+rJAQ0KuE,fYiqZVZdFGjnhYsmijbe+DUqU70aZR26srv\",\n          \"templated\": false\n        }\n      ]\n    }\n  },\n  {\n    \"id\": 3208,\n    \"link\": \"http://YziAMsXxfKKCJVqSizEqWeOUrivWAs.dupgadM1V0MwsknuqkSsziXaXfOKAx6E3zKEo,NY+6Q2\",\n    \"slug\": \"string\",\n    \"date\": \"2022-06-22T02:17:53.250Z\",\n    \"date_gmt\": \"1979-02-06T23:53:00.754Z\",\n    \"guid\": {\n      \"rendered\": \"http://BJItCSNBlsBYnhVO.okrr7U-t8-EbXg8hlYC+pribb+pTxXOzxaND-owXAbx\"\n    },\n    \"modified\": \"2024-05-22T15:21:01.634Z\",\n    \"modified_gmt\": \"1949-02-01T04:43:48.541Z\",\n    \"status\": \"string\",\n    \"type\": \"string\",\n    \"title\": {\n      \"rendered\": \"string\"\n    },\n    \"content\": {\n      \"rendered\": \"string\",\n      \"protected\": true\n    },\n    \"excerpt\": {\n      \"rendered\": \"string\",\n      \"protected\": true\n    },\n    \"author\": 152,\n    \"featured_media\": 977,\n    \"parent\": 8307,\n    \"menu_order\": 3559,\n    \"comment_status\": \"string\",\n    \"ping_status\": \"string\",\n    \"template\": \"string\",\n    \"meta\": {\n      \"_acf_changed\": true,\n      \"content-type\": \"string\",\n      \"footnotes\": \"string\"\n    },\n    \"class_list\": [\n      \"string\",\n      \"string\"\n    ],\n    \"yoast_head\": \"string\",\n    \"yoast_head_json\": {\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"robots\": {\n        \"index\": \"string\",\n        \"follow\": \"string\",\n        \"max-snippet\": \"string\",\n        \"max-image-preview\": \"string\",\n        \"max-video-preview\": \"string\"\n      },\n      \"canonical\": \"https://ytPANCovKpiFnPwPQjsPvnzKyoTI.fxN9-CN+N8Ck-4EGCyuv\",\n      \"og_locale\": \"string\",\n      \"og_type\": \"string\",\n      \"og_title\": \"string\",\n      \"og_description\": \"string\",\n      \"og_url\": \"https://lOxIMT.pnjfLB3tTNu7YCRTNlAFVhAhFg5NwxY\",\n      \"og_site_name\": \"string\",\n      \"article_modified_time\": \"1991-01-16T16:15:00.687Z\",\n      \"twitter_card\": \"string\",\n      \"twitter_misc\": {\n        \"Est. reading time\": \"string\"\n      },\n      \"schema\": {\n        \"@context\": \"https://CJsoDqQZXwBqKOcczkKYiGkYTpQaU.cptbkUstc8er3KC\",\n        \"@graph\": [\n          {\n            \"@type\": \"\",\n            \"@id\": \"\",\n            \"url\": \"\",\n            \"name\": \"\",\n            \"isPartOf\": \"\",\n            \"datePublished\": \"\",\n            \"dateModified\": \"\",\n            \"description\": \"\",\n            \"breadcrumb\": \"\",\n            \"inLanguage\": \"\",\n            \"potentialAction\": \"\"\n          },\n          {\n            \"@type\": \"\",\n            \"@id\": \"\",\n            \"url\": \"\",\n            \"name\": \"\",\n            \"isPartOf\": \"\",\n            \"datePublished\": \"\",\n            \"dateModified\": \"\",\n            \"description\": \"\",\n            \"breadcrumb\": \"\",\n            \"inLanguage\": \"\",\n            \"potentialAction\": \"\"\n          }\n        ]\n      }\n    },\n    \"_links\": {\n      \"self\": [\n        {\n          \"href\": \"https://YYTNuJvTnjZOAQYolbZQUPmSOSrsfDOmn.akufBnKZi+opLsK1iiG\",\n          \"targetHints\": {\n            \"allow\": \"\"\n          }\n        },\n        {\n          \"href\": \"http://CzSbYImRB.rjDStXULEW88xscyAtIPYkQ6qsByLZk\",\n          \"targetHints\": {\n            \"allow\": \"\"\n          }\n        }\n      ],\n      \"collection\": [\n        {\n          \"href\": \"https://RMpjNGbr.dukdmycvH+x1bpfNaM7,swmYyRkjJt,ojvFUOosBWp-2nJY+JvkZNkch7\"\n        },\n        {\n          \"href\": \"http://VSamDAizogyBEFddRYCVFZilQEVAuFry.jzzouQtKEu+0uNpAbuTMYdt\"\n        }\n      ],\n      \"about\": [\n        {\n          \"href\": \"http://HmBYuibEzznLpTUiKFtFOzeCJFnUzxGg.urfdJ05q34G.S4GsoiLyRr1sx2oYqIbPW3\"\n        },\n        {\n          \"href\": \"https://MuMZzxaoGDgQzksOVSvnX.dgjLl\"\n        }\n      ],\n      \"author\": [\n        {\n          \"embeddable\": false,\n          \"href\": \"https://vifpxMoCpycmPOtuHGQkHxr.xdKj-zS3iVkTTqfGxX10rQN9JHWqf1,Wd2siyIKYbKYkffLOj11Inmdc-ghx\"\n        },\n        {\n          \"embeddable\": true,\n          \"href\": \"http://dnxcXixCQvUIkZSRrWO.iwllAPt9k2XgShCwBcXJXTXFI8PVKTVBD.aKz8gWCdFssVPBMZH7aQ-\"\n        }\n      ],\n      \"replies\": [\n        {\n          \"embeddable\": false,\n          \"href\": \"https://RGLwXTnYzvDdRtvshAzQNAidtwQ.dmKzd\"\n        },\n        {\n          \"embeddable\": true,\n          \"href\": \"http://JqJXnEf.wohGnuKseHb1sKVVt217riy,ScyD\"\n        }\n      ],\n      \"version-history\": [\n        {\n          \"count\": 4475,\n          \"href\": \"http://KTmadtoUAVXPKEoFCOGicv.xnENa7V80y62TjmF8ZxSjnl-KrD7hmsLo4m,\"\n        },\n        {\n          \"count\": 5589,\n          \"href\": \"https://nEcBlMDaVIJT.hhnqmFAACnAek4e-EmnGoF+l04UUavt21xW2F40q8GNszorIzj2j-oyCCtNGp\"\n        }\n      ],\n      \"wp:attachment\": [\n        {\n          \"href\": \"http://a.fgpd,,ljrlbCbZT2HxUKKdEfNG9Nc+DELAy9JyNZgZlBS+-0+XyDIzUSfIb8.c7h1uE,\"\n        },\n        {\n          \"href\": \"http://JcrXVzXFMUkCdw.awgtH2Ui2ebEATCONEA0UD94vgQmS7sWXCUX2rtfHwGBAohN\"\n        }\n      ],\n      \"curies\": [\n        {\n          \"name\": \"string\",\n          \"href\": \"https://iXQVZ.ragsVVIpGNWSd+1yNp.bF1\",\n          \"templated\": false\n        },\n        {\n          \"name\": \"string\",\n          \"href\": \"http://JIlUoAnoUUAUrsydsiRkGGKrmuADtV.pvmtkBLOnsrwGS1FIZYvXzDVXWE2vw,HMZfF766ny1BFBW5y\",\n          \"templated\": false\n        }\n      ]\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "359b0ed6-6113-4b8e-b18c-9724e5df2740",
+              "name": "Invalid parameter (rest_invalid_param), e.g. per_page outside 1-100.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "pages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "modified_after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "author",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "author",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "author_exclude",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "author_exclude",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "modified_before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "exclude",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "exclude",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "menu_order",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "search_semantics",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "date"
+                    },
+                    {
+                      "key": "parent",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "parent",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "parent_exclude",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "parent_exclude",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "search_columns",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search_columns",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "slug",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "slug",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "publish"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"status\": 2374\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "409996c8-71bd-4941-941d-b80363b6f1fe",
+          "name": "Get one page",
+          "request": {
+            "name": "Get one page",
+            "description": {
+              "content": "Returns a single published page by its numeric ID, including its rendered HTML body.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wp",
+                "v2",
+                "pages",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "context",
+                  "value": "view",
+                  "description": "Scope under which the request is made; determines fields present in response."
+                },
+                {
+                  "disabled": false,
+                  "key": "excerpt_length",
+                  "value": "<integer>",
+                  "description": "Override the default excerpt length."
+                },
+                {
+                  "disabled": false,
+                  "key": "password",
+                  "value": "<string>",
+                  "description": "The password for the post if it is password protected."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Unique identifier for the post."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a370ce46-8997-470c-af5d-c1b104cb528f",
+              "name": "The requested object.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "pages",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    },
+                    {
+                      "key": "excerpt_length",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "password",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier for the post."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 986,\n  \"link\": \"https://rIEHNJfBUKNTAOVTBlaf.iudwFDED16M1PmrpvQ-bowrGusq3bryCnWjxq3jQL+K,f8bF5pU.G6lfs2f+U.isq\",\n  \"slug\": \"string\",\n  \"date\": \"1996-07-26T19:25:48.138Z\",\n  \"date_gmt\": \"1982-09-08T01:28:11.011Z\",\n  \"guid\": {\n    \"rendered\": \"http://Q.nyFyAX+gqgQ17oZL\"\n  },\n  \"modified\": \"1990-01-27T12:12:08.411Z\",\n  \"modified_gmt\": \"1983-07-05T14:15:43.333Z\",\n  \"status\": \"string\",\n  \"type\": \"string\",\n  \"title\": {\n    \"rendered\": \"string\"\n  },\n  \"content\": {\n    \"rendered\": \"string\",\n    \"protected\": false\n  },\n  \"excerpt\": {\n    \"rendered\": \"string\",\n    \"protected\": false\n  },\n  \"author\": 7201,\n  \"featured_media\": 9294,\n  \"parent\": 6487,\n  \"menu_order\": 3033,\n  \"comment_status\": \"string\",\n  \"ping_status\": \"string\",\n  \"template\": \"string\",\n  \"meta\": {\n    \"_acf_changed\": false,\n    \"content-type\": \"string\",\n    \"footnotes\": \"string\"\n  },\n  \"class_list\": [\n    \"string\",\n    \"string\"\n  ],\n  \"yoast_head\": \"string\",\n  \"yoast_head_json\": {\n    \"title\": \"string\",\n    \"description\": \"string\",\n    \"robots\": {\n      \"index\": \"string\",\n      \"follow\": \"string\",\n      \"max-snippet\": \"string\",\n      \"max-image-preview\": \"string\",\n      \"max-video-preview\": \"string\"\n    },\n    \"canonical\": \"https://h.fumV6WwkSNTYtEgeT9N-MqiqWdoqOdqb-IUjCQh2aa6rWg1.sItIgpMr\",\n    \"og_locale\": \"string\",\n    \"og_type\": \"string\",\n    \"og_title\": \"string\",\n    \"og_description\": \"string\",\n    \"og_url\": \"http://wslyQcYvkgzCwUfuREs.ndxWfbMSN8g0ULrtryKEzsC3oRpTtNH+.-1vF01S49xk+.PlpEpZjoANxkPj4D7XF54QO\",\n    \"og_site_name\": \"string\",\n    \"article_modified_time\": \"2012-05-28T00:47:51.563Z\",\n    \"twitter_card\": \"string\",\n    \"twitter_misc\": {\n      \"Est. reading time\": \"string\"\n    },\n    \"schema\": {\n      \"@context\": \"http://NIPddBO.jbslbqyHTSOIzPGcS,ZvAb1.2YCCyX+YgrgOIL\",\n      \"@graph\": [\n        {\n          \"@type\": \"\",\n          \"@id\": \"\",\n          \"url\": \"\",\n          \"name\": \"\",\n          \"isPartOf\": \"\",\n          \"datePublished\": \"\",\n          \"dateModified\": \"\",\n          \"description\": \"\",\n          \"breadcrumb\": \"\",\n          \"inLanguage\": \"\",\n          \"potentialAction\": \"\"\n        },\n        {\n          \"@type\": \"\",\n          \"@id\": \"\",\n          \"url\": \"\",\n          \"name\": \"\",\n          \"isPartOf\": \"\",\n          \"datePublished\": \"\",\n          \"dateModified\": \"\",\n          \"description\": \"\",\n          \"breadcrumb\": \"\",\n          \"inLanguage\": \"\",\n          \"potentialAction\": \"\"\n        }\n      ]\n    }\n  },\n  \"_links\": {\n    \"self\": [\n      {\n        \"href\": \"http://WGbBvuBTlDZan.uyrmnIz.huO96cnmUSmjIgnzz2y7pacrDX+rWxCZBS7DX09jf0WrEt+h+TGZMZE\",\n        \"targetHints\": {\n          \"allow\": \"\"\n        }\n      },\n      {\n        \"href\": \"https://WCcWOBzNHGfCZaidEiPbgmifYD.qeBhfwRsYFaZ\",\n        \"targetHints\": {\n          \"allow\": \"\"\n        }\n      }\n    ],\n    \"collection\": [\n      {\n        \"href\": \"http://d.tvJ0qN\"\n      },\n      {\n        \"href\": \"http://ERlWHTlgKIticeBPUtmvUitQrRY.ksxkANdQ1LNIiLDN15gS7yDNaN9j17pxFMVD-oW\"\n      }\n    ],\n    \"about\": [\n      {\n        \"href\": \"http://GZsjaqaqEICVPbZYXlUFqJPFW.heweZsBhFFi6TEi+aiIN,FhH4-bytw\"\n      },\n      {\n        \"href\": \"http://YUxfifB.heyT2cGpHj37qZns7cwJ0sVpoTmkbHKXxJFQU55L8KGs2qTsjh\"\n      }\n    ],\n    \"author\": [\n      {\n        \"embeddable\": true,\n        \"href\": \"http://EQmjhxXIEsnvIOcEBTuZ.qfqVMx9zWvi1pIIOXoi2DfZdwrEJZeZO5ghmG7vIutJqv+AYpWx8wiiHnxsDp\"\n      },\n      {\n        \"embeddable\": false,\n        \"href\": \"https://TyrngmaylmnGzAWdeRFOTLkZkJA.pfarOmsiPJ\"\n      }\n    ],\n    \"replies\": [\n      {\n        \"embeddable\": true,\n        \"href\": \"https://PHAu.rcpTfjdR5GwEY4\"\n      },\n      {\n        \"embeddable\": true,\n        \"href\": \"http://xNTWyabFrnWcboZmKmBWNTFPi.hmkVk4M9Nv4yZNb,+9zpsvG,uaVplOBuIspJXKHeCqVoO+U8GHOuNf-n\"\n      }\n    ],\n    \"version-history\": [\n      {\n        \"count\": 1721,\n        \"href\": \"https://uxromYbifKvIe.tlxyGiqNCIZ,dgpA7wK9rdz+hfjAnp,EEjXleTRF0TGiZ09c8c3kvC\"\n      },\n      {\n        \"count\": 9060,\n        \"href\": \"http://VgmkWlZxnALDBeBWPEsKuUwn.szohT,m.-nrVkktGv5XHIjr5A-.zW3tr1DbXO8-ip+\"\n      }\n    ],\n    \"wp:attachment\": [\n      {\n        \"href\": \"https://CobBDusKetwiiRizWrLiVOzVhLeN.fgr4gQgYMZkJE3hMfk4iWg2IbAzsMBTID9e1051VXVqQk6IvW7acZTeau.zr24\"\n      },\n      {\n        \"href\": \"http://yEjiWKGwdUXmzgfZhHq.rrJ6mIm0JujFyRCL,.INQl4D8TIO9onnCMDpyT\"\n      }\n    ],\n    \"curies\": [\n      {\n        \"name\": \"string\",\n        \"href\": \"https://fdJxgeMjtQQkYWDHfTBHxjHkV.wwemXZYA-\",\n        \"templated\": false\n      },\n      {\n        \"name\": \"string\",\n        \"href\": \"http://IOnRIsscQwDBBUFcGHoIAITPIDpjnK.jmTLv+Fz+V96nJINjhtQ-q-58yuDqQc+9ABcK5KT\",\n        \"templated\": true\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "442725e7-ec66-4144-bc09-0a2419603c83",
+              "name": "Invalid parameter (rest_invalid_param).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "pages",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    },
+                    {
+                      "key": "excerpt_length",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "password",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier for the post."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"status\": 2374\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7b84c915-7c59-4e93-8ea8-ae79de602991",
+              "name": "No object exists with that identifier (rest_post_invalid_id / rest_term_invalid).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "pages",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    },
+                    {
+                      "key": "excerpt_length",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "password",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier for the post."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"status\": 2374\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://accelsius.com/wp-json",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "caa1a496-b818-4c6b-bbec-ffcc6bd536df",
+    "name": "Accelsius Pages API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The `page` type: the product, technology, services, partner, company, careers, FAQ and legal pages of accelsius.com, including the NeuCool IR150 and MR250 product pages, the Thermal Simulation Rack / Liquid Simulation System page, the multi-GPU page, the two-phase and direct-to-chip technology explainers, and the privacy policy. At time of capture the collection held 30 published pages, 29 of which are listed in the Yoast page sitemap.\n\nAccelsius publishes accelsius.com on WordPress (WP Engine origin, Cloudflare edge, MalCare firewall) with the WordPress core REST API enabled and anonymously readable. This is NOT a product API that Accelsius offers to customers — Accelsius manufactures two-phase direct-to-chip liquid-cooling hardware and ships no developer program, SDK or product API. It is the content API behind the company marketing site, captured for discovery purposes. Anonymous access is read-only: the `Allow` response header on every collection is `GET`, and write operations require WordPress cookie authentication with an X-WP-Nonce header or an Application Password, returning HTTP 401 to anonymous callers.\n\nContact Support:\n Name: Accelsius\n Email: info@accelsius.com",
+      "type": "text/plain"
+    }
+  }
+}

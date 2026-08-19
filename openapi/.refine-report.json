@@ -1,0 +1,44 @@
+{
+  "provider": "accelsius",
+  "sources": [
+    "accelsius-categories-api-openapi.yml",
+    "accelsius-content-api-openapi.yml",
+    "accelsius-discovery-api-openapi.yml",
+    "accelsius-media-api-openapi.yml",
+    "accelsius-media-folders-api-openapi.yml",
+    "accelsius-news-api-openapi.yml",
+    "accelsius-pages-api-openapi.yml",
+    "accelsius-registry-api-openapi.yml",
+    "accelsius-search-api-openapi.yml",
+    "accelsius-tags-api-openapi.yml"
+  ],
+  "outputs": [
+    "accelsius-categories-api-openapi.yml",
+    "accelsius-content-api-openapi.yml",
+    "accelsius-discovery-api-openapi.yml",
+    "accelsius-media-api-openapi.yml",
+    "accelsius-media-folders-api-openapi.yml",
+    "accelsius-news-api-openapi.yml",
+    "accelsius-pages-api-openapi.yml",
+    "accelsius-registry-api-openapi.yml",
+    "accelsius-search-api-openapi.yml",
+    "accelsius-tags-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [
+    "accelsius-categories-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "accelsius-content-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "accelsius-discovery-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "accelsius-media-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "accelsius-media-folders-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "accelsius-news-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "accelsius-pages-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "accelsius-registry-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "accelsius-search-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "accelsius-tags-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": []
+}

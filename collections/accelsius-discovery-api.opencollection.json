@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Accelsius Discovery API",
+    "version": "wp/v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Discovery",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the WordPress REST root index",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://accelsius.com/wp-json/",
+            "params": [
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Scope under which the request is made; determines fields present in the response."
+              },
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "query",
+                "description": "Limit the index to a single namespace."
+              },
+              {
+                "name": "_fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated allow-list of fields to return. Strongly recommended against this route: `_fields=namespaces` returns a few hundred bytes instead of the full 285KB index."
+              }
+            ]
+          },
+          "docs": "Returns the full route-discovery document for accelsius.com: 387 routes across 16 namespaces (wp/v2, oembed/1.0, yoast/v1, ws-form/v1, wpforms/v1, bricks/v1, redirection/v1, leadin/v1, cleantalk-antispam/v1, duplicate-post/v1, wp-mail-smtp/v1, wpe/cache-plugin/v1, wpe_sign_on_plugin/v1, wp-abilities/v1, wp-site-health/v1, wp-block-editor/v1). Approximately 285KB."
+        },
+        {
+          "info": {
+            "name": "Get the wp/v2 namespace index",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://accelsius.com/wp-json/wp/v2",
+            "params": [
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Scope under which the request is made."
+              },
+              {
+                "name": "_fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated allow-list of fields to return."
+              }
+            ]
+          },
+          "docs": "Returns the discovery document scoped to the wp/v2 namespace — the content, media, taxonomy, registry and search routes described by the other OpenAPI documents in this repository, with their full argument schemas. Approximately 208KB."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,200 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Accelsius Pages API",
+    "version": "wp/v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Pages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List pages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://accelsius.com/wp-json/wp/v2/pages",
+            "params": [
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Scope under which the request is made; determines fields present in response."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Current page of the collection."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to be returned in result set."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Limit results to those matching a string."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Limit response to posts published after a given ISO8601 compliant date."
+              },
+              {
+                "name": "modified_after",
+                "value": "",
+                "type": "query",
+                "description": "Limit response to posts modified after a given ISO8601 compliant date."
+              },
+              {
+                "name": "author",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to posts assigned to specific authors."
+              },
+              {
+                "name": "author_exclude",
+                "value": "",
+                "type": "query",
+                "description": "Ensure result set excludes posts assigned to specific authors."
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "Limit response to posts published before a given ISO8601 compliant date."
+              },
+              {
+                "name": "modified_before",
+                "value": "",
+                "type": "query",
+                "description": "Limit response to posts modified before a given ISO8601 compliant date."
+              },
+              {
+                "name": "exclude",
+                "value": "",
+                "type": "query",
+                "description": "Ensure result set excludes specific IDs."
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to specific IDs."
+              },
+              {
+                "name": "menu_order",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to posts with a specific menu_order value."
+              },
+              {
+                "name": "search_semantics",
+                "value": "",
+                "type": "query",
+                "description": "How to interpret the search input."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset the result set by a specific number of items."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order sort attribute ascending or descending."
+              },
+              {
+                "name": "orderby",
+                "value": "",
+                "type": "query",
+                "description": "Sort collection by post attribute."
+              },
+              {
+                "name": "parent",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to items with particular parent IDs."
+              },
+              {
+                "name": "parent_exclude",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to all items except those of a particular parent ID."
+              },
+              {
+                "name": "search_columns",
+                "value": "",
+                "type": "query",
+                "description": "Array of column names to be searched."
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to posts with one or more specific slugs."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to posts assigned one or more statuses."
+              }
+            ]
+          },
+          "docs": "Returns a paginated collection of published pages. Pages are hierarchical: use `parent` to walk the tree and `menu_order` to order siblings."
+        },
+        {
+          "info": {
+            "name": "Get one page",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://accelsius.com/wp-json/wp/v2/pages/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the post."
+              },
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Scope under which the request is made; determines fields present in response."
+              },
+              {
+                "name": "excerpt_length",
+                "value": "",
+                "type": "query",
+                "description": "Override the default excerpt length."
+              },
+              {
+                "name": "password",
+                "value": "",
+                "type": "query",
+                "description": "The password for the post if it is password protected."
+              }
+            ]
+          },
+          "docs": "Returns a single published page by its numeric ID, including its rendered HTML body."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

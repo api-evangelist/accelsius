@@ -1,23 +1,12 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Accelsius Resources Content API
   version: wp/v2
-  summary: Public read surface of the Accelsius resource library — blog posts, white papers, case studies,
-    infographics, podcasts, videos and press releases.
-  description: 'The `post` type behind https://accelsius.com/resources/. Accelsius files every resource
-    into one of eight categories — blog, white-paper, press-release, news-article, video, podcast, infographic
-    and case-study — and tags them across five topic tags (2pd2c-education, neucool-products, accelsius-news,
-    scientific-research, featured). At time of capture the collection held 154 published items (observed
-    in the X-WP-Total response header).
+  summary: Public read surface of the Accelsius resource library — blog posts, white papers, case studies, infographics, podcasts, videos and press releases.
+  description: 'The `post` type behind https://accelsius.com/resources/. Accelsius files every resource into one of eight categories — blog, white-paper, press-release, news-article, video, podcast, infographic and case-study — and tags them across five topic tags (2pd2c-education, neucool-products, accelsius-news, scientific-research, featured). At time of capture the collection held 154 published items (observed in the X-WP-Total response header).
 
 
-    Accelsius publishes accelsius.com on WordPress (WP Engine origin, Cloudflare edge, MalCare firewall)
-    with the WordPress core REST API enabled and anonymously readable. This is NOT a product API that
-    Accelsius offers to customers — Accelsius manufactures two-phase direct-to-chip liquid-cooling hardware
-    and ships no developer program, SDK or product API. It is the content API behind the company marketing
-    site, captured for discovery purposes. Anonymous access is read-only: the `Allow` response header
-    on every collection is `GET`, and write operations require WordPress cookie authentication with an
-    X-WP-Nonce header or an Application Password, returning HTTP 401 to anonymous callers.'
+    Accelsius publishes accelsius.com on WordPress (WP Engine origin, Cloudflare edge, MalCare firewall) with the WordPress core REST API enabled and anonymously readable. This is NOT a product API that Accelsius offers to customers — Accelsius manufactures two-phase direct-to-chip liquid-cooling hardware and ships no developer program, SDK or product API. It is the content API behind the company marketing site, captured for discovery purposes. Anonymous access is read-only: the `Allow` response header on every collection is `GET`, and write operations require WordPress cookie authentication with an X-WP-Nonce header or an Application Password, returning HTTP 401 to anonymous callers.'
   contact:
     name: Accelsius
     url: https://accelsius.com/contact/
@@ -29,21 +18,14 @@ info:
     method: derived
     source: https://accelsius.com/wp-json/
     derived_on: '2026-08-06'
-    note: Parameters are transcribed verbatim from the `args` the site publishes for each route in its
-      live WordPress route-discovery document at https://accelsius.com/wp-json/ (387 routes across 16
-      namespaces). Response schemas are derived from the field names and JSON types observed in live anonymous
-      GET responses on 2026-08-06. Every collection operation documented here was probed anonymously and
-      returned HTTP 200; routes that returned 401 without credentials (settings, menus, menu-items, templates,
-      template-parts, themes, plugins, widgets, block-types, users/me) are deliberately omitted. No operation,
-      parameter or field was invented, and no live response value is reproduced here as an example.
+    note: Parameters are transcribed verbatim from the `args` the site publishes for each route in its live WordPress route-discovery document at https://accelsius.com/wp-json/ (387 routes across 16 namespaces). Response schemas are derived from the field names and JSON types observed in live anonymous GET responses on 2026-08-06. Every collection operation documented here was probed anonymously and returned HTTP 200; routes that returned 401 without credentials (settings, menus, menu-items, templates, template-parts, themes, plugins, widgets, block-types, users/me) are deliberately omitted. No operation, parameter or field was invented, and no live response value is reproduced here as an example.
   x-provider-published: false
 servers:
 - url: https://accelsius.com/wp-json
   description: Production
 tags:
 - name: Content
-  description: 'Accelsius resource-library articles: blog posts, white papers, case studies, infographics,
-    podcasts, videos and press releases.'
+  description: 'Accelsius resource-library articles: blog posts, white papers, case studies, infographics, podcasts, videos and press releases.'
 paths:
   /wp/v2/posts:
     get:
@@ -51,11 +33,7 @@ paths:
       - Content
       operationId: listContent
       summary: List resource-library items
-      description: Returns a paginated collection of published resource-library items. Filter by `categories`
-        to isolate a content class (26 blog, 27 white-paper, 1 press-release, 31 news-article, 37 video,
-        38 podcast, 28 infographic, 29 case-study) or by `tags` to isolate a topic. Total item and page
-        counts are returned in the X-WP-Total and X-WP-TotalPages response headers, and RFC 8288 Link
-        headers carry next/prev relations.
+      description: Returns a paginated collection of published resource-library items. Filter by `categories` to isolate a content class (26 blog, 27 white-paper, 1 press-release, 31 news-article, 37 video, 38 podcast, 28 infographic, 29 case-study) or by `tags` to isolate a topic. Total item and page counts are returned in the X-WP-Total and X-WP-TotalPages response headers, and RFC 8288 Link headers carry next/prev relations.
       security: []
       responses:
         '200':
@@ -257,8 +235,7 @@ paths:
           type: object
       - name: categories_exclude
         in: query
-        description: Limit result set to items except those with specific terms assigned in the categories
-          taxonomy.
+        description: Limit result set to items except those with specific terms assigned in the categories taxonomy.
         schema:
           type: object
       - name: tags
@@ -307,9 +284,7 @@ paths:
       - Content
       operationId: getContentItem
       summary: Get one resource-library item
-      description: Returns a single published resource-library item by its numeric ID, including the rendered
-        HTML body, the Advanced Custom Fields payload the site attaches to the type, and the Yoast SEO
-        head metadata.
+      description: Returns a single published resource-library item by its numeric ID, including the rendered HTML body, the Advanced Custom Fields payload the site attaches to the type, and the Yoast SEO head metadata.
       security: []
       parameters:
       - name: id
@@ -358,21 +333,24 @@ paths:
               schema:
                 $ref: '#/components/schemas/WPError'
 components:
-  securitySchemes:
-    applicationPassword:
-      type: http
-      scheme: basic
-      description: WordPress Application Passwords over HTTP Basic. Advertised by the site at https://accelsius.com/wp-json/
-        under `authentication.application-passwords`. Every operation documented in this file is anonymous
-        and takes no credential; this scheme is declared because it is the only credential the host accepts,
-        and it governs the write and edit-context operations that are deliberately NOT documented here.
+  headers:
+    LinkPagination:
+      description: RFC 8288 Link header carrying rel="next" and rel="prev" for the collection.
+      schema:
+        type: string
+    XWPTotalPages:
+      description: Total number of pages at the requested per_page size.
+      schema:
+        type: integer
+    XWPTotal:
+      description: Total number of items in the unpaginated collection.
+      schema:
+        type: integer
   schemas:
     WPError:
       type: object
       title: WPError
-      description: The WordPress REST error envelope. It is NOT RFC 9457 problem+json — the media type
-        is application/json and the shape is a flat object carrying a machine-readable `code` slug, a
-        human `message`, and a `data` object repeating the HTTP status.
+      description: The WordPress REST error envelope. It is NOT RFC 9457 problem+json — the media type is application/json and the shape is a flat object carrying a machine-readable `code` slug, a human `message`, and a `data` object repeating the HTTP status.
       properties:
         code:
           type: string
@@ -689,16 +667,8 @@ components:
       - id
       - link
       - slug
-  headers:
-    XWPTotal:
-      description: Total number of items in the unpaginated collection.
-      schema:
-        type: integer
-    XWPTotalPages:
-      description: Total number of pages at the requested per_page size.
-      schema:
-        type: integer
-    LinkPagination:
-      description: RFC 8288 Link header carrying rel="next" and rel="prev" for the collection.
-      schema:
-        type: string
+  securitySchemes:
+    applicationPassword:
+      type: http
+      scheme: basic
+      description: WordPress Application Passwords over HTTP Basic. Advertised by the site at https://accelsius.com/wp-json/ under `authentication.application-passwords`. Every operation documented in this file is anonymous and takes no credential; this scheme is declared because it is the only credential the host accepts, and it governs the write and edit-context operations that are deliberately NOT documented here.

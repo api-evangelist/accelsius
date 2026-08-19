@@ -1,0 +1,156 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Accelsius Taxonomy Registry API",
+    "version": "wp/v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Registry",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List post types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://accelsius.com/wp-json/wp/v2/types",
+            "params": [
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Scope under which the request is made; determines fields present in response."
+              }
+            ]
+          },
+          "docs": "Returns every post type registered on the site keyed by type slug, including the `news` custom type Accelsius added. Each entry names its `rest_base`, `rest_namespace`, `hierarchical` flag and attached `taxonomies`."
+        },
+        {
+          "info": {
+            "name": "Get one post type",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://accelsius.com/wp-json/wp/v2/types/:type",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "path",
+                "description": "An alphanumeric identifier for the post type."
+              },
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Scope under which the request is made; determines fields present in response."
+              }
+            ]
+          },
+          "docs": "Returns the registration record for one post type, e.g. `post`, `page` or `news`."
+        },
+        {
+          "info": {
+            "name": "List taxonomies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://accelsius.com/wp-json/wp/v2/taxonomies",
+            "params": [
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Scope under which the request is made; determines fields present in response."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Limit results to taxonomies associated with a specific post type."
+              }
+            ]
+          },
+          "docs": "Returns every taxonomy registered on the site keyed by taxonomy slug — category, post_tag, happyfiles_category, recent-news and the WordPress internals."
+        },
+        {
+          "info": {
+            "name": "Get one taxonomy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://accelsius.com/wp-json/wp/v2/taxonomies/:taxonomy",
+            "params": [
+              {
+                "name": "taxonomy",
+                "value": "",
+                "type": "path",
+                "description": "An alphanumeric identifier for the taxonomy."
+              },
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Scope under which the request is made; determines fields present in response."
+              }
+            ]
+          },
+          "docs": "Returns the registration record for one taxonomy."
+        },
+        {
+          "info": {
+            "name": "List publication statuses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://accelsius.com/wp-json/wp/v2/statuses",
+            "params": [
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Scope under which the request is made; determines fields present in response."
+              }
+            ]
+          },
+          "docs": "Returns the publication statuses visible to the caller. Anonymously this is only `publish`, which is why every object returned by the content operations carries `status: publish`."
+        },
+        {
+          "info": {
+            "name": "Get one publication status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://accelsius.com/wp-json/wp/v2/statuses/:status",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "path",
+                "description": "An alphanumeric identifier for the status."
+              },
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Scope under which the request is made; determines fields present in response."
+              }
+            ]
+          },
+          "docs": "Returns the registration record for one publication status."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

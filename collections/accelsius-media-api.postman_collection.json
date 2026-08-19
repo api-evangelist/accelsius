@@ -1,0 +1,818 @@
+{
+  "item": [
+    {
+      "id": "6250d905-fbc1-4176-9e19-ffd7d4e56576",
+      "name": "Media",
+      "description": {
+        "content": "Images, renders, diagrams and PDF documents in the accelsius.com media library.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5840adc5-0cfd-4c63-b878-ca9619a7e598",
+          "name": "List media attachments",
+          "request": {
+            "name": "List media attachments",
+            "description": {
+              "content": "Returns a paginated collection of attachments. Filter with `media_type` (image/file/video/audio) or `mime_type` (for example application/pdf to retrieve only the published white papers and studies).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wp",
+                "v2",
+                "media"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "context",
+                  "value": "view",
+                  "description": "Scope under which the request is made; determines fields present in response."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "Current page of the collection."
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "10",
+                  "description": "Maximum number of items to be returned in result set."
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Limit results to those matching a string."
+                },
+                {
+                  "disabled": false,
+                  "key": "after",
+                  "value": "<dateTime>",
+                  "description": "Limit response to posts published after a given ISO8601 compliant date."
+                },
+                {
+                  "disabled": false,
+                  "key": "modified_after",
+                  "value": "<dateTime>",
+                  "description": "Limit response to posts modified after a given ISO8601 compliant date."
+                },
+                {
+                  "disabled": false,
+                  "key": "author",
+                  "value": "<integer>",
+                  "description": "Limit result set to posts assigned to specific authors."
+                },
+                {
+                  "disabled": false,
+                  "key": "author",
+                  "value": "<integer>",
+                  "description": "Limit result set to posts assigned to specific authors."
+                },
+                {
+                  "disabled": false,
+                  "key": "author_exclude",
+                  "value": "<integer>",
+                  "description": "Ensure result set excludes posts assigned to specific authors."
+                },
+                {
+                  "disabled": false,
+                  "key": "author_exclude",
+                  "value": "<integer>",
+                  "description": "Ensure result set excludes posts assigned to specific authors."
+                },
+                {
+                  "disabled": false,
+                  "key": "before",
+                  "value": "<dateTime>",
+                  "description": "Limit response to posts published before a given ISO8601 compliant date."
+                },
+                {
+                  "disabled": false,
+                  "key": "modified_before",
+                  "value": "<dateTime>",
+                  "description": "Limit response to posts modified before a given ISO8601 compliant date."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude",
+                  "value": "<integer>",
+                  "description": "Ensure result set excludes specific IDs."
+                },
+                {
+                  "disabled": false,
+                  "key": "exclude",
+                  "value": "<integer>",
+                  "description": "Ensure result set excludes specific IDs."
+                },
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "<integer>",
+                  "description": "Limit result set to specific IDs."
+                },
+                {
+                  "disabled": false,
+                  "key": "include",
+                  "value": "<integer>",
+                  "description": "Limit result set to specific IDs."
+                },
+                {
+                  "disabled": false,
+                  "key": "search_semantics",
+                  "value": "<string>",
+                  "description": "How to interpret the search input."
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "<integer>",
+                  "description": "Offset the result set by a specific number of items."
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "desc",
+                  "description": "Order sort attribute ascending or descending."
+                },
+                {
+                  "disabled": false,
+                  "key": "orderby",
+                  "value": "date",
+                  "description": "Sort collection by post attribute."
+                },
+                {
+                  "disabled": false,
+                  "key": "parent",
+                  "value": "<integer>",
+                  "description": "Limit result set to items with particular parent IDs."
+                },
+                {
+                  "disabled": false,
+                  "key": "parent",
+                  "value": "<integer>",
+                  "description": "Limit result set to items with particular parent IDs."
+                },
+                {
+                  "disabled": false,
+                  "key": "parent_exclude",
+                  "value": "<integer>",
+                  "description": "Limit result set to all items except those of a particular parent ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "parent_exclude",
+                  "value": "<integer>",
+                  "description": "Limit result set to all items except those of a particular parent ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "search_columns",
+                  "value": "<string>",
+                  "description": "Array of column names to be searched."
+                },
+                {
+                  "disabled": false,
+                  "key": "search_columns",
+                  "value": "<string>",
+                  "description": "Array of column names to be searched."
+                },
+                {
+                  "disabled": false,
+                  "key": "slug",
+                  "value": "<string>",
+                  "description": "Limit result set to posts with one or more specific slugs."
+                },
+                {
+                  "disabled": false,
+                  "key": "slug",
+                  "value": "<string>",
+                  "description": "Limit result set to posts with one or more specific slugs."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "inherit",
+                  "description": "Limit result set to posts assigned one or more statuses."
+                },
+                {
+                  "disabled": false,
+                  "key": "tax_relation",
+                  "value": "<string>",
+                  "description": "Limit result set based on relationship between multiple taxonomies."
+                },
+                {
+                  "disabled": false,
+                  "key": "media_type",
+                  "value": "",
+                  "description": "Limit result set to attachments of a particular media type or media types."
+                },
+                {
+                  "disabled": false,
+                  "key": "mime_type",
+                  "value": "",
+                  "description": "Limit result set to attachments of a particular MIME type or MIME types."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3579bfdc-f6bb-48db-9262-f5e576569a9f",
+              "name": "A page of results.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "media"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "modified_after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "author",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "author",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "author_exclude",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "author_exclude",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "modified_before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "exclude",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "exclude",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "search_semantics",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "date"
+                    },
+                    {
+                      "key": "parent",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "parent",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "parent_exclude",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "parent_exclude",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "search_columns",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search_columns",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "slug",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "slug",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "inherit"
+                    },
+                    {
+                      "key": "tax_relation",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "media_type",
+                      "value": ""
+                    },
+                    {
+                      "key": "mime_type",
+                      "value": ""
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Total number of items in the unpaginated collection.",
+                  "key": "X-WP-Total",
+                  "value": "5069"
+                },
+                {
+                  "disabled": false,
+                  "description": "Total number of pages at the requested per_page size.",
+                  "key": "X-WP-TotalPages",
+                  "value": "5069"
+                },
+                {
+                  "disabled": false,
+                  "description": "RFC 8288 Link header carrying rel=\"next\" and rel=\"prev\" for the collection.",
+                  "key": "Link",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 7824,\n    \"link\": \"https://JaxUUxnSjuInMRdrbWw.onhf.VIalnoK\",\n    \"slug\": \"string\",\n    \"date\": \"1993-08-08T08:15:10.546Z\",\n    \"date_gmt\": \"1959-05-26T08:15:35.401Z\",\n    \"guid\": {\n      \"rendered\": \"https://deDBbQvZ.bpatzp+4w21yo,zM-HioKh9gC..R2UzaAdoJq9FICUo0orNPXopwXnbeLXzQJofFqSP57IwikrVMy,\"\n    },\n    \"modified\": \"2007-10-11T06:32:28.460Z\",\n    \"modified_gmt\": \"1994-04-12T22:33:23.038Z\",\n    \"status\": \"string\",\n    \"type\": \"string\",\n    \"title\": {\n      \"rendered\": \"string\"\n    },\n    \"author\": 6004,\n    \"featured_media\": 9443,\n    \"comment_status\": \"string\",\n    \"ping_status\": \"string\",\n    \"template\": \"string\",\n    \"meta\": {\n      \"_acf_changed\": true,\n      \"content-type\": \"string\"\n    },\n    \"class_list\": [\n      \"string\",\n      \"string\"\n    ],\n    \"description\": {\n      \"rendered\": \"string\"\n    },\n    \"caption\": {\n      \"rendered\": \"string\"\n    },\n    \"alt_text\": \"string\",\n    \"media_type\": \"string\",\n    \"mime_type\": \"string\",\n    \"media_details\": {\n      \"sizes\": {\n        \"full\": {\n          \"file\": \"string\",\n          \"width\": 6544,\n          \"height\": 1968,\n          \"mime_type\": \"string\",\n          \"source_url\": \"https://NXgI.aorD6Vjg2X9Ky4ScbU,UHhdg5SHxdKQdjr61ThEO+DCEL0vYsaj20wr1\"\n        },\n        \"medium\": {\n          \"file\": \"string\",\n          \"width\": 3654,\n          \"height\": 8496,\n          \"filesize\": 4520,\n          \"mime_type\": \"string\",\n          \"source_url\": \"http://zuaEcMWWLnvePk.nloUDb6EtUvRvC\"\n        },\n        \"thumbnail\": {\n          \"file\": \"string\",\n          \"width\": 6655,\n          \"height\": 3740,\n          \"filesize\": 4124,\n          \"mime_type\": \"string\",\n          \"source_url\": \"http://ouhbyTeXHbDInGJhjAnZALzRqn.uzujTgWr,gx0kkgBykwJKm6qoIbDaCUhyuamY0WnzeRlXRY,QJ1sJeLxMXa2O+\"\n        }\n      },\n      \"filesize\": 6457\n    },\n    \"post\": {},\n    \"source_url\": \"https://tWYuPnQpuODSdIlkVI.oiwAIs6FIPtzeYGIPGZyobOGtM6wGAQ.sYAwrsRMU,tA94Q6onA,zfiPk3ktQ\",\n    \"filename\": \"string\",\n    \"filesize\": 652,\n    \"_links\": {\n      \"self\": [\n        {\n          \"href\": \"https://NnKZChGDmmxNkHA.jjI+,S\",\n          \"targetHints\": {\n            \"allow\": \"\"\n          }\n        },\n        {\n          \"href\": \"http://ZVmtUe.yfPOXkZM3RAiAFPzQRmOLjuaR2i,iMHaaOBgMROZWqfO08VfQBJ,\",\n          \"targetHints\": {\n            \"allow\": \"\"\n          }\n        }\n      ],\n      \"collection\": [\n        {\n          \"href\": \"https://VYaecWi.ymjjwiY9\"\n        },\n        {\n          \"href\": \"http://ohFcldKNMyS.kvGfWNfBRQIbEVFEnGIqaAHI6pt9SL\"\n        }\n      ],\n      \"about\": [\n        {\n          \"href\": \"https://fdqNSoHuRjIXYaQoUigKxCJyGcS.igyxeb8KcWZywTlCHmRyXJyhZbj+SPcyjajYJ6vmG4.PDvyji30dirzSBqM-tOZJOA3o7,dH\"\n        },\n        {\n          \"href\": \"https://zR.iayfvwqmOWOJFF.uH-Uld.wQ.+1rVAnt5YZ5UdFbYTULWmN3elmdS6GgXvo4nDE8vsg\"\n        }\n      ],\n      \"author\": [\n        {\n          \"embeddable\": false,\n          \"href\": \"http://lIOcGoOWhownzelc.zrGRkQgfkUDoLvs2vv,DMBNDRVFNmyl1\"\n        },\n        {\n          \"embeddable\": true,\n          \"href\": \"http://NaCdqQR.vdjxEN-ovz6advjzD9wxy8Or\"\n        }\n      ],\n      \"replies\": [\n        {\n          \"embeddable\": true,\n          \"href\": \"http://OrIkHSBBBYkOojLxNMKMZEK.rpcB+nJ011LFxWJurW\"\n        },\n        {\n          \"embeddable\": false,\n          \"href\": \"https://aNBHqJnfxqbgNipig.mvfst+YS-DcAra6eI5-QWxliNUTKKj-Cd\"\n        }\n      ],\n      \"wp:term\": [\n        {\n          \"taxonomy\": \"string\",\n          \"embeddable\": true,\n          \"href\": \"https://aIQJCtPAqpFZtIIVyrHOdvfinVtuS.mhwrV0lre7Qxk.UPmTdeMF.zT,Fx-oWk7nm8BO6paIUbL4BKsUYAOm1YLNCvb.JLgP-cfLNOZ\"\n        },\n        {\n          \"taxonomy\": \"string\",\n          \"embeddable\": true,\n          \"href\": \"http://emFUjozGdmkAXxZMYpEMcfFCsoPq.joBGcKbNf+2wJ1,KCzBgw5+riDjOO\"\n        }\n      ],\n      \"curies\": [\n        {\n          \"name\": \"string\",\n          \"href\": \"http://StIjdJFtutQEg.ynoXS6nmOVJF\",\n          \"templated\": false\n        },\n        {\n          \"name\": \"string\",\n          \"href\": \"http://OTuMVVKfdPVBwpQZyTzyGDGqXYrJRYQ.xfoXlH9MgkJmWwPZGBalHiR0peWkWUWp5rnDIc,MPWPqBtf8wGcvl\",\n          \"templated\": false\n        }\n      ]\n    }\n  },\n  {\n    \"id\": 1175,\n    \"link\": \"https://EJdWcJHwCapYNJLqRYfAEZFyhDsYmx.mxiCiBGpqh2L\",\n    \"slug\": \"string\",\n    \"date\": \"1954-05-08T11:49:04.155Z\",\n    \"date_gmt\": \"1970-11-27T22:26:17.766Z\",\n    \"guid\": {\n      \"rendered\": \"https://RGdjNdnSqJgzyyMqTAsHeGoWARw.ecbORKx-hQkVZc04JhnR6MlZBl3Y.SzH5KL5IUmJ6MDa\"\n    },\n    \"modified\": \"1960-08-14T08:49:17.387Z\",\n    \"modified_gmt\": \"1951-12-22T10:35:58.605Z\",\n    \"status\": \"string\",\n    \"type\": \"string\",\n    \"title\": {\n      \"rendered\": \"string\"\n    },\n    \"author\": 8912,\n    \"featured_media\": 6227,\n    \"comment_status\": \"string\",\n    \"ping_status\": \"string\",\n    \"template\": \"string\",\n    \"meta\": {\n      \"_acf_changed\": true,\n      \"content-type\": \"string\"\n    },\n    \"class_list\": [\n      \"string\",\n      \"string\"\n    ],\n    \"description\": {\n      \"rendered\": \"string\"\n    },\n    \"caption\": {\n      \"rendered\": \"string\"\n    },\n    \"alt_text\": \"string\",\n    \"media_type\": \"string\",\n    \"mime_type\": \"string\",\n    \"media_details\": {\n      \"sizes\": {\n        \"full\": {\n          \"file\": \"string\",\n          \"width\": 4003,\n          \"height\": 9160,\n          \"mime_type\": \"string\",\n          \"source_url\": \"https://eTJ.evxBozbH45GT9qYnlAL2NIQJFlfFKcdj.y5ojewauT-amRlTggz\"\n        },\n        \"medium\": {\n          \"file\": \"string\",\n          \"width\": 9766,\n          \"height\": 1227,\n          \"filesize\": 9605,\n          \"mime_type\": \"string\",\n          \"source_url\": \"https://lQJvsbqfrtuhNGyAKASuq.rhpjbdfGWgEsnL4+lMrgceAHKjuGvUCXFdjOdVB5mxCF\"\n        },\n        \"thumbnail\": {\n          \"file\": \"string\",\n          \"width\": 8499,\n          \"height\": 7581,\n          \"filesize\": 3650,\n          \"mime_type\": \"string\",\n          \"source_url\": \"https://Iq.mhveM0By2L,4HJMnX4gJI1F,hZy5hYrOt8Q.IwWcRyJJ.i,g\"\n        }\n      },\n      \"filesize\": 6175\n    },\n    \"post\": {},\n    \"source_url\": \"http://VKOGLYGIYzvdvpOyaYl.zaiiNfqjp90yxGEnxza\",\n    \"filename\": \"string\",\n    \"filesize\": 4275,\n    \"_links\": {\n      \"self\": [\n        {\n          \"href\": \"https://DOIvUgwl.ukjiqtZ7wekMp4NJluVciWuAuL4kY6OHUCNUKJLrsOp6eTw-RvmmDe2ZrqXbadSM\",\n          \"targetHints\": {\n            \"allow\": \"\"\n          }\n        },\n        {\n          \"href\": \"http://SKCCEdAiWUwnPSQoLtNKYIPy.mdodbnCTHUwrEn7pEsAJG4vs6mXMdgkJY0XUjRqWF01ukR2Y\",\n          \"targetHints\": {\n            \"allow\": \"\"\n          }\n        }\n      ],\n      \"collection\": [\n        {\n          \"href\": \"http://WGooWfSWacrZw.pteanc7Jv+ph2TyHQfucrvXDJNulOZLooZ-1MukjzJ0.DNsDs3AGsYerA.ZZZVeGHX,VcViNX2pOgp7IDS\"\n        },\n        {\n          \"href\": \"https://emnzNKBRLmFkCVEgrKpTwQijl.tevyeXZF0AOcgmrFwdiNZ,eZKnSMoM2eQAAbTuZhu9FpUj-EZjl\"\n        }\n      ],\n      \"about\": [\n        {\n          \"href\": \"https://NkWTKwKWsfGHV.jixbL91ELZQz3JBn0PV+q-AsPprTep-Hd05UyL5vJ5d8cnfY6kEXY\"\n        },\n        {\n          \"href\": \"https://Vi.dedfvaWHWGT2dcBfczABeSVMZMgQuwA1YnFIif5VL4N.KVyaRaBjw8M2\"\n        }\n      ],\n      \"author\": [\n        {\n          \"embeddable\": true,\n          \"href\": \"https://hqpfMvIeygsgdNlsgOXROAl.nyWGZ3qM8uPB0aLLWwTJRlSR2MvsG6GMAWpYVAAQ9,sMkj+kK\"\n        },\n        {\n          \"embeddable\": true,\n          \"href\": \"http://DXrVknDcnBdwDNcepvuwY.uxZtWh-zHrlEFtcdiA\"\n        }\n      ],\n      \"replies\": [\n        {\n          \"embeddable\": false,\n          \"href\": \"https://IiAcN.hnwZptErA6y9-cgefFwj7f8z6gXIjuo.09g54SvK\"\n        },\n        {\n          \"embeddable\": false,\n          \"href\": \"http://CgLSAEcOUGfnySMrcEvFPfNtfC.ioLN-GZrNYjEJ4-Dlwp\"\n        }\n      ],\n      \"wp:term\": [\n        {\n          \"taxonomy\": \"string\",\n          \"embeddable\": false,\n          \"href\": \"http://XfYgqyFTUYVijjeeF.ioJP9S3MuQjCPpyFYne\"\n        },\n        {\n          \"taxonomy\": \"string\",\n          \"embeddable\": false,\n          \"href\": \"https://QbltyUlJMBAYmNUPLlylQsyLdiTotjtxm.ikgpZTFftZuUxHkoLOsyAIKUQ4HEgFVKyqeQouVn\"\n        }\n      ],\n      \"curies\": [\n        {\n          \"name\": \"string\",\n          \"href\": \"https://qUSbOfFaCiWlXWaVqqmBQpZ.mpMPibSvftyEACRGNnIdQa4kWASt9fPC8kl0-L\",\n          \"templated\": true\n        },\n        {\n          \"name\": \"string\",\n          \"href\": \"https://DcfWuQG.dmxV+alzLi5R7ox974\",\n          \"templated\": true\n        }\n      ]\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6e722970-8386-43c9-ae25-27c37d8eb64a",
+              "name": "Invalid parameter (rest_invalid_param), e.g. per_page outside 1-100.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "media"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "10"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "modified_after",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "author",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "author",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "author_exclude",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "author_exclude",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "modified_before",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "exclude",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "exclude",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "include",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "search_semantics",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "desc"
+                    },
+                    {
+                      "key": "orderby",
+                      "value": "date"
+                    },
+                    {
+                      "key": "parent",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "parent",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "parent_exclude",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "parent_exclude",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "search_columns",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "search_columns",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "slug",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "slug",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "inherit"
+                    },
+                    {
+                      "key": "tax_relation",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "media_type",
+                      "value": ""
+                    },
+                    {
+                      "key": "mime_type",
+                      "value": ""
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"status\": 3246\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "806c77d2-850f-42b3-b714-ea949848032f",
+          "name": "Get one media attachment",
+          "request": {
+            "name": "Get one media attachment",
+            "description": {
+              "content": "Returns a single attachment by its numeric ID, including `source_url` and the full `media_details` size map.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wp",
+                "v2",
+                "media",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "context",
+                  "value": "view",
+                  "description": "Scope under which the request is made; determines fields present in response."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) Unique identifier for the post."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "359a3649-1c9f-4fe2-8e9a-afdd32a4051a",
+              "name": "The requested object.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "media",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier for the post."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 6504,\n  \"link\": \"https://x.ywnsbPEdLxjZQf\",\n  \"slug\": \"string\",\n  \"date\": \"2004-06-05T00:07:37.054Z\",\n  \"date_gmt\": \"2023-10-30T13:44:09.862Z\",\n  \"guid\": {\n    \"rendered\": \"https://cHJeVZYguWTYUFAlz.ujGEYPwLY3Ek-GJIelH-84Gie-lEflC\"\n  },\n  \"modified\": \"1988-08-28T11:05:35.250Z\",\n  \"modified_gmt\": \"1987-03-19T15:02:01.833Z\",\n  \"status\": \"string\",\n  \"type\": \"string\",\n  \"title\": {\n    \"rendered\": \"string\"\n  },\n  \"author\": 4600,\n  \"featured_media\": 3375,\n  \"comment_status\": \"string\",\n  \"ping_status\": \"string\",\n  \"template\": \"string\",\n  \"meta\": {\n    \"_acf_changed\": false,\n    \"content-type\": \"string\"\n  },\n  \"class_list\": [\n    \"string\",\n    \"string\"\n  ],\n  \"description\": {\n    \"rendered\": \"string\"\n  },\n  \"caption\": {\n    \"rendered\": \"string\"\n  },\n  \"alt_text\": \"string\",\n  \"media_type\": \"string\",\n  \"mime_type\": \"string\",\n  \"media_details\": {\n    \"sizes\": {\n      \"full\": {\n        \"file\": \"string\",\n        \"width\": 7309,\n        \"height\": 5051,\n        \"mime_type\": \"string\",\n        \"source_url\": \"http://WClqBGXrCpvwDsvd.fczAaZQA0Z.B9eW-YtlKT+t-uQy.2sRxK4oEOBAkQJpwjcYH8Uq-Vr8R2f4e\"\n      },\n      \"medium\": {\n        \"file\": \"string\",\n        \"width\": 5889,\n        \"height\": 6164,\n        \"filesize\": 4879,\n        \"mime_type\": \"string\",\n        \"source_url\": \"http://DsaPT.gbrqqvtaiwvXUkp,gFwP5B0JJfkhTXwwYdv39c4eMKp38gxihdgw0D7w+y+\"\n      },\n      \"thumbnail\": {\n        \"file\": \"string\",\n        \"width\": 120,\n        \"height\": 9117,\n        \"filesize\": 2065,\n        \"mime_type\": \"string\",\n        \"source_url\": \"http://KIycgUPNTOUGsYKwXiCtsDnZTcRuoL.tdkdZquAiWrCXy.4ZkXz4rG06nKqFB,roWRBtpAeYBScC.eq\"\n      }\n    },\n    \"filesize\": 7717\n  },\n  \"post\": {},\n  \"source_url\": \"https://XWGMZzcTHTLgZtkmLjlBdRSYhCrNRZAT.xwpxh,yiod.oO2naTSNvHst6GjYU0SkZ9wcm\",\n  \"filename\": \"string\",\n  \"filesize\": 9373,\n  \"_links\": {\n    \"self\": [\n      {\n        \"href\": \"http://Fjg.xziK6GWECJHxRj2I\",\n        \"targetHints\": {\n          \"allow\": \"\"\n        }\n      },\n      {\n        \"href\": \"https://lLJCSTtJnZzRdTYpu.uzTPBQIP,-\",\n        \"targetHints\": {\n          \"allow\": \"\"\n        }\n      }\n    ],\n    \"collection\": [\n      {\n        \"href\": \"https://KAtg.vjvWbR-ijAD1KDRiiwQbHh,xma5Ta-w\"\n      },\n      {\n        \"href\": \"http://sOXPbyVIyUOSKKXJQk.odvrEtr\"\n      }\n    ],\n    \"about\": [\n      {\n        \"href\": \"https://SIscklDAVLJDTkZN.fhttuE\"\n      },\n      {\n        \"href\": \"https://fbMUuLVeNOuTvPmKkgqZ.ysvgV5KEfflW1DbHOQlMSRoB-Jj+IF6S56h0KUhuyQMF\"\n      }\n    ],\n    \"author\": [\n      {\n        \"embeddable\": true,\n        \"href\": \"http://wxkhvlWUIrrvQbBOhyprtPovkb.iohrZeClSsUdfb9b+PO7uiH0t4q2eLDoDJOW\"\n      },\n      {\n        \"embeddable\": true,\n        \"href\": \"http://GhedwumKLuHnKHyoeSvcWLLLkEpMBYgAb.anammrihBxWyZK5ihuRdrdLfz-GMtfKo3TJYa5vlOE\"\n      }\n    ],\n    \"replies\": [\n      {\n        \"embeddable\": true,\n        \"href\": \"https://UvOozLTQnFUOXBGPHrCwDgBNvqdaD.hurxYFoFhag7Xtf5rOS8Xb0TcPNlrHV+.eyYNfpQC\"\n      },\n      {\n        \"embeddable\": false,\n        \"href\": \"https://qeekVZLVoApTYXAajEvXNAs.xnptOACA5dnC4y8TgJ9oLIKccQRSo0lfF5znsDIEBCKP\"\n      }\n    ],\n    \"wp:term\": [\n      {\n        \"taxonomy\": \"string\",\n        \"embeddable\": true,\n        \"href\": \"https://M.gtc+PREGEDebURqjlorjEPpRh+e2HFgSpHpo1f0W0.ISMHOu9vkvwZ\"\n      },\n      {\n        \"taxonomy\": \"string\",\n        \"embeddable\": false,\n        \"href\": \"http://DCXQjNyWIRQKNuL.jnsxcEVjFgPByTJzF6AzdNi\"\n      }\n    ],\n    \"curies\": [\n      {\n        \"name\": \"string\",\n        \"href\": \"http://wGyLdPSioEHMGIYroyMpjSUQNteD.cgdwbqQVNHV0WQanOZrNlAJahkZm0t.Z8nSptj4vLKYJmXDLTYPqLFugD,0\",\n        \"templated\": true\n      },\n      {\n        \"name\": \"string\",\n        \"href\": \"http://yVvOxywhU.jslpZoS0LEdmVM-EPjuZ+GK1a\",\n        \"templated\": true\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3a99d6ba-7066-4ff8-a3e3-700f4b6e04f1",
+              "name": "Invalid parameter (rest_invalid_param).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "media",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier for the post."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"status\": 3246\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "58c82c09-3de3-42a3-8d12-643ab40f9742",
+              "name": "No object exists with that identifier (rest_post_invalid_id / rest_term_invalid).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "media",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) Unique identifier for the post."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"status\": 3246\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://accelsius.com/wp-json",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e6ac69e8-ce4b-46d4-8931-b338a463c546",
+    "name": "Accelsius Media API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The `attachment` type — product photography and renders of the NeuCool IR150 and MR250 CDUs and cold plates, partner and customer logos, diagrams, and the PDF white papers, infographics and studies linked from accelsius.com/papers-studies/. Each object carries `source_url` for the original file and `media_details.sizes` for the generated variants. The library is organised with the HappyFiles taxonomy (see the Taxonomy API). At time of capture it held 903 attachments.\n\nAccelsius publishes accelsius.com on WordPress (WP Engine origin, Cloudflare edge, MalCare firewall) with the WordPress core REST API enabled and anonymously readable. This is NOT a product API that Accelsius offers to customers — Accelsius manufactures two-phase direct-to-chip liquid-cooling hardware and ships no developer program, SDK or product API. It is the content API behind the company marketing site, captured for discovery purposes. Anonymous access is read-only: the `Allow` response header on every collection is `GET`, and write operations require WordPress cookie authentication with an X-WP-Nonce header or an Application Password, returning HTTP 401 to anonymous callers.\n\nContact Support:\n Name: Accelsius\n Email: info@accelsius.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,228 @@
+{
+  "item": [
+    {
+      "id": "679b0a2c-9474-468e-8b85-ca3097d88024",
+      "name": "Discovery",
+      "description": {
+        "content": "WordPress REST route-discovery indexes served by accelsius.com.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "071147bc-5918-412e-8fe2-5fd2f3ccb461",
+          "name": "Get the WordPress REST root index",
+          "request": {
+            "name": "Get the WordPress REST root index",
+            "description": {
+              "content": "Returns the full route-discovery document for accelsius.com: 387 routes across 16 namespaces (wp/v2, oembed/1.0, yoast/v1, ws-form/v1, wpforms/v1, bricks/v1, redirection/v1, leadin/v1, cleantalk-antispam/v1, duplicate-post/v1, wp-mail-smtp/v1, wpe/cache-plugin/v1, wpe_sign_on_plugin/v1, wp-abilities/v1, wp-site-health/v1, wp-block-editor/v1). Approximately 285KB.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "context",
+                  "value": "view",
+                  "description": "Scope under which the request is made; determines fields present in the response."
+                },
+                {
+                  "disabled": false,
+                  "key": "namespace",
+                  "value": "<string>",
+                  "description": "Limit the index to a single namespace."
+                },
+                {
+                  "disabled": false,
+                  "key": "_fields",
+                  "value": "<string>",
+                  "description": "Comma-separated allow-list of fields to return. Strongly recommended against this route: `_fields=namespaces` returns a few hundred bytes instead of the full 285KB index."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "35dfc1df-feaa-4753-afc2-b5809bba2542",
+              "name": "The route-discovery document.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    },
+                    {
+                      "key": "namespace",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"routes\": {},\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"url\": \"http://XH.fqhDzJpemVI3sdxD+sa8olyvUEIpbXSwQaLtsymmNzW00Ja7Cjozwk04r3h9,O-WYXYl\",\n  \"home\": \"https://UdzCQzfULqhavYwvYJRvoGgnnijC.tlBL4JH2boBL\",\n  \"gmt_offset\": 7499,\n  \"timezone_string\": \"string\",\n  \"namespace\": \"string\",\n  \"namespaces\": [\n    \"string\",\n    \"string\"\n  ],\n  \"authentication\": {},\n  \"site_logo\": 6184,\n  \"site_icon_url\": \"https://zPoQXSSvRGOnmQKHLSZFlHHMpUvZQmyYN.kdPZVlJb7hg4+DFjJ9yaIi-rgBdWyUQ165K5tmZiszVyvLxGX3vbB3V+jPw\",\n  \"_links\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8daefab0-b201-451c-ad6f-5a73f5d4d30f",
+          "name": "Get the wp/v2 namespace index",
+          "request": {
+            "name": "Get the wp/v2 namespace index",
+            "description": {
+              "content": "Returns the discovery document scoped to the wp/v2 namespace — the content, media, taxonomy, registry and search routes described by the other OpenAPI documents in this repository, with their full argument schemas. Approximately 208KB.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wp",
+                "v2"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "context",
+                  "value": "view",
+                  "description": "Scope under which the request is made."
+                },
+                {
+                  "disabled": false,
+                  "key": "_fields",
+                  "value": "<string>",
+                  "description": "Comma-separated allow-list of fields to return."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "73e3f879-042d-4d9a-8b61-139c2b71662b",
+              "name": "The wp/v2 namespace discovery document.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    },
+                    {
+                      "key": "_fields",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"routes\": {},\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"url\": \"https://RVFCDNIAmqEj.mcijJGjJ7cGGbwXi,IbU5zJw\",\n  \"home\": \"https://nTqZGzAd.sbbvJnVkW,GGquYqTfp9f01Wx-8+xx8LG\",\n  \"gmt_offset\": 3605,\n  \"timezone_string\": \"string\",\n  \"namespace\": \"string\",\n  \"namespaces\": [\n    \"string\",\n    \"string\"\n  ],\n  \"authentication\": {},\n  \"site_logo\": 8496,\n  \"site_icon_url\": \"http://PrqGWRvjsXIIgepowjWSqfv.plpOUPXFfBD88veIaFy2ZGaKlT5Uc3CPt7R7gRNzLhgBo5Apa-d7OvItr5Xj5fJejLSB8s-\",\n  \"_links\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://accelsius.com/wp-json",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "9d4aea17-1b61-48e3-aced-2603d4e2e39d",
+    "name": "Accelsius Discovery API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The root index at /wp-json/ and the wp/v2 namespace index. These are the only machine-readable API description documents Accelsius serves: they enumerate 387 routes across 16 namespaces with per-route HTTP methods and full argument schemas, and they are the source every other OpenAPI document in this repository was derived from. The root index also advertises the site name, home URL, timezone offset, and the `authentication.application-passwords` authorization endpoint.\n\nAccelsius publishes accelsius.com on WordPress (WP Engine origin, Cloudflare edge, MalCare firewall) with the WordPress core REST API enabled and anonymously readable. This is NOT a product API that Accelsius offers to customers — Accelsius manufactures two-phase direct-to-chip liquid-cooling hardware and ships no developer program, SDK or product API. It is the content API behind the company marketing site, captured for discovery purposes. Anonymous access is read-only: the `Allow` response header on every collection is `GET`, and write operations require WordPress cookie authentication with an X-WP-Nonce header or an Application Password, returning HTTP 401 to anonymous callers.\n\nContact Support:\n Name: Accelsius\n Email: info@accelsius.com",
+      "type": "text/plain"
+    }
+  }
+}

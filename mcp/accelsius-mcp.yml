@@ -2,15 +2,13 @@ generated: '2026-08-06'
 method: derived
 status: candidate
 source: openapi/accelsius-*-openapi.yml
-summary: >-
-  Accelsius publishes NO hosted or remote MCP server. Searched the site, the /.well-known/
-  surface and the public registries on 2026-08-06 and found none; there is no mcp.accelsius.com
-  host, no /llms.txt, and no reference to MCP, the Model Context Protocol or agents anywhere on
-  accelsius.com. The tool list below is a CANDIDATE derived mechanically from the twenty-three
-  anonymously-readable OpenAPI operations in this repo — one tool per operationId. It is a
-  proposal for what an MCP server over this surface would expose, not something Accelsius offers.
-  Each tool's real input contract is the `parameters` block of its backing operation in the
-  referenced spec.
+summary: Accelsius publishes NO hosted or remote MCP server. Searched the site, the /.well-known/ surface
+  and the public registries on 2026-08-06 and found none; there is no mcp.accelsius.com host, no /llms.txt,
+  and no reference to MCP, the Model Context Protocol or agents anywhere on accelsius.com. The tool list
+  below is a CANDIDATE derived mechanically from the twenty-three anonymously-readable OpenAPI operations
+  in this repo — one tool per operationId. It is a proposal for what an MCP server over this surface would
+  expose, not something Accelsius offers. Each tool's real input contract is the `parameters` block of
+  its backing operation in the referenced spec.
 search:
   performed: '2026-08-06'
   probed:
@@ -32,18 +30,16 @@ server:
   transport: http
   url: null
   published: false
-  note: >-
-    No server URL — nothing is published. A candidate server would front
-    https://accelsius.com/wp-json with no credential, since the read surface is anonymous. Any
-    implementer must build in hard client-side throttling: the origin enforces a behavioural
-    block (MalCare, HTTP 403 with an HTML body) with no rate-limit header to read.
+  note: 'No server URL — nothing is published. A candidate server would front https://accelsius.com/wp-json
+    with no credential, since the read surface is anonymous. Any implementer must build in hard client-side
+    throttling: the origin enforces a behavioural block (MalCare, HTTP 403 with an HTML body) with no
+    rate-limit header to read.'
 auth:
   required: false
   note: All candidate tools are anonymous reads. No token, key or consent step is involved.
 tools:
 - name: list_resources
-  description: >-
-    List Accelsius resource-library items — blog posts, white papers, case studies, infographics,
+  description: List Accelsius resource-library items — blog posts, white papers, case studies, infographics,
     podcasts, videos and press releases. Filter by category or tag.
   source_operation: openapi/accelsius-content-api-openapi.yml#listContent
 - name: get_resource
@@ -56,16 +52,14 @@ tools:
   description: Get a single news item by its numeric ID.
   source_operation: openapi/accelsius-news-api-openapi.yml#getNewsItem
 - name: list_pages
-  description: >-
-    List the static marketing, product, company and legal pages of accelsius.com — the NeuCool
+  description: List the static marketing, product, company and legal pages of accelsius.com — the NeuCool
     IR150 and MR250 product pages, the technology explainers, services, partners and FAQ.
   source_operation: openapi/accelsius-pages-api-openapi.yml#listPages
 - name: get_page
   description: Get a single site page by its numeric ID, including its rendered HTML body.
   source_operation: openapi/accelsius-pages-api-openapi.yml#getPage
 - name: list_media
-  description: >-
-    List media-library attachments. Filter by mime_type=application/pdf to retrieve the published
+  description: List media-library attachments. Filter by mime_type=application/pdf to retrieve the published
     white papers, studies and infographics.
   source_operation: openapi/accelsius-media-api-openapi.yml#listMedia
 - name: get_media_item
@@ -108,25 +102,28 @@ tools:
   description: Get the registration record for one publication status.
   source_operation: openapi/accelsius-taxonomy-api-openapi.yml#getStatus
 - name: search_accelsius
-  description: >-
-    Search across every searchable object on accelsius.com and return lightweight
-    id/title/url/type records. The cheapest way to resolve a title or URL to a numeric ID.
+  description: Search across every searchable object on accelsius.com and return lightweight id/title/url/type
+    records. The cheapest way to resolve a title or URL to a numeric ID.
   source_operation: openapi/accelsius-search-api-openapi.yml#searchSite
 - name: get_root_index
-  description: >-
-    Fetch the WordPress route-discovery document — 387 routes across 16 namespaces. Pass
-    `_fields` unless you want 285KB.
+  description: Fetch the WordPress route-discovery document — 387 routes across 16 namespaces. Pass `_fields`
+    unless you want 285KB.
   source_operation: openapi/accelsius-discovery-api-openapi.yml#getRootIndex
 - name: get_wp_v2_index
   description: Fetch the wp/v2 namespace discovery document with full argument schemas.
   source_operation: openapi/accelsius-discovery-api-openapi.yml#getWpV2Index
 excluded_tools:
 - route: /wp/v2/users
-  reason: >-
-    Anonymously readable on this host (HTTP 200, 14 records) and therefore trivially toolable,
-    but it is a directory of named individuals. Excluded deliberately under the API Evangelist
-    enrichment PII guardrail: document the exposure, do not ship the exploit. See
-    authentication/accelsius-authentication.yml `exposed_personal_data`.
+  reason: 'Anonymously readable on this host (HTTP 200, 14 records) and therefore trivially toolable,
+    but it is a directory of named individuals. Excluded deliberately under the API Evangelist enrichment
+    PII guardrail: document the exposure, do not ship the exploit. See authentication/accelsius-authentication.yml
+    `exposed_personal_data`.'
 x-evidence:
   fetched: '2026-08-06'
   host: https://accelsius.com
+deployment:
+  mode: none
+  verified: derived
+  tools: 23
+  checked: '2026-08-12'
+  source: catalog MCP census

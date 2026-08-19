@@ -1,0 +1,1102 @@
+{
+  "item": [
+    {
+      "id": "a79f1a40-31f3-40f8-a063-9ad8ad75ad0b",
+      "name": "Registry",
+      "description": {
+        "content": "Post types, taxonomies and publication statuses registered on the site.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "087d012a-eb68-45ac-a7db-3d1e7b4c529a",
+          "name": "List post types",
+          "request": {
+            "name": "List post types",
+            "description": {
+              "content": "Returns every post type registered on the site keyed by type slug, including the `news` custom type Accelsius added. Each entry names its `rest_base`, `rest_namespace`, `hierarchical` flag and attached `taxonomies`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wp",
+                "v2",
+                "types"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "context",
+                  "value": "view",
+                  "description": "Scope under which the request is made; determines fields present in response."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4f24d272-ab00-4f97-88bd-37d2d2e26979",
+              "name": "A page of results.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Total number of items in the unpaginated collection.",
+                  "key": "X-WP-Total",
+                  "value": "1566"
+                },
+                {
+                  "disabled": false,
+                  "description": "Total number of pages at the requested per_page size.",
+                  "key": "X-WP-TotalPages",
+                  "value": "1566"
+                },
+                {
+                  "disabled": false,
+                  "description": "RFC 8288 Link header carrying rel=\"next\" and rel=\"prev\" for the collection.",
+                  "key": "Link",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"slug\": \"string\",\n    \"description\": \"string\",\n    \"hierarchical\": true,\n    \"has_archive\": false,\n    \"name\": \"string\",\n    \"icon\": \"string\",\n    \"taxonomies\": [\n      \"string\",\n      \"string\"\n    ],\n    \"rest_base\": \"string\",\n    \"rest_namespace\": \"string\",\n    \"template_lock\": false,\n    \"yoast_head\": \"string\",\n    \"yoast_head_json\": {\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"robots\": {\n        \"index\": \"string\",\n        \"follow\": \"string\",\n        \"max-snippet\": \"string\",\n        \"max-image-preview\": \"string\",\n        \"max-video-preview\": \"string\"\n      },\n      \"canonical\": \"http://riDFtnOfDQrJcXQyaBeigbkvJSwlOVl.nwwthHQ9SkwFuHScXBwvREnCmSAtxYvHYt,Kz6U0Mc-zlOuZ\",\n      \"og_locale\": \"string\",\n      \"og_type\": \"string\",\n      \"og_title\": \"string\",\n      \"og_description\": \"string\",\n      \"og_url\": \"https://FSYWcIi.bmtg++71WPnGfIFyWRBQAu3EKh5n7\",\n      \"og_site_name\": \"string\",\n      \"twitter_card\": \"string\",\n      \"schema\": {\n        \"@context\": \"http://kyisuTmIDIkpntzKGR.qsIFytOQZL1MvpFtEhGb.aAaiWLIL8Qp6QuqUZxwX5RpP,wDEaz9l12\",\n        \"@graph\": [\n          {\n            \"@type\": \"\",\n            \"@id\": \"\",\n            \"url\": \"\",\n            \"name\": \"\",\n            \"isPartOf\": \"\",\n            \"datePublished\": \"\",\n            \"dateModified\": \"\",\n            \"description\": \"\",\n            \"breadcrumb\": \"\",\n            \"inLanguage\": \"\"\n          },\n          {\n            \"@type\": \"\",\n            \"@id\": \"\",\n            \"url\": \"\",\n            \"name\": \"\",\n            \"isPartOf\": \"\",\n            \"datePublished\": \"\",\n            \"dateModified\": \"\",\n            \"description\": \"\",\n            \"breadcrumb\": \"\",\n            \"inLanguage\": \"\"\n          }\n        ]\n      }\n    },\n    \"_links\": {\n      \"collection\": [\n        {\n          \"href\": \"https://pGWDpuVHCKZVFsNFaaTh.heUULjVIxOH8.hgNzy-ybi5F2R2nyJT9GfmVGpQs\"\n        },\n        {\n          \"href\": \"http://mRV.wyleHL-IE+MqJVX+sKth6tyfHvPMXna5ES7PZo.Ikze\"\n        }\n      ],\n      \"wp:items\": [\n        {\n          \"href\": \"http://qRpcJyiuWDASi.bpar1tANYijiWyJnF1ilvktC9MacMxwTVrmPbcOJYIZLuq86BmvQWIOUfEASas\"\n        },\n        {\n          \"href\": \"https://yDiBusuzpEK.tbrXYRiIGuj\"\n        }\n      ],\n      \"curies\": [\n        {\n          \"name\": \"string\",\n          \"href\": \"https://xVWfq.zamDDZyNY3ELsHNcAaiAE330EizRnJ5yx44cn6OA6HO2+vb1CW\",\n          \"templated\": false\n        },\n        {\n          \"name\": \"string\",\n          \"href\": \"http://tubPCwIioK.ocfbLg+2OlqVcsSFYuxcHf02G6\",\n          \"templated\": false\n        }\n      ]\n    }\n  },\n  {\n    \"slug\": \"string\",\n    \"description\": \"string\",\n    \"hierarchical\": false,\n    \"has_archive\": false,\n    \"name\": \"string\",\n    \"icon\": \"string\",\n    \"taxonomies\": [\n      \"string\",\n      \"string\"\n    ],\n    \"rest_base\": \"string\",\n    \"rest_namespace\": \"string\",\n    \"template_lock\": false,\n    \"yoast_head\": \"string\",\n    \"yoast_head_json\": {\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"robots\": {\n        \"index\": \"string\",\n        \"follow\": \"string\",\n        \"max-snippet\": \"string\",\n        \"max-image-preview\": \"string\",\n        \"max-video-preview\": \"string\"\n      },\n      \"canonical\": \"http://gAryaoUfxtOBvAGwaMcSXfZ.lqnFhQgw5RYN4IV40dXEM2hg7Pb63BTyw3o\",\n      \"og_locale\": \"string\",\n      \"og_type\": \"string\",\n      \"og_title\": \"string\",\n      \"og_description\": \"string\",\n      \"og_url\": \"https://zcRmURfGpSbwZxfXjSVgTvNIMgkpUrmS.vqs+v,3DjbQycQSj2BEsHglYS4KcHzkVd2TNd0S79mbAO+3yB\",\n      \"og_site_name\": \"string\",\n      \"twitter_card\": \"string\",\n      \"schema\": {\n        \"@context\": \"http://sjzGuoXOBFpGwIwJPkQ.muiwZQJao5Rzp\",\n        \"@graph\": [\n          {\n            \"@type\": \"\",\n            \"@id\": \"\",\n            \"url\": \"\",\n            \"name\": \"\",\n            \"isPartOf\": \"\",\n            \"datePublished\": \"\",\n            \"dateModified\": \"\",\n            \"description\": \"\",\n            \"breadcrumb\": \"\",\n            \"inLanguage\": \"\"\n          },\n          {\n            \"@type\": \"\",\n            \"@id\": \"\",\n            \"url\": \"\",\n            \"name\": \"\",\n            \"isPartOf\": \"\",\n            \"datePublished\": \"\",\n            \"dateModified\": \"\",\n            \"description\": \"\",\n            \"breadcrumb\": \"\",\n            \"inLanguage\": \"\"\n          }\n        ]\n      }\n    },\n    \"_links\": {\n      \"collection\": [\n        {\n          \"href\": \"http://mKYRamwGuqfjnDnDFRfsm.fbmcjz7hLzg4ZQG0NoBuDV+4dl94gDc\"\n        },\n        {\n          \"href\": \"http://kjAtpTWUdbHsFNCiCKdeamWw.projAwkx1rkqwN9cj6UKBXqJGEaJ\"\n        }\n      ],\n      \"wp:items\": [\n        {\n          \"href\": \"http://RNhFYbvkWfokWCSnvAIoFWgDPEe.pocDRJSDIhsPKegQvlDw2HhPc9Q+bNlVapteEkj-W\"\n        },\n        {\n          \"href\": \"https://gpTD.ofxP2TRt0w0e98mjGL5vc7459hjYH\"\n        }\n      ],\n      \"curies\": [\n        {\n          \"name\": \"string\",\n          \"href\": \"http://FQDPLnXG.tbxiIuTPeKkDmVelIW4ueEEYm\",\n          \"templated\": true\n        },\n        {\n          \"name\": \"string\",\n          \"href\": \"https://nOgnNr.oaykxqC+IgnjP7CVT,QFnOYoxXtZCRpeWiVMeVvF66L15mIg\",\n          \"templated\": true\n        }\n      ]\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b67524f6-2937-4408-be1c-f205df74cc54",
+              "name": "Invalid parameter (rest_invalid_param), e.g. per_page outside 1-100.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"status\": 6748\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aad268af-2a3f-4a34-9638-a31cd9d3bb9b",
+          "name": "Get one post type",
+          "request": {
+            "name": "Get one post type",
+            "description": {
+              "content": "Returns the registration record for one post type, e.g. `post`, `page` or `news`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wp",
+                "v2",
+                "types",
+                ":type"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "context",
+                  "value": "view",
+                  "description": "Scope under which the request is made; determines fields present in response."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "type",
+                  "description": "(Required) An alphanumeric identifier for the post type."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "acab4dc5-f260-43dc-8221-0e2e679966ee",
+              "name": "The requested object.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "types",
+                    ":type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) An alphanumeric identifier for the post type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"slug\": \"string\",\n  \"description\": \"string\",\n  \"hierarchical\": false,\n  \"has_archive\": true,\n  \"name\": \"string\",\n  \"icon\": \"string\",\n  \"taxonomies\": [\n    \"string\",\n    \"string\"\n  ],\n  \"rest_base\": \"string\",\n  \"rest_namespace\": \"string\",\n  \"template_lock\": true,\n  \"yoast_head\": \"string\",\n  \"yoast_head_json\": {\n    \"title\": \"string\",\n    \"description\": \"string\",\n    \"robots\": {\n      \"index\": \"string\",\n      \"follow\": \"string\",\n      \"max-snippet\": \"string\",\n      \"max-image-preview\": \"string\",\n      \"max-video-preview\": \"string\"\n    },\n    \"canonical\": \"http://fwxjLHXUCupGJerCoams.lqlvvNvr,SE5fKWjVwwFQe2\",\n    \"og_locale\": \"string\",\n    \"og_type\": \"string\",\n    \"og_title\": \"string\",\n    \"og_description\": \"string\",\n    \"og_url\": \"http://bTvlMQdbpGmn.ghT6QOZ6sROLZzfePsNJydjhoNwmaCKt\",\n    \"og_site_name\": \"string\",\n    \"twitter_card\": \"string\",\n    \"schema\": {\n      \"@context\": \"http://kAylNOowwUqfJHTfaxoDyHkjWQheVmNhV.bsaYtavTbanNDJUqr2P3uejg3ivWQLlMbxW2Lm87pp7URjovSlRKrVgrWjyGrjDVbIj\",\n      \"@graph\": [\n        {\n          \"@type\": \"\",\n          \"@id\": \"\",\n          \"url\": \"\",\n          \"name\": \"\",\n          \"isPartOf\": \"\",\n          \"datePublished\": \"\",\n          \"dateModified\": \"\",\n          \"description\": \"\",\n          \"breadcrumb\": \"\",\n          \"inLanguage\": \"\"\n        },\n        {\n          \"@type\": \"\",\n          \"@id\": \"\",\n          \"url\": \"\",\n          \"name\": \"\",\n          \"isPartOf\": \"\",\n          \"datePublished\": \"\",\n          \"dateModified\": \"\",\n          \"description\": \"\",\n          \"breadcrumb\": \"\",\n          \"inLanguage\": \"\"\n        }\n      ]\n    }\n  },\n  \"_links\": {\n    \"collection\": [\n      {\n        \"href\": \"https://LMJpQkUrpleHqvZAV.lagmaT1aV54pFJ0unAGd8moQPClny6BZvnD7AaDq25M\"\n      },\n      {\n        \"href\": \"https://OgjscrSjwdskIEGsDz.hggeL7T2SFqC0FEnrVqXNXFflONoKMg15+uvquHSaeDpoM7E89T31jg6uf\"\n      }\n    ],\n    \"wp:items\": [\n      {\n        \"href\": \"https://fEzvdiobniGGlQ.vhTrd444EuVTtBxOQBX5u3,VJgjizEdyR9lv8.yJjvjHiM8fSipKa9cffQRZcSGRZ+2Jqm\"\n      },\n      {\n        \"href\": \"http://tdoWFrgSnFPfMsd.gkdawvMa2.Ak78wdYehDWsHuXgfksi-s+jxAz\"\n      }\n    ],\n    \"curies\": [\n      {\n        \"name\": \"string\",\n        \"href\": \"https://tVJELCGUavirrBeKnY.gvhXuYlmOqfbp4BknvmH\",\n        \"templated\": false\n      },\n      {\n        \"name\": \"string\",\n        \"href\": \"http://BzrhDiJHPqHsee.zgVwPg1+7U8J,\",\n        \"templated\": true\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f908f8c3-4ff2-4dea-a769-ba1d41963e18",
+              "name": "Invalid parameter (rest_invalid_param).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "types",
+                    ":type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) An alphanumeric identifier for the post type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"status\": 6748\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c16c3a30-7ce4-41d9-b4a4-2c9ef04b9078",
+              "name": "No object exists with that identifier (rest_post_invalid_id / rest_term_invalid).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "types",
+                    ":type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) An alphanumeric identifier for the post type."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"status\": 6748\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9e757a6d-605b-4140-89d9-a3addaf5aed2",
+          "name": "List taxonomies",
+          "request": {
+            "name": "List taxonomies",
+            "description": {
+              "content": "Returns every taxonomy registered on the site keyed by taxonomy slug — category, post_tag, happyfiles_category, recent-news and the WordPress internals.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wp",
+                "v2",
+                "taxonomies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "context",
+                  "value": "view",
+                  "description": "Scope under which the request is made; determines fields present in response."
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Limit results to taxonomies associated with a specific post type."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "733e320c-b997-4c41-9a97-ea59ebc45b4b",
+              "name": "A page of results.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "taxonomies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Total number of items in the unpaginated collection.",
+                  "key": "X-WP-Total",
+                  "value": "1566"
+                },
+                {
+                  "disabled": false,
+                  "description": "Total number of pages at the requested per_page size.",
+                  "key": "X-WP-TotalPages",
+                  "value": "1566"
+                },
+                {
+                  "disabled": false,
+                  "description": "RFC 8288 Link header carrying rel=\"next\" and rel=\"prev\" for the collection.",
+                  "key": "Link",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"slug\": \"string\",\n    \"description\": \"string\",\n    \"hierarchical\": false,\n    \"has_archive\": false,\n    \"name\": \"string\",\n    \"icon\": \"string\",\n    \"taxonomies\": [\n      \"string\",\n      \"string\"\n    ],\n    \"rest_base\": \"string\",\n    \"rest_namespace\": \"string\",\n    \"template_lock\": false,\n    \"yoast_head\": \"string\",\n    \"yoast_head_json\": {\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"robots\": {\n        \"index\": \"string\",\n        \"follow\": \"string\",\n        \"max-snippet\": \"string\",\n        \"max-image-preview\": \"string\",\n        \"max-video-preview\": \"string\"\n      },\n      \"canonical\": \"http://M.bcPBwjH-YouTeVsyMktwnMnT1qU+2qUa5V5Qr71rqF2\",\n      \"og_locale\": \"string\",\n      \"og_type\": \"string\",\n      \"og_title\": \"string\",\n      \"og_description\": \"string\",\n      \"og_url\": \"https://yacaETSvMTLZX.uliKu+q4.ef8aLwtN+yrI2ksqEcXeFJ\",\n      \"og_site_name\": \"string\",\n      \"twitter_card\": \"string\",\n      \"schema\": {\n        \"@context\": \"https://JsoXF.junoomNuMp2.Ysi7483kNt6aBo9LdaDnB\",\n        \"@graph\": [\n          {\n            \"@type\": \"\",\n            \"@id\": \"\",\n            \"url\": \"\",\n            \"name\": \"\",\n            \"isPartOf\": \"\",\n            \"datePublished\": \"\",\n            \"dateModified\": \"\",\n            \"description\": \"\",\n            \"breadcrumb\": \"\",\n            \"inLanguage\": \"\"\n          },\n          {\n            \"@type\": \"\",\n            \"@id\": \"\",\n            \"url\": \"\",\n            \"name\": \"\",\n            \"isPartOf\": \"\",\n            \"datePublished\": \"\",\n            \"dateModified\": \"\",\n            \"description\": \"\",\n            \"breadcrumb\": \"\",\n            \"inLanguage\": \"\"\n          }\n        ]\n      }\n    },\n    \"_links\": {\n      \"collection\": [\n        {\n          \"href\": \"https://RSBw.aqdj,yIfN\"\n        },\n        {\n          \"href\": \"http://tWnaZCEdyWbIDGcekXizHUwpUJCzqFK.svjnyMwc+1BniZthbATbdbqS\"\n        }\n      ],\n      \"wp:items\": [\n        {\n          \"href\": \"https://f.irqlljllgQX9f9VBbS-m2Bs3V+ClR\"\n        },\n        {\n          \"href\": \"http://pfTyz.bkhwqazT76ceFqglnX0nMhdD-.ucL.hlMP1\"\n        }\n      ],\n      \"curies\": [\n        {\n          \"name\": \"string\",\n          \"href\": \"http://IHzvHayxTORUpGQuMwUXjfMnBkyCtR.hazvRgNPgD+3jtI7bi55i\",\n          \"templated\": false\n        },\n        {\n          \"name\": \"string\",\n          \"href\": \"https://SdSUDobHcOlqPhZDdtzabVc.setiKyxrqwXhzj8ZYqwHMfxqMS,Ki0dwHZLbVP3CZzt30haMoqbdx03g4czAK36i\",\n          \"templated\": true\n        }\n      ]\n    }\n  },\n  {\n    \"slug\": \"string\",\n    \"description\": \"string\",\n    \"hierarchical\": false,\n    \"has_archive\": true,\n    \"name\": \"string\",\n    \"icon\": \"string\",\n    \"taxonomies\": [\n      \"string\",\n      \"string\"\n    ],\n    \"rest_base\": \"string\",\n    \"rest_namespace\": \"string\",\n    \"template_lock\": true,\n    \"yoast_head\": \"string\",\n    \"yoast_head_json\": {\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"robots\": {\n        \"index\": \"string\",\n        \"follow\": \"string\",\n        \"max-snippet\": \"string\",\n        \"max-image-preview\": \"string\",\n        \"max-video-preview\": \"string\"\n      },\n      \"canonical\": \"https://HGrZcvnBKTYUbZBOrMkaNyz.egaL.K20zH1rjDrNmrfOuaktbClNEDH9\",\n      \"og_locale\": \"string\",\n      \"og_type\": \"string\",\n      \"og_title\": \"string\",\n      \"og_description\": \"string\",\n      \"og_url\": \"https://hLvTSxlSwL.ebmQTWIM8saJNPPjpuolWIzB3Kjj1j.xTgh0qq1y3dnCY\",\n      \"og_site_name\": \"string\",\n      \"twitter_card\": \"string\",\n      \"schema\": {\n        \"@context\": \"http://KHrznFryJj.qyfExAOPs.UfnNbemrTHrOdQRSozxhPb3OJjDUL8oxIlGz7gk-fBmYTao8bUjcJknJ\",\n        \"@graph\": [\n          {\n            \"@type\": \"\",\n            \"@id\": \"\",\n            \"url\": \"\",\n            \"name\": \"\",\n            \"isPartOf\": \"\",\n            \"datePublished\": \"\",\n            \"dateModified\": \"\",\n            \"description\": \"\",\n            \"breadcrumb\": \"\",\n            \"inLanguage\": \"\"\n          },\n          {\n            \"@type\": \"\",\n            \"@id\": \"\",\n            \"url\": \"\",\n            \"name\": \"\",\n            \"isPartOf\": \"\",\n            \"datePublished\": \"\",\n            \"dateModified\": \"\",\n            \"description\": \"\",\n            \"breadcrumb\": \"\",\n            \"inLanguage\": \"\"\n          }\n        ]\n      }\n    },\n    \"_links\": {\n      \"collection\": [\n        {\n          \"href\": \"https://SsfqiIi.kctumVaieyhn70e2igQaJCYu5Eo03LMC5\"\n        },\n        {\n          \"href\": \"http://zpJKWXdaPUuFRVyIHrwCZXvHz.vbkbJoMhMCsY9azLYQt+43rg\"\n        }\n      ],\n      \"wp:items\": [\n        {\n          \"href\": \"http://HIQwQHwkFtuAgLATLV.ykkwcfh4,X6Ym,J4hplqEkubGH9SBT8+u,LEUHMsA0zRTCAMUnQCbJgAigwLN7sVJbzrIaBJtyW2ozBZ+\"\n        },\n        {\n          \"href\": \"https://YMKzxVuoNLUSR.kqbktrVpZL0Vjr.FyFd\"\n        }\n      ],\n      \"curies\": [\n        {\n          \"name\": \"string\",\n          \"href\": \"http://sVvbxHZPQrfdfSwCyUvMkqjfc.xfyepVPdlSkQRJuFEnu\",\n          \"templated\": true\n        },\n        {\n          \"name\": \"string\",\n          \"href\": \"http://gQtfVO.ahwnZ,0ejIerizgfNkvyajrSHrwVaY2.g6pgf0\",\n          \"templated\": false\n        }\n      ]\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "13bb5dfe-3a2d-40c8-96f3-0317319395d6",
+              "name": "Invalid parameter (rest_invalid_param), e.g. per_page outside 1-100.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "taxonomies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"status\": 6748\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4a876a80-f0eb-4d76-8363-0ebc04284709",
+          "name": "Get one taxonomy",
+          "request": {
+            "name": "Get one taxonomy",
+            "description": {
+              "content": "Returns the registration record for one taxonomy.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wp",
+                "v2",
+                "taxonomies",
+                ":taxonomy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "context",
+                  "value": "view",
+                  "description": "Scope under which the request is made; determines fields present in response."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "taxonomy",
+                  "description": "(Required) An alphanumeric identifier for the taxonomy."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b891a51b-48aa-4156-9449-3805c1f6f577",
+              "name": "The requested object.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "taxonomies",
+                    ":taxonomy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taxonomy",
+                      "description": "(Required) An alphanumeric identifier for the taxonomy."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"slug\": \"string\",\n  \"description\": \"string\",\n  \"hierarchical\": false,\n  \"has_archive\": true,\n  \"name\": \"string\",\n  \"icon\": \"string\",\n  \"taxonomies\": [\n    \"string\",\n    \"string\"\n  ],\n  \"rest_base\": \"string\",\n  \"rest_namespace\": \"string\",\n  \"template_lock\": true,\n  \"yoast_head\": \"string\",\n  \"yoast_head_json\": {\n    \"title\": \"string\",\n    \"description\": \"string\",\n    \"robots\": {\n      \"index\": \"string\",\n      \"follow\": \"string\",\n      \"max-snippet\": \"string\",\n      \"max-image-preview\": \"string\",\n      \"max-video-preview\": \"string\"\n    },\n    \"canonical\": \"http://fwxjLHXUCupGJerCoams.lqlvvNvr,SE5fKWjVwwFQe2\",\n    \"og_locale\": \"string\",\n    \"og_type\": \"string\",\n    \"og_title\": \"string\",\n    \"og_description\": \"string\",\n    \"og_url\": \"http://bTvlMQdbpGmn.ghT6QOZ6sROLZzfePsNJydjhoNwmaCKt\",\n    \"og_site_name\": \"string\",\n    \"twitter_card\": \"string\",\n    \"schema\": {\n      \"@context\": \"http://kAylNOowwUqfJHTfaxoDyHkjWQheVmNhV.bsaYtavTbanNDJUqr2P3uejg3ivWQLlMbxW2Lm87pp7URjovSlRKrVgrWjyGrjDVbIj\",\n      \"@graph\": [\n        {\n          \"@type\": \"\",\n          \"@id\": \"\",\n          \"url\": \"\",\n          \"name\": \"\",\n          \"isPartOf\": \"\",\n          \"datePublished\": \"\",\n          \"dateModified\": \"\",\n          \"description\": \"\",\n          \"breadcrumb\": \"\",\n          \"inLanguage\": \"\"\n        },\n        {\n          \"@type\": \"\",\n          \"@id\": \"\",\n          \"url\": \"\",\n          \"name\": \"\",\n          \"isPartOf\": \"\",\n          \"datePublished\": \"\",\n          \"dateModified\": \"\",\n          \"description\": \"\",\n          \"breadcrumb\": \"\",\n          \"inLanguage\": \"\"\n        }\n      ]\n    }\n  },\n  \"_links\": {\n    \"collection\": [\n      {\n        \"href\": \"https://LMJpQkUrpleHqvZAV.lagmaT1aV54pFJ0unAGd8moQPClny6BZvnD7AaDq25M\"\n      },\n      {\n        \"href\": \"https://OgjscrSjwdskIEGsDz.hggeL7T2SFqC0FEnrVqXNXFflONoKMg15+uvquHSaeDpoM7E89T31jg6uf\"\n      }\n    ],\n    \"wp:items\": [\n      {\n        \"href\": \"https://fEzvdiobniGGlQ.vhTrd444EuVTtBxOQBX5u3,VJgjizEdyR9lv8.yJjvjHiM8fSipKa9cffQRZcSGRZ+2Jqm\"\n      },\n      {\n        \"href\": \"http://tdoWFrgSnFPfMsd.gkdawvMa2.Ak78wdYehDWsHuXgfksi-s+jxAz\"\n      }\n    ],\n    \"curies\": [\n      {\n        \"name\": \"string\",\n        \"href\": \"https://tVJELCGUavirrBeKnY.gvhXuYlmOqfbp4BknvmH\",\n        \"templated\": false\n      },\n      {\n        \"name\": \"string\",\n        \"href\": \"http://BzrhDiJHPqHsee.zgVwPg1+7U8J,\",\n        \"templated\": true\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3f75d101-43fb-4008-88bc-accbae93f026",
+              "name": "Invalid parameter (rest_invalid_param).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "taxonomies",
+                    ":taxonomy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taxonomy",
+                      "description": "(Required) An alphanumeric identifier for the taxonomy."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"status\": 6748\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "643b0cd0-3af6-4b95-8ebe-37715f74c195",
+              "name": "No object exists with that identifier (rest_post_invalid_id / rest_term_invalid).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "taxonomies",
+                    ":taxonomy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "taxonomy",
+                      "description": "(Required) An alphanumeric identifier for the taxonomy."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"status\": 6748\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c44446d3-1540-4e01-b9ed-a606d32bb233",
+          "name": "List publication statuses",
+          "request": {
+            "name": "List publication statuses",
+            "description": {
+              "content": "Returns the publication statuses visible to the caller. Anonymously this is only `publish`, which is why every object returned by the content operations carries `status: publish`.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wp",
+                "v2",
+                "statuses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "context",
+                  "value": "view",
+                  "description": "Scope under which the request is made; determines fields present in response."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4699e761-d37f-46a3-bb4e-6a22d18d22ad",
+              "name": "A page of results.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "statuses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Total number of items in the unpaginated collection.",
+                  "key": "X-WP-Total",
+                  "value": "1566"
+                },
+                {
+                  "disabled": false,
+                  "description": "Total number of pages at the requested per_page size.",
+                  "key": "X-WP-TotalPages",
+                  "value": "1566"
+                },
+                {
+                  "disabled": false,
+                  "description": "RFC 8288 Link header carrying rel=\"next\" and rel=\"prev\" for the collection.",
+                  "key": "Link",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"slug\": \"string\",\n    \"description\": \"string\",\n    \"hierarchical\": false,\n    \"has_archive\": false,\n    \"name\": \"string\",\n    \"icon\": \"string\",\n    \"taxonomies\": [\n      \"string\",\n      \"string\"\n    ],\n    \"rest_base\": \"string\",\n    \"rest_namespace\": \"string\",\n    \"template_lock\": false,\n    \"yoast_head\": \"string\",\n    \"yoast_head_json\": {\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"robots\": {\n        \"index\": \"string\",\n        \"follow\": \"string\",\n        \"max-snippet\": \"string\",\n        \"max-image-preview\": \"string\",\n        \"max-video-preview\": \"string\"\n      },\n      \"canonical\": \"http://M.bcPBwjH-YouTeVsyMktwnMnT1qU+2qUa5V5Qr71rqF2\",\n      \"og_locale\": \"string\",\n      \"og_type\": \"string\",\n      \"og_title\": \"string\",\n      \"og_description\": \"string\",\n      \"og_url\": \"https://yacaETSvMTLZX.uliKu+q4.ef8aLwtN+yrI2ksqEcXeFJ\",\n      \"og_site_name\": \"string\",\n      \"twitter_card\": \"string\",\n      \"schema\": {\n        \"@context\": \"https://JsoXF.junoomNuMp2.Ysi7483kNt6aBo9LdaDnB\",\n        \"@graph\": [\n          {\n            \"@type\": \"\",\n            \"@id\": \"\",\n            \"url\": \"\",\n            \"name\": \"\",\n            \"isPartOf\": \"\",\n            \"datePublished\": \"\",\n            \"dateModified\": \"\",\n            \"description\": \"\",\n            \"breadcrumb\": \"\",\n            \"inLanguage\": \"\"\n          },\n          {\n            \"@type\": \"\",\n            \"@id\": \"\",\n            \"url\": \"\",\n            \"name\": \"\",\n            \"isPartOf\": \"\",\n            \"datePublished\": \"\",\n            \"dateModified\": \"\",\n            \"description\": \"\",\n            \"breadcrumb\": \"\",\n            \"inLanguage\": \"\"\n          }\n        ]\n      }\n    },\n    \"_links\": {\n      \"collection\": [\n        {\n          \"href\": \"https://RSBw.aqdj,yIfN\"\n        },\n        {\n          \"href\": \"http://tWnaZCEdyWbIDGcekXizHUwpUJCzqFK.svjnyMwc+1BniZthbATbdbqS\"\n        }\n      ],\n      \"wp:items\": [\n        {\n          \"href\": \"https://f.irqlljllgQX9f9VBbS-m2Bs3V+ClR\"\n        },\n        {\n          \"href\": \"http://pfTyz.bkhwqazT76ceFqglnX0nMhdD-.ucL.hlMP1\"\n        }\n      ],\n      \"curies\": [\n        {\n          \"name\": \"string\",\n          \"href\": \"http://IHzvHayxTORUpGQuMwUXjfMnBkyCtR.hazvRgNPgD+3jtI7bi55i\",\n          \"templated\": false\n        },\n        {\n          \"name\": \"string\",\n          \"href\": \"https://SdSUDobHcOlqPhZDdtzabVc.setiKyxrqwXhzj8ZYqwHMfxqMS,Ki0dwHZLbVP3CZzt30haMoqbdx03g4czAK36i\",\n          \"templated\": true\n        }\n      ]\n    }\n  },\n  {\n    \"slug\": \"string\",\n    \"description\": \"string\",\n    \"hierarchical\": false,\n    \"has_archive\": true,\n    \"name\": \"string\",\n    \"icon\": \"string\",\n    \"taxonomies\": [\n      \"string\",\n      \"string\"\n    ],\n    \"rest_base\": \"string\",\n    \"rest_namespace\": \"string\",\n    \"template_lock\": true,\n    \"yoast_head\": \"string\",\n    \"yoast_head_json\": {\n      \"title\": \"string\",\n      \"description\": \"string\",\n      \"robots\": {\n        \"index\": \"string\",\n        \"follow\": \"string\",\n        \"max-snippet\": \"string\",\n        \"max-image-preview\": \"string\",\n        \"max-video-preview\": \"string\"\n      },\n      \"canonical\": \"https://HGrZcvnBKTYUbZBOrMkaNyz.egaL.K20zH1rjDrNmrfOuaktbClNEDH9\",\n      \"og_locale\": \"string\",\n      \"og_type\": \"string\",\n      \"og_title\": \"string\",\n      \"og_description\": \"string\",\n      \"og_url\": \"https://hLvTSxlSwL.ebmQTWIM8saJNPPjpuolWIzB3Kjj1j.xTgh0qq1y3dnCY\",\n      \"og_site_name\": \"string\",\n      \"twitter_card\": \"string\",\n      \"schema\": {\n        \"@context\": \"http://KHrznFryJj.qyfExAOPs.UfnNbemrTHrOdQRSozxhPb3OJjDUL8oxIlGz7gk-fBmYTao8bUjcJknJ\",\n        \"@graph\": [\n          {\n            \"@type\": \"\",\n            \"@id\": \"\",\n            \"url\": \"\",\n            \"name\": \"\",\n            \"isPartOf\": \"\",\n            \"datePublished\": \"\",\n            \"dateModified\": \"\",\n            \"description\": \"\",\n            \"breadcrumb\": \"\",\n            \"inLanguage\": \"\"\n          },\n          {\n            \"@type\": \"\",\n            \"@id\": \"\",\n            \"url\": \"\",\n            \"name\": \"\",\n            \"isPartOf\": \"\",\n            \"datePublished\": \"\",\n            \"dateModified\": \"\",\n            \"description\": \"\",\n            \"breadcrumb\": \"\",\n            \"inLanguage\": \"\"\n          }\n        ]\n      }\n    },\n    \"_links\": {\n      \"collection\": [\n        {\n          \"href\": \"https://SsfqiIi.kctumVaieyhn70e2igQaJCYu5Eo03LMC5\"\n        },\n        {\n          \"href\": \"http://zpJKWXdaPUuFRVyIHrwCZXvHz.vbkbJoMhMCsY9azLYQt+43rg\"\n        }\n      ],\n      \"wp:items\": [\n        {\n          \"href\": \"http://HIQwQHwkFtuAgLATLV.ykkwcfh4,X6Ym,J4hplqEkubGH9SBT8+u,LEUHMsA0zRTCAMUnQCbJgAigwLN7sVJbzrIaBJtyW2ozBZ+\"\n        },\n        {\n          \"href\": \"https://YMKzxVuoNLUSR.kqbktrVpZL0Vjr.FyFd\"\n        }\n      ],\n      \"curies\": [\n        {\n          \"name\": \"string\",\n          \"href\": \"http://sVvbxHZPQrfdfSwCyUvMkqjfc.xfyepVPdlSkQRJuFEnu\",\n          \"templated\": true\n        },\n        {\n          \"name\": \"string\",\n          \"href\": \"http://gQtfVO.ahwnZ,0ejIerizgfNkvyajrSHrwVaY2.g6pgf0\",\n          \"templated\": false\n        }\n      ]\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "86544ac6-e668-4f6e-a45c-8ffe327a8c93",
+              "name": "Invalid parameter (rest_invalid_param), e.g. per_page outside 1-100.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "statuses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"status\": 6748\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "be13d2ff-b48d-40a6-b414-ecfdcb6c9ed9",
+          "name": "Get one publication status",
+          "request": {
+            "name": "Get one publication status",
+            "description": {
+              "content": "Returns the registration record for one publication status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "wp",
+                "v2",
+                "statuses",
+                ":status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "context",
+                  "value": "view",
+                  "description": "Scope under which the request is made; determines fields present in response."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "status",
+                  "description": "(Required) An alphanumeric identifier for the status."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f3bf4221-2750-4670-adc4-fb7630f05548",
+              "name": "The requested object.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "statuses",
+                    ":status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "status",
+                      "description": "(Required) An alphanumeric identifier for the status."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"slug\": \"string\",\n  \"description\": \"string\",\n  \"hierarchical\": false,\n  \"has_archive\": true,\n  \"name\": \"string\",\n  \"icon\": \"string\",\n  \"taxonomies\": [\n    \"string\",\n    \"string\"\n  ],\n  \"rest_base\": \"string\",\n  \"rest_namespace\": \"string\",\n  \"template_lock\": true,\n  \"yoast_head\": \"string\",\n  \"yoast_head_json\": {\n    \"title\": \"string\",\n    \"description\": \"string\",\n    \"robots\": {\n      \"index\": \"string\",\n      \"follow\": \"string\",\n      \"max-snippet\": \"string\",\n      \"max-image-preview\": \"string\",\n      \"max-video-preview\": \"string\"\n    },\n    \"canonical\": \"http://fwxjLHXUCupGJerCoams.lqlvvNvr,SE5fKWjVwwFQe2\",\n    \"og_locale\": \"string\",\n    \"og_type\": \"string\",\n    \"og_title\": \"string\",\n    \"og_description\": \"string\",\n    \"og_url\": \"http://bTvlMQdbpGmn.ghT6QOZ6sROLZzfePsNJydjhoNwmaCKt\",\n    \"og_site_name\": \"string\",\n    \"twitter_card\": \"string\",\n    \"schema\": {\n      \"@context\": \"http://kAylNOowwUqfJHTfaxoDyHkjWQheVmNhV.bsaYtavTbanNDJUqr2P3uejg3ivWQLlMbxW2Lm87pp7URjovSlRKrVgrWjyGrjDVbIj\",\n      \"@graph\": [\n        {\n          \"@type\": \"\",\n          \"@id\": \"\",\n          \"url\": \"\",\n          \"name\": \"\",\n          \"isPartOf\": \"\",\n          \"datePublished\": \"\",\n          \"dateModified\": \"\",\n          \"description\": \"\",\n          \"breadcrumb\": \"\",\n          \"inLanguage\": \"\"\n        },\n        {\n          \"@type\": \"\",\n          \"@id\": \"\",\n          \"url\": \"\",\n          \"name\": \"\",\n          \"isPartOf\": \"\",\n          \"datePublished\": \"\",\n          \"dateModified\": \"\",\n          \"description\": \"\",\n          \"breadcrumb\": \"\",\n          \"inLanguage\": \"\"\n        }\n      ]\n    }\n  },\n  \"_links\": {\n    \"collection\": [\n      {\n        \"href\": \"https://LMJpQkUrpleHqvZAV.lagmaT1aV54pFJ0unAGd8moQPClny6BZvnD7AaDq25M\"\n      },\n      {\n        \"href\": \"https://OgjscrSjwdskIEGsDz.hggeL7T2SFqC0FEnrVqXNXFflONoKMg15+uvquHSaeDpoM7E89T31jg6uf\"\n      }\n    ],\n    \"wp:items\": [\n      {\n        \"href\": \"https://fEzvdiobniGGlQ.vhTrd444EuVTtBxOQBX5u3,VJgjizEdyR9lv8.yJjvjHiM8fSipKa9cffQRZcSGRZ+2Jqm\"\n      },\n      {\n        \"href\": \"http://tdoWFrgSnFPfMsd.gkdawvMa2.Ak78wdYehDWsHuXgfksi-s+jxAz\"\n      }\n    ],\n    \"curies\": [\n      {\n        \"name\": \"string\",\n        \"href\": \"https://tVJELCGUavirrBeKnY.gvhXuYlmOqfbp4BknvmH\",\n        \"templated\": false\n      },\n      {\n        \"name\": \"string\",\n        \"href\": \"http://BzrhDiJHPqHsee.zgVwPg1+7U8J,\",\n        \"templated\": true\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f731a3f2-9100-4265-ab9a-036f0b96d760",
+              "name": "Invalid parameter (rest_invalid_param).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "statuses",
+                    ":status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "status",
+                      "description": "(Required) An alphanumeric identifier for the status."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"status\": 6748\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b63a2f1a-ae98-4897-9254-ca6fd9ff7413",
+              "name": "No object exists with that identifier (rest_post_invalid_id / rest_term_invalid).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "wp",
+                    "v2",
+                    "statuses",
+                    ":status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "context",
+                      "value": "view"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "status",
+                      "description": "(Required) An alphanumeric identifier for the status."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"data\": {\n    \"status\": 6748\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://accelsius.com/wp-json",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "fc973932-8ec0-4f9f-b8e5-19ce4cb87aa3",
+    "name": "Accelsius Taxonomy Registry API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The classification layer behind the content API: the eight `category` terms Accelsius uses to separate content classes (blog, white-paper, press-release, news-article, video, podcast, infographic, case-study), the five `post_tag` topic terms (2pd2c-education, neucool-products, accelsius-news, scientific-research, featured), the 19 HappyFiles media folders, and the registry endpoints that describe the post types, taxonomies and publication statuses themselves.\n\nAccelsius publishes accelsius.com on WordPress (WP Engine origin, Cloudflare edge, MalCare firewall) with the WordPress core REST API enabled and anonymously readable. This is NOT a product API that Accelsius offers to customers — Accelsius manufactures two-phase direct-to-chip liquid-cooling hardware and ships no developer program, SDK or product API. It is the content API behind the company marketing site, captured for discovery purposes. Anonymous access is read-only: the `Allow` response header on every collection is `GET`, and write operations require WordPress cookie authentication with an X-WP-Nonce header or an Application Password, returning HTTP 401 to anonymous callers.\n\nContact Support:\n Name: Accelsius\n Email: info@accelsius.com",
+      "type": "text/plain"
+    }
+  }
+}

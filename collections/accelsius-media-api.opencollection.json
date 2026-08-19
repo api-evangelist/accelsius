@@ -1,0 +1,212 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Accelsius Media API",
+    "version": "wp/v2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Media",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List media attachments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://accelsius.com/wp-json/wp/v2/media",
+            "params": [
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Scope under which the request is made; determines fields present in response."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "Current page of the collection."
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to be returned in result set."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Limit results to those matching a string."
+              },
+              {
+                "name": "after",
+                "value": "",
+                "type": "query",
+                "description": "Limit response to posts published after a given ISO8601 compliant date."
+              },
+              {
+                "name": "modified_after",
+                "value": "",
+                "type": "query",
+                "description": "Limit response to posts modified after a given ISO8601 compliant date."
+              },
+              {
+                "name": "author",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to posts assigned to specific authors."
+              },
+              {
+                "name": "author_exclude",
+                "value": "",
+                "type": "query",
+                "description": "Ensure result set excludes posts assigned to specific authors."
+              },
+              {
+                "name": "before",
+                "value": "",
+                "type": "query",
+                "description": "Limit response to posts published before a given ISO8601 compliant date."
+              },
+              {
+                "name": "modified_before",
+                "value": "",
+                "type": "query",
+                "description": "Limit response to posts modified before a given ISO8601 compliant date."
+              },
+              {
+                "name": "exclude",
+                "value": "",
+                "type": "query",
+                "description": "Ensure result set excludes specific IDs."
+              },
+              {
+                "name": "include",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to specific IDs."
+              },
+              {
+                "name": "search_semantics",
+                "value": "",
+                "type": "query",
+                "description": "How to interpret the search input."
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Offset the result set by a specific number of items."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Order sort attribute ascending or descending."
+              },
+              {
+                "name": "orderby",
+                "value": "",
+                "type": "query",
+                "description": "Sort collection by post attribute."
+              },
+              {
+                "name": "parent",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to items with particular parent IDs."
+              },
+              {
+                "name": "parent_exclude",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to all items except those of a particular parent ID."
+              },
+              {
+                "name": "search_columns",
+                "value": "",
+                "type": "query",
+                "description": "Array of column names to be searched."
+              },
+              {
+                "name": "slug",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to posts with one or more specific slugs."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to posts assigned one or more statuses."
+              },
+              {
+                "name": "tax_relation",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set based on relationship between multiple taxonomies."
+              },
+              {
+                "name": "happyfiles_category",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to items with specific terms assigned in the happyfiles_category taxonomy."
+              },
+              {
+                "name": "happyfiles_category_exclude",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to items except those with specific terms assigned in the happyfiles_category taxonomy."
+              },
+              {
+                "name": "media_type",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to attachments of a particular media type or media types."
+              },
+              {
+                "name": "mime_type",
+                "value": "",
+                "type": "query",
+                "description": "Limit result set to attachments of a particular MIME type or MIME types."
+              }
+            ]
+          },
+          "docs": "Returns a paginated collection of attachments. Filter with `media_type` (image/file/video/audio) or `mime_type` (for example application/pdf to retrieve only the published white papers and studies)."
+        },
+        {
+          "info": {
+            "name": "Get one media attachment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://accelsius.com/wp-json/wp/v2/media/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the post."
+              },
+              {
+                "name": "context",
+                "value": "",
+                "type": "query",
+                "description": "Scope under which the request is made; determines fields present in response."
+              }
+            ]
+          },
+          "docs": "Returns a single attachment by its numeric ID, including `source_url` and the full `media_details` size map."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
