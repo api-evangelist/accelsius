@@ -118,6 +118,11 @@ apis:
   tags:
   - Pages
   - Content
+  - Product
+  - WordPress
+  tags_raw:
+  - Pages
+  - Content
   - Products
   - WordPress
   properties:
@@ -150,6 +155,12 @@ apis:
   humanURL: https://accelsius.com/papers-studies/
   baseURL: https://accelsius.com/wp-json
   tags:
+  - Media
+  - Image
+  - Documents
+  - Content
+  - WordPress
+  tags_raw:
   - Media
   - Images
   - Documents
