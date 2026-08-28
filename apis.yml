@@ -12,6 +12,17 @@ description: 'Accelsius LLC is an Austin, Texas thermal-management company found
   machine-readable product specification. The only machine-readable interface on its public surface is
   the WordPress core REST API behind accelsius.com, which serves the company''s own blog, news, white-paper,
   case-study, podcast and video content anonymously and read-only.'
+deliveryModel:
+  model: unknown
+  open_source: false
+  commercial: false
+  callable_host: true
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  generated: '2026-08-28'
+  method: derived
 image: https://accelsius.com/wp-content/uploads/Accelsius_Logo_Footer-1.svg
 url: https://raw.githubusercontent.com/api-evangelist/accelsius/refs/heads/main/apis.yml
 x-type: company
