@@ -48,6 +48,19 @@ created: '2026-08-06'
 modified: '2026-08-06'
 tags:
 - Company
+- Data-Center
+- Liquid Cooling
+- Thermal Management
+- Direct-to-Chip Cooling
+- Two-Phase Cooling
+- Artificial Intelligence Infrastructure
+- High Performance Computing
+- Hardware
+- Manufacturing
+- Content
+- WordPress
+tags_raw:
+- Company
 - Data Centers
 - Liquid Cooling
 - Thermal Management
@@ -255,6 +268,11 @@ apis:
   humanURL: https://accelsius.com/wp-json/
   baseURL: https://accelsius.com/wp-json
   tags:
+  - Discovery
+  - Metadata
+  - Specification
+  - WordPress
+  tags_raw:
   - Discovery
   - Metadata
   - Specifications
