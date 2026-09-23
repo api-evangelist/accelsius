@@ -3,10 +3,7 @@ info:
   title: Accelsius Pages API
   version: wp/v2
   summary: Public read surface of the static marketing pages of accelsius.com.
-  description: 'The `page` type: the product, technology, services, partner, company, careers, FAQ and legal pages of accelsius.com, including the NeuCool IR150 and MR250 product pages, the Thermal Simulation Rack / Liquid Simulation System page, the multi-GPU page, the two-phase and direct-to-chip technology explainers, and the privacy policy. At time of capture the collection held 30 published pages, 29 of which are listed in the Yoast page sitemap.
-
-
-    Accelsius publishes accelsius.com on WordPress (WP Engine origin, Cloudflare edge, MalCare firewall) with the WordPress core REST API enabled and anonymously readable. This is NOT a product API that Accelsius offers to customers — Accelsius manufactures two-phase direct-to-chip liquid-cooling hardware and ships no developer program, SDK or product API. It is the content API behind the company marketing site, captured for discovery purposes. Anonymous access is read-only: the `Allow` response header on every collection is `GET`, and write operations require WordPress cookie authentication with an X-WP-Nonce header or an Application Password, returning HTTP 401 to anonymous callers.'
+  description: 'The `page` type: the product, technology, services, partner, company, careers, FAQ and legal pages of accelsius.com, including the NeuCool IR150 and MR250 product pages, the Thermal Simulation Rack / Liquid Simulation System page, the multi-GPU page, the two-phase and direct-to-chip technology explainers, and the privacy policy.'
   contact:
     name: Accelsius
     url: https://accelsius.com/contact/
@@ -296,6 +293,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/WPError'
 components:
+  headers:
+    XWPTotal:
+      description: Total number of items in the unpaginated collection.
+      schema:
+        type: integer
+    LinkPagination:
+      description: RFC 8288 Link header carrying rel="next" and rel="prev" for the collection.
+      schema:
+        type: string
+    XWPTotalPages:
+      description: Total number of pages at the requested per_page size.
+      schema:
+        type: integer
   schemas:
     Page:
       type: object
@@ -581,19 +591,6 @@ components:
       required:
       - code
       - message
-  headers:
-    LinkPagination:
-      description: RFC 8288 Link header carrying rel="next" and rel="prev" for the collection.
-      schema:
-        type: string
-    XWPTotalPages:
-      description: Total number of pages at the requested per_page size.
-      schema:
-        type: integer
-    XWPTotal:
-      description: Total number of items in the unpaginated collection.
-      schema:
-        type: integer
   securitySchemes:
     applicationPassword:
       type: http

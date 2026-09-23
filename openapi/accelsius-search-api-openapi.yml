@@ -3,10 +3,7 @@ info:
   title: Accelsius Search API
   version: wp/v2
   summary: Public site-wide search across accelsius.com content.
-  description: 'The WordPress search route returns a lightweight, uniform result object (id, title, url, type, subtype, _links) across every searchable type on the site — resource-library posts, pages and news items. At time of capture 192 objects were searchable. This is the cheapest way to resolve a title or URL to the numeric ID the other operations take.
-
-
-    Accelsius publishes accelsius.com on WordPress (WP Engine origin, Cloudflare edge, MalCare firewall) with the WordPress core REST API enabled and anonymously readable. This is NOT a product API that Accelsius offers to customers — Accelsius manufactures two-phase direct-to-chip liquid-cooling hardware and ships no developer program, SDK or product API. It is the content API behind the company marketing site, captured for discovery purposes. Anonymous access is read-only: the `Allow` response header on every collection is `GET`, and write operations require WordPress cookie authentication with an X-WP-Nonce header or an Application Password, returning HTTP 401 to anonymous callers.'
+  description: The WordPress search route returns a lightweight, uniform result object (id, title, url, type, subtype, _links) across every searchable type on the site — resource-library posts, pages and news items.
   contact:
     name: Accelsius
     url: https://accelsius.com/contact/
@@ -128,40 +125,7 @@ paths:
           items:
             type: integer
 components:
-  headers:
-    LinkPagination:
-      description: RFC 8288 Link header carrying rel="next" and rel="prev" for the collection.
-      schema:
-        type: string
-    XWPTotalPages:
-      description: Total number of pages at the requested per_page size.
-      schema:
-        type: integer
-    XWPTotal:
-      description: Total number of items in the unpaginated collection.
-      schema:
-        type: integer
   schemas:
-    WPError:
-      type: object
-      title: WPError
-      description: The WordPress REST error envelope. It is NOT RFC 9457 problem+json — the media type is application/json and the shape is a flat object carrying a machine-readable `code` slug, a human `message`, and a `data` object repeating the HTTP status.
-      properties:
-        code:
-          type: string
-          description: Machine-readable error slug, e.g. rest_post_invalid_id.
-        message:
-          type: string
-          description: Human-readable error message.
-        data:
-          type: object
-          properties:
-            status:
-              type: integer
-              description: HTTP status repeated in the body.
-      required:
-      - code
-      - message
     SearchResult:
       type: object
       title: SearchResult
@@ -190,6 +154,39 @@ components:
       - id
       - url
       x-schema-provenance: 'Route verified public: a live anonymous GET of /wp/v2/search returned HTTP 200 with X-WP-Total: 192 on 2026-08-06. Every later attempt to capture a result body was refused by the site MalCare firewall with HTTP 403, so the member list here is the WordPress core search-result shape, recorded as expected rather than observed.'
+    WPError:
+      type: object
+      title: WPError
+      description: The WordPress REST error envelope. It is NOT RFC 9457 problem+json — the media type is application/json and the shape is a flat object carrying a machine-readable `code` slug, a human `message`, and a `data` object repeating the HTTP status.
+      properties:
+        code:
+          type: string
+          description: Machine-readable error slug, e.g. rest_post_invalid_id.
+        message:
+          type: string
+          description: Human-readable error message.
+        data:
+          type: object
+          properties:
+            status:
+              type: integer
+              description: HTTP status repeated in the body.
+      required:
+      - code
+      - message
+  headers:
+    XWPTotal:
+      description: Total number of items in the unpaginated collection.
+      schema:
+        type: integer
+    LinkPagination:
+      description: RFC 8288 Link header carrying rel="next" and rel="prev" for the collection.
+      schema:
+        type: string
+    XWPTotalPages:
+      description: Total number of pages at the requested per_page size.
+      schema:
+        type: integer
   securitySchemes:
     applicationPassword:
       type: http

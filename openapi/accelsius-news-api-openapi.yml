@@ -3,10 +3,7 @@ info:
   title: Accelsius News API
   version: wp/v2
   summary: Public read surface of the `news` custom post type behind accelsius.com/in-the-news/.
-  description: 'A WordPress custom post type Accelsius registered for third-party press coverage, served in the same wp/v2 namespace as core content and sharing the category and post_tag taxonomies. It is distinct from the press releases the company issues itself, which live in the `press-release` category of the resource-library `post` type. At time of capture the collection held 8 published items.
-
-
-    Accelsius publishes accelsius.com on WordPress (WP Engine origin, Cloudflare edge, MalCare firewall) with the WordPress core REST API enabled and anonymously readable. This is NOT a product API that Accelsius offers to customers — Accelsius manufactures two-phase direct-to-chip liquid-cooling hardware and ships no developer program, SDK or product API. It is the content API behind the company marketing site, captured for discovery purposes. Anonymous access is read-only: the `Allow` response header on every collection is `GET`, and write operations require WordPress cookie authentication with an X-WP-Nonce header or an Application Password, returning HTTP 401 to anonymous callers.'
+  description: A WordPress custom post type Accelsius registered for third-party press coverage, served in the same wp/v2 namespace as core content and sharing the category and post_tag taxonomies.
   contact:
     name: Accelsius
     url: https://accelsius.com/contact/
@@ -315,19 +312,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/WPError'
 components:
-  headers:
-    LinkPagination:
-      description: RFC 8288 Link header carrying rel="next" and rel="prev" for the collection.
-      schema:
-        type: string
-    XWPTotalPages:
-      description: Total number of pages at the requested per_page size.
-      schema:
-        type: integer
-    XWPTotal:
-      description: Total number of items in the unpaginated collection.
-      schema:
-        type: integer
   schemas:
     NewsItem:
       type: object
@@ -603,6 +587,19 @@ components:
       required:
       - code
       - message
+  headers:
+    XWPTotal:
+      description: Total number of items in the unpaginated collection.
+      schema:
+        type: integer
+    LinkPagination:
+      description: RFC 8288 Link header carrying rel="next" and rel="prev" for the collection.
+      schema:
+        type: string
+    XWPTotalPages:
+      description: Total number of pages at the requested per_page size.
+      schema:
+        type: integer
   securitySchemes:
     applicationPassword:
       type: http

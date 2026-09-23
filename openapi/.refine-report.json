@@ -1,44 +1,45 @@
 {
   "provider": "accelsius",
   "sources": [
-    "accelsius-categories-api-openapi.yml",
+    "_original/accelsius-taxonomy-api-openapi.yml",
     "accelsius-content-api-openapi.yml",
     "accelsius-discovery-api-openapi.yml",
     "accelsius-media-api-openapi.yml",
-    "accelsius-media-folders-api-openapi.yml",
     "accelsius-news-api-openapi.yml",
     "accelsius-pages-api-openapi.yml",
-    "accelsius-registry-api-openapi.yml",
-    "accelsius-search-api-openapi.yml",
-    "accelsius-tags-api-openapi.yml"
+    "accelsius-search-api-openapi.yml"
   ],
   "outputs": [
     "accelsius-categories-api-openapi.yml",
+    "accelsius-media-folders-api-openapi.yml",
+    "accelsius-registry-api-openapi.yml",
+    "accelsius-tags-api-openapi.yml",
     "accelsius-content-api-openapi.yml",
     "accelsius-discovery-api-openapi.yml",
     "accelsius-media-api-openapi.yml",
-    "accelsius-media-folders-api-openapi.yml",
     "accelsius-news-api-openapi.yml",
     "accelsius-pages-api-openapi.yml",
-    "accelsius-registry-api-openapi.yml",
-    "accelsius-search-api-openapi.yml",
-    "accelsius-tags-api-openapi.yml"
+    "accelsius-search-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
-  "warnings": [],
+  "warnings": [
+    "accelsius-content-api-openapi.yml: previously refined output kept for 2 operation(s) no archived document covers (e.g. /wp/v2/posts get, /wp/v2/posts/{id} get); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "accelsius-discovery-api-openapi.yml: previously refined output kept for 2 operation(s) no archived document covers (e.g. / get, /wp/v2 get); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "accelsius-media-api-openapi.yml: previously refined output kept for 2 operation(s) no archived document covers (e.g. /wp/v2/media get, /wp/v2/media/{id} get); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "accelsius-news-api-openapi.yml: previously refined output kept for 2 operation(s) no archived document covers (e.g. /wp/v2/news get, /wp/v2/news/{id} get); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "accelsius-pages-api-openapi.yml: previously refined output kept for 2 operation(s) no archived document covers (e.g. /wp/v2/pages get, /wp/v2/pages/{id} get); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth.",
+    "accelsius-search-api-openapi.yml: previously refined output kept for 1 operation(s) no archived document covers (e.g. /wp/v2/search get); its other 0 operation(s) came from the archive and were dropped from it. The archive is incomplete for this provider \u2014 re-harvest to restore _original/ as the full source of truth."
+  ],
   "notes": [
-    "accelsius-categories-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "accelsius-content-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "accelsius-discovery-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "accelsius-media-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "accelsius-media-folders-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "accelsius-news-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "accelsius-pages-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "accelsius-registry-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "accelsius-search-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "accelsius-tags-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "accelsius-taxonomy-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "apis.yml register: already-registered"
   ],
-  "skipped": []
+  "skipped": [
+    "accelsius-categories-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "accelsius-media-folders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "accelsius-registry-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "accelsius-tags-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

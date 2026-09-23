@@ -3,10 +3,7 @@ info:
   title: Accelsius Discovery API
   version: wp/v2
   summary: The WordPress REST route-discovery documents served by accelsius.com.
-  description: 'The root index at /wp-json/ and the wp/v2 namespace index. These are the only machine-readable API description documents Accelsius serves: they enumerate 387 routes across 16 namespaces with per-route HTTP methods and full argument schemas, and they are the source every other OpenAPI document in this repository was derived from. The root index also advertises the site name, home URL, timezone offset, and the `authentication.application-passwords` authorization endpoint.
-
-
-    Accelsius publishes accelsius.com on WordPress (WP Engine origin, Cloudflare edge, MalCare firewall) with the WordPress core REST API enabled and anonymously readable. This is NOT a product API that Accelsius offers to customers — Accelsius manufactures two-phase direct-to-chip liquid-cooling hardware and ships no developer program, SDK or product API. It is the content API behind the company marketing site, captured for discovery purposes. Anonymous access is read-only: the `Allow` response header on every collection is `GET`, and write operations require WordPress cookie authentication with an X-WP-Nonce header or an Application Password, returning HTTP 401 to anonymous callers.'
+  description: The root index at /wp-json/ and the wp/v2 namespace index.
   contact:
     name: Accelsius
     url: https://accelsius.com/contact/
